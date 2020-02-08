@@ -5,9 +5,19 @@ import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-String currentOtp = '';
-
 class VerifyOtpPage extends StatelessWidget {
+  const VerifyOtpPage({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => VerifyOtpBloc(),
+      child: VerifyOtpPageChild(),
+    );
+  }
+}
+
+class VerifyOtpPageChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +28,16 @@ class VerifyOtpPage extends StatelessWidget {
           bottom: true,
           minimum: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
-            child: buildBody(context),
+            child: BlocListener<VerifyOtpBloc, VerifyOtpState>(
+                listener: (context, state) {
+                  if (state is VerifyOtpTimeout) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('OTP timeout !'),
+                      backgroundColor: Colors.orange,
+                    ));
+                  }
+                },
+                child: buildBody(context)),
           )),
     );
   }
@@ -53,9 +72,24 @@ class VerifyOtpPage extends StatelessWidget {
           ),
         ),
         SizedBox(height: 40),
-        OtpInput(),
+        BlocBuilder(
+          bloc: BlocProvider.of<VerifyOtpBloc>(context),
+          builder: (BuildContext context, state) {
+            if (state is VerifyOtpInitial) {
+              return OtpInput();
+            } else if (state is VerifyOtpLoading || state is VerifyOtpTimeout) {
+              return Container(
+                padding: EdgeInsets.all(10.0),
+                height: 100,
+                width: 100,
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.green[200],
+                ),
+              );
+            }
+          },
+        ),
       ]),
     ]);
   }
 }
-
