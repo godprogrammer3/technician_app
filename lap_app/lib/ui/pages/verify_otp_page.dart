@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
+import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 String currentOtp = '';
 
@@ -30,12 +32,9 @@ class VerifyOtpPage extends StatelessWidget {
       Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         SizedBox(height: MediaQuery.of(context).size.height / 20.0),
         Container(
-          width: MediaQuery.of(context).size.width - 70,
-          height: 200,
-          child: Image.asset(
-            'assets/images/verify_otp_tp.png',
-            fit: BoxFit.contain,
-          ),
+            width: MediaQuery.of(context).size.width - 70,
+            height: 200,
+            child:ImageDisplay(imageName:'top_verify_otp.svg'),
         ),
         Text(
           'Verification',
@@ -106,7 +105,7 @@ class OtpInput extends StatelessWidget {
               MaterialButton(
                   height: 50,
                   minWidth: 250,
-                  color: Color.fromARGB(255, 	47,220,150),
+                  color: Color.fromARGB(255, 47, 220, 150),
                   textColor: Colors.white,
                   child: Text('Verify'),
                   onPressed: () => {},
@@ -145,7 +144,6 @@ class _PinInputState extends State<PinInput> {
             textInputType:
                 TextInputType.numberWithOptions(signed: false, decimal: false),
             inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            
             onChanged: (value) {
               setState(() {
                 currentOtp = value;
