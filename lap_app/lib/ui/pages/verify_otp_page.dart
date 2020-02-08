@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
 String currentOtp = '';
+
 class VerifyOtpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class VerifyOtpPage extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 40),
         OtpInput(),
         SizedBox(height: 20),
         Text('Re-Send Code in 0:59',
@@ -76,43 +78,42 @@ class OtpInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: new BorderRadius.only(
-          topLeft: const Radius.circular(10.0),
-          topRight: const Radius.circular(10.0),
-          bottomLeft: const Radius.circular(10.0),
-          bottomRight: const Radius.circular(10.0),
-        ),
-      ),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              // Expanded(
-              //   child: TextField(
-              //       keyboardType: TextInputType.number,
-              //       inputFormatters: [
-              //         WhitelistingTextInputFormatter.digitsOnly
-              //       ],
-              //       textAlign: TextAlign.left,
-              //       maxLength: 4,
-              //       maxLengthEnforced: true,
-              //       style: TextStyle(fontSize: 60, letterSpacing: 15)),
-              // ),
-              Expanded(
-                child:PinInput(),
-              ),
-              
+        width: 300,
+        height: 200,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.only(
+              topLeft: const Radius.circular(10.0),
+              topRight: const Radius.circular(10.0),
+              bottomLeft: const Radius.circular(10.0),
+              bottomRight: const Radius.circular(10.0),
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.shade400,
+                  offset: Offset(1, -2),
+                  blurRadius: 5),
+              BoxShadow(
+                  color: Colors.grey.shade400,
+                  offset: Offset(-1, 2),
+                  blurRadius: 5)
             ]),
-            SizedBox(height: 20.0),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-              RaisedButton(onPressed: () {}, child: Text('Verify')),
-            ])
-          ]),
-    );
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              PinInput(),
+              SizedBox(height: 15),
+              MaterialButton(
+                  height: 50,
+                  minWidth: 250,
+                  color: Color.fromARGB(255, 	47,220,150),
+                  textColor: Colors.white,
+                  child: Text('Verify'),
+                  onPressed: () => {},
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                      side: BorderSide(color: Colors.transparent))),
+            ]));
   }
 }
 
@@ -127,21 +128,30 @@ class _PinInputState extends State<PinInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: PinCodeTextField(
-        length: 4,
-        obsecureText: false,
-        animationType: AnimationType.fade,
-        shape: PinCodeFieldShape.box,
-        animationDuration: Duration(milliseconds: 300),
-        borderRadius: BorderRadius.circular(5),
-        fieldHeight: 50,
-        fieldWidth: 40,
-        onChanged: (value) {
-          setState(() {
-            currentOtp = value;
-          });
-        },
-      ),
+      padding: EdgeInsets.all(0),
+      child: Padding(
+          padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+          child: PinCodeTextField(
+            length: 4,
+            obsecureText: false,
+            animationType: AnimationType.fade,
+            shape: PinCodeFieldShape.underline,
+            animationDuration: Duration(milliseconds: 300),
+            borderRadius: BorderRadius.circular(5),
+            fieldHeight: 60,
+            fieldWidth: 40,
+            backgroundColor: Colors.white,
+            textStyle: TextStyle(fontSize: 28),
+            textInputType:
+                TextInputType.numberWithOptions(signed: false, decimal: false),
+            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+            
+            onChanged: (value) {
+              setState(() {
+                currentOtp = value;
+              });
+            },
+          )),
     );
   }
 }
