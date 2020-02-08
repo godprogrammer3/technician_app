@@ -31,11 +31,7 @@ class VerifyOtpPage extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         SizedBox(height: MediaQuery.of(context).size.height / 20.0),
-        Container(
-            width: MediaQuery.of(context).size.width - 70,
-            height: 200,
-            child:ImageDisplay(imageName:'top_verify_otp.svg'),
-        ),
+        ImageDisplay(imageName:'top_verify_otp.svg',width:MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height*0.3),
         Text(
           'Verification',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0),
