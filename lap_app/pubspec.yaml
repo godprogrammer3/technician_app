@@ -11,6 +11,7 @@ dependencies:
   flutter_bloc: ^3.2.0
   equatable: ^1.0.3
   cupertino_icons: ^0.1.2
+  pin_code_fields: ^2.3.0+3
 
 dev_dependencies:
   flutter_test:
@@ -19,5 +20,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-      - assets/images/
-
+    - assets/images/
