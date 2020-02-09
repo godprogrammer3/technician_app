@@ -23,5 +23,13 @@ class OtpCredential extends Equatable{
       otp : json['otp'],
     );
   }
+
+  Map<String , dynamic > toJson(){
+    return {
+      'username':username,
+      'uuid':uuid,
+      'otp':otp,
+    };
+  }
   
 }

@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
+import 'package:lap_app/data/entities/entities.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
 
 class OtpInput extends StatelessWidget {
-  const OtpInput({Key key}) : super(key: key);
+
+  final OtpCredential otpCredential;
+  const OtpInput({Key key, this.otpCredential}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class OtpInput extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  PinInput(),
+                  PinInput(otpCredential:this.otpCredential),
                   SizedBox(height: 15),
                 ])),
         SizedBox(height:20),
@@ -48,13 +51,18 @@ class OtpInput extends StatelessWidget {
 }
 
 class PinInput extends StatefulWidget {
+  final OtpCredential otpCredential;
+
+  const PinInput({Key key,this.otpCredential}) : super(key: key);
   @override
-  _PinInputState createState() => new _PinInputState();
+  _PinInputState createState() => new _PinInputState(otpCredential:this.otpCredential);
 }
 
 class _PinInputState extends State<PinInput> {
   String currentOtp;
-  Color buttonColor = Colors.grey; 
+  Color buttonColor = Colors.grey[300]; 
+  final OtpCredential otpCredential; 
+  _PinInputState({this.otpCredential});
   @override
   void initState() {
     super.initState();
@@ -88,7 +96,7 @@ class _PinInputState extends State<PinInput> {
                   if(currentOtp.length == 4){
                     buttonColor = Color.fromARGB(255, 47, 220, 150);
                   }else{
-                    buttonColor = Colors.grey;
+                    buttonColor = Colors.grey[300];
                   }
                 });
               },
@@ -104,7 +112,7 @@ class _PinInputState extends State<PinInput> {
           onPressed: () {
             if( currentOtp.length == 4){
                final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
-              verifyOtpBloc.add(GetTokenEvent(this.currentOtp));
+              verifyOtpBloc.add(GetTokenEvent(otpCredential:this.otpCredential));
             }
            
           },

@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
+import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyOtpPage extends StatelessWidget {
-  const VerifyOtpPage({Key key}) : super(key: key);
+  final OtpCredential otpCredential;
+  const VerifyOtpPage({Key key, this.otpCredential}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => VerifyOtpBloc(),
-      child: VerifyOtpPageChild(),
+      child: VerifyOtpPageChild(otpCredential: this.otpCredential),
     );
   }
 }
 
 class VerifyOtpPageChild extends StatelessWidget {
+  final OtpCredential otpCredential;
+
+  const VerifyOtpPageChild({Key key, this.otpCredential}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,17 +37,27 @@ class VerifyOtpPageChild extends StatelessWidget {
                 listener: (context, state) {
                   if (state is VerifyOtpTimeout) {
                     Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('OTP timeout !'),
+                      content: Text('OTP timeout otp was resend!'),
                       backgroundColor: Colors.orange,
+                    ));
+                  } else if (state is VerifyOtpIncorrect) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('OTP is incorrect please try again!'),
+                      backgroundColor: Colors.red,
+                    ));
+                  } else if (state is VerifyOtpServerError) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Server error please try again!'),
+                      backgroundColor: Colors.red,
                     ));
                   }
                 },
-                child: buildBody(context)),
+                child: buildBody(context, this.otpCredential)),
           )),
     );
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context, OtpCredential otpCredential) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         ImageDisplay(
@@ -76,9 +91,9 @@ class VerifyOtpPageChild extends StatelessWidget {
           bloc: BlocProvider.of<VerifyOtpBloc>(context),
           builder: (BuildContext context, state) {
             if (state is VerifyOtpInitial) {
-              return OtpInput();
-            } else if (state is VerifyOtpLoading || state is VerifyOtpTimeout) {
-              return LoadingWidget(width:100,height:100);
+              return OtpInput(otpCredential: this.otpCredential);
+            } else {
+              return LoadingWidget(width: 100, height: 100);
             }
           },
         ),

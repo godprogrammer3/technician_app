@@ -16,4 +16,18 @@ class TokenCredential extends Equatable{
     username,
   ];
 
+  factory TokenCredential.fromJson(Map<String,dynamic> json) {
+    return TokenCredential(
+      token: json['token'],
+      username : json['username'],
+    );
+  }
+
+  Map<String , dynamic > toJson(){
+    return {
+      'token':this.token,
+      'username':this.username,
+    };
+  }
+  
 }

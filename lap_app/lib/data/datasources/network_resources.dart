@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:lap_app/core/status/status.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'dart:convert';
-class NetworkResource extends Equatable{
 
+class NetworkResource extends Equatable {
   NetworkResource();
   @override
   // TODO: implement props
@@ -15,17 +15,17 @@ class NetworkResource extends Equatable{
     const String url = 'http://lapais.cloud:54002/lapapp/api/requestOtp';
     final response = await http.post(
       url,
-      headers:{
+      headers: {
         'Content-Type': 'application/json',
       },
-      body: userCredential.toJson(),
-    );  
-    if( response.statusCode == 200 ){
-      return OtpCredential.fromJson( json.decode({
-        'username': userCredential.username,
-        'otpCode':json.decode(response.body)['otp'],
-      }));
-    }else{
+      body: jsonEncode(userCredential.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      return OtpCredential.fromJson(json.decode(response.body));
+    } else if (response.statusCode == 400) {
+      throw AuthenError();
+    } else {
       throw ServerException();
     }
   }
@@ -34,14 +34,17 @@ class NetworkResource extends Equatable{
     const String url = 'http://lapais.cloud:54002/lapapp/api/submitOtp';
     final response = await http.post(
       url,
-      headers:{
+      headers: {
         'Content-Type': 'application/json',
       },
-      body: otpCredential.toJson(),
-    );  
-    if( response.statusCode == 200 ){
-      return TokenCredential.fromJson( json.decode(response.body));
-    }else{
+      body: jsonEncode(otpCredential.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      return TokenCredential.fromJson(json.decode(response.body));
+    } else if (response.statusCode == 400) {
+      throw AuthenError();
+    } else {
       throw ServerException();
     }
   }

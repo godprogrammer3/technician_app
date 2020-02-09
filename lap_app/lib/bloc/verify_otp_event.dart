@@ -12,12 +12,11 @@ class LodingEvent extends VerifyOtpEvent{
 }
 
 class GetTokenEvent extends VerifyOtpEvent {
-  final String otpCode;
-  final String username;
-  GetTokenEvent(this.otpCode);
+  final OtpCredential otpCredential;
+  GetTokenEvent({this.otpCredential});
   @override
   // TODO: implement props
-  List<Object> get props => [otpCode];
+  List<Object> get props => [otpCredential];
 
 }
 
