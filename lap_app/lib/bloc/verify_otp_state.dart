@@ -23,3 +23,10 @@ class VerifyOtpTimeout extends VerifyOtpState {
   
 }
 
+class VerifyOtpIncorrect extends VerifyOtpState {
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}
+

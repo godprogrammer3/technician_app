@@ -39,18 +39,8 @@ class OtpInput extends StatelessWidget {
                 children: <Widget>[
                   PinInput(),
                   SizedBox(height: 15),
-                  MaterialButton(
-                      height: 50,
-                      minWidth: 250,
-                      color: Color.fromARGB(255, 47, 220, 150),
-                      textColor: Colors.white,
-                      child: Text('Verify'),
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0),
-                          side: BorderSide(color: Colors.transparent))),
                 ])),
-        SizedBox(height: 20),
+        SizedBox(height:20),
         OtpCountDown(),
       ],
     );
@@ -58,14 +48,13 @@ class OtpInput extends StatelessWidget {
 }
 
 class PinInput extends StatefulWidget {
-  //PinInput({Key key}) : super(key: key);
-
   @override
   _PinInputState createState() => new _PinInputState();
 }
 
 class _PinInputState extends State<PinInput> {
   String currentOtp;
+  Color buttonColor = Colors.grey; 
   @override
   void initState() {
     super.initState();
@@ -96,10 +85,32 @@ class _PinInputState extends State<PinInput> {
               onChanged: (value) {
                 setState(() {
                   currentOtp = value;
+                  if(currentOtp.length == 4){
+                    buttonColor = Color.fromARGB(255, 47, 220, 150);
+                  }else{
+                    buttonColor = Colors.grey;
+                  }
                 });
               },
             )),
       ),
+      SizedBox(height: 20),
+      MaterialButton(
+          height: 50,
+          minWidth: 250,
+          color: buttonColor,
+          textColor: Colors.white,
+          child: Text('Verify'),
+          onPressed: () {
+            if( currentOtp.length == 4){
+               final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
+              verifyOtpBloc.add(GetTokenEvent(this.currentOtp));
+            }
+           
+          },
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.transparent))),
     ]);
   }
 }
@@ -118,8 +129,8 @@ class _OtpCountDownState extends State<OtpCountDown> {
   @override
   void initState() {
     super.initState();
-    minutes = 0;
-    seconds = 20;
+    minutes = 5;
+    seconds = 0;
     timer = Timer.periodic(new Duration(seconds: 1), (timer) {
       _countDown();
     });
@@ -130,8 +141,8 @@ class _OtpCountDownState extends State<OtpCountDown> {
       if (seconds == 0 && minutes == 0) {
         final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
         verifyOtpBloc.add(OtpTimeoutEvent());
-        minutes = 0;
-        seconds = 20;
+        minutes = 5;
+        seconds = 0;
       } else {
         seconds--;
         if (seconds < 0) {

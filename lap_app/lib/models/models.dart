@@ -1,3 +1,2 @@
-export './token.dart';
-export './credential.dart';
-export './otp.dart';
+export './request_otp_model.dart';
+export './verify_otp_model.dart';

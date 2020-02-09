@@ -78,14 +78,7 @@ class VerifyOtpPageChild extends StatelessWidget {
             if (state is VerifyOtpInitial) {
               return OtpInput();
             } else if (state is VerifyOtpLoading || state is VerifyOtpTimeout) {
-              return Container(
-                padding: EdgeInsets.all(10.0),
-                height: 100,
-                width: 100,
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.green[200],
-                ),
-              );
+              return LoadingWidget(width:100,height:100);
             }
           },
         ),

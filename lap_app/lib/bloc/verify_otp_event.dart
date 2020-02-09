@@ -13,7 +13,7 @@ class LodingEvent extends VerifyOtpEvent{
 
 class GetTokenEvent extends VerifyOtpEvent {
   final String otpCode;
-
+  final String username;
   GetTokenEvent(this.otpCode);
   @override
   // TODO: implement props
