@@ -137,8 +137,8 @@ class _OtpCountDownState extends State<OtpCountDown> {
   @override
   void initState() {
     super.initState();
-    minutes = 5;
-    seconds = 0;
+    minutes = 0;
+    seconds = 15;
     timer = Timer.periodic(new Duration(seconds: 1), (timer) {
       _countDown();
     });
@@ -149,8 +149,8 @@ class _OtpCountDownState extends State<OtpCountDown> {
       if (seconds == 0 && minutes == 0) {
         final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
         verifyOtpBloc.add(OtpTimeoutEvent());
-        minutes = 5;
-        seconds = 0;
+        minutes = 0;
+        seconds = 15;
       } else {
         seconds--;
         if (seconds < 0) {

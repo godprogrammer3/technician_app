@@ -1,5 +1,4 @@
 part of 'verify_otp_bloc.dart';
-
 abstract class VerifyOtpState extends Equatable {
   const VerifyOtpState();
 }
@@ -16,24 +15,15 @@ class VerifyOtpLoading extends VerifyOtpState {
   
 }
 
-class VerifyOtpTimeout extends VerifyOtpState {
-  @override
-  // TODO: implement props
-  List<Object> get props => null;
-  
-}
-
-class VerifyOtpIncorrect extends VerifyOtpState {
-  @override
-  // TODO: implement props
-  List<Object> get props => null;
-
-}
-
-class VerifyOtpServerError extends VerifyOtpState {
+class VerifyOtpError extends VerifyOtpState {
+  final String message;
+  final Color color;
+  VerifyOtpError({
+    @required this.message,
+    @required this.color,
+    });
   @override
   // TODO: implement props
   List<Object> get props => null;
 
 }
-

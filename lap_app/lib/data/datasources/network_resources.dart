@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:lap_app/core/network/network_info.dart';
 import 'package:lap_app/core/status/status.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'dart:convert';
@@ -26,26 +29,35 @@ class NetworkResource extends Equatable {
     } else if (response.statusCode == 400) {
       throw AuthenError();
     } else {
-      throw ServerException();
+      throw ServerError();
     }
   }
 
   Future<TokenCredential> getToken(OtpCredential otpCredential) async {
-    const String url = 'http://lapais.cloud:54002/lapapp/api/submitOtp';
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(otpCredential.toJson()),
-    );
+    final NetworkInfo networkInfo = NetworkInfoImpl();
+    if (await networkInfo.isConnected) {
+      const String url = 'http://lapais.cloud:54002/lapapp/api/submitOtp';
+      try {
+        final response = await http.post(
+          url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode(otpCredential.toJson()),
+        );
 
-    if (response.statusCode == 200) {
-      return TokenCredential.fromJson(json.decode(response.body));
-    } else if (response.statusCode == 400) {
-      throw AuthenError();
+        if (response.statusCode == 200) {
+          return TokenCredential.fromJson(json.decode(response.body));
+        } else if (response.statusCode == 400) {
+          throw AuthenError();
+        } else {
+          throw ServerError();
+        }
+      } on SocketException {
+        throw InternetError();
+      }
     } else {
-      throw ServerException();
+      throw InternetError();
     }
   }
 }

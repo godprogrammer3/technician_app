@@ -2,15 +2,17 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import 'package:lap_app/core/status/status.dart';
 import 'package:lap_app/data/datasources/datasources.dart';
 import 'package:lap_app/data/entities/entities.dart';
+import 'package:lap_app/models/models.dart';
 part 'verify_otp_event.dart';
 part 'verify_otp_state.dart';
 
 class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
-  NetworkResource networkResource = NetworkResource();
+  VerifyOtpModel verifyOtpModel = new VerifyOtpModel();
   @override
   VerifyOtpState get initialState => VerifyOtpInitial();
 
@@ -23,20 +25,24 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
       yield VerifyOtpLoading();
       try {
         final tokenCredential =
-            await networkResource.getToken(event.otpCredential);
-        yield VerifyOtpIncorrect();
+            await verifyOtpModel.getToken(event.otpCredential);
+        yield VerifyOtpError(message: "OTP is correct!", color: Colors.green);
         yield VerifyOtpInitial();
       } on AuthenError {
-        yield VerifyOtpIncorrect();
+        yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
         yield VerifyOtpInitial();
-      } on ServerException {
-        yield VerifyOtpServerError();
+      } on ServerError {
+        yield VerifyOtpError(message: "Server error!", color: Colors.red);
+        await Future.delayed(Duration(seconds: 1));
+        yield VerifyOtpInitial();
+      } on InternetError {
+        yield VerifyOtpError(message: "Internet error!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
         yield VerifyOtpInitial();
       }
     } else if (event is OtpTimeoutEvent) {
-      yield VerifyOtpTimeout();
+      yield VerifyOtpError(message: "OTP timeout otp was resend", color: Colors.orange);
       yield VerifyOtpLoading();
       await Future.delayed(Duration(seconds: 1));
       yield VerifyOtpInitial();

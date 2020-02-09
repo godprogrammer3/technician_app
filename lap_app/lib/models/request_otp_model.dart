@@ -12,7 +12,7 @@ class RequestOtpModel extends Equatable{
   @override
   // TODO: implement props
   List<Object> get props => null;
-  Future<Either<Failure,OtpCredential>>requestOtp(){
+  Future<Either<Error,OtpCredential>>requestOtp(){
       
   }
 }

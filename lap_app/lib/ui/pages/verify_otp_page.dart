@@ -35,20 +35,10 @@ class VerifyOtpPageChild extends StatelessWidget {
           child: SingleChildScrollView(
             child: BlocListener<VerifyOtpBloc, VerifyOtpState>(
                 listener: (context, state) {
-                  if (state is VerifyOtpTimeout) {
+                  if (state is VerifyOtpError) {
                     Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('OTP timeout otp was resend!'),
-                      backgroundColor: Colors.orange,
-                    ));
-                  } else if (state is VerifyOtpIncorrect) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('OTP is incorrect please try again!'),
-                      backgroundColor: Colors.red,
-                    ));
-                  } else if (state is VerifyOtpServerError) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Server error please try again!'),
-                      backgroundColor: Colors.red,
+                      content: Text(state.message),
+                      backgroundColor: state.color,
                     ));
                   }
                 },
