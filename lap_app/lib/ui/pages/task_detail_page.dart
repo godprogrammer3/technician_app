@@ -15,6 +15,7 @@ class TaskDetail extends StatelessWidget{
       child: Scaffold(
         appBar: AppBar(
           title: Text('Network Configuration'),
+          centerTitle: true,
           backgroundColor: const Color(0xFF2FDC96),
           bottom: TabBar(
             tabs: [new Tab(text: 'DETAIL'),new Tab(text: 'DEVICE')]
@@ -23,9 +24,9 @@ class TaskDetail extends StatelessWidget{
 
         body: TabBarView(children: <Widget>[
           Text('Device na ja'),
-          Text('Detail na ja')
+          // Text('Detail na ja')
+          buildBody(contex)
         ],),
-
 
         bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -41,34 +42,6 @@ class TaskDetail extends StatelessWidget{
       
       )
     );
-    // Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('Network Configuration'),
-    //     backgroundColor: const Color(0xFF2FDC96),
-    //     // bottom: TabBar(
-    //       // tabs: <Widget>[
-    //       //   Text('hey'),
-    //       //   Text('hi')
-    //       // ],
-    //     // ),
-    //     ),
-
-    //   body: SingleChildScrollView(
-    //     child: buildBody(contex),
-    //   ),
-
-    //   bottomNavigationBar: BottomAppBar(
-    //     color: Colors.white,
-    //     child: 
-    //       RaisedButton(
-    //         color: const Color(0xFF2FDC96),
-    //         shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0),  ),
-    //         textColor: Colors.white,
-    //         onPressed: ()=>print('hello'),
-    //         child: new Text('รับทำงาน', style: TextStyle(fontSize: 20)),
-    //       )
-    //     )
-    // );
   }
 
 
@@ -79,7 +52,7 @@ class TaskDetail extends StatelessWidget{
             alignment:Alignment.center,
             child: 
               Text(
-                'Hello',
+                'Hello, this isn device scaffold na ja',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontWeight: FontWeight.bold),
