@@ -10,24 +10,24 @@ class TaskDetail extends StatelessWidget{
   
   @override
   Widget build(BuildContext contex){
-    return 
-    Scaffold(
-      appBar: AppBar(
-        title: const Text('Network Configuration'),
-        backgroundColor: const Color(0xFF2FDC96),
-        // bottom: TabBar(
-          // tabs: <Widget>[
-          //   Text('hey'),
-          //   Text('hi')
-          // ],
-        // ),
-        ),
-
-      body: SingleChildScrollView(
-        child: buildBody(contex),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Network Configuration'),
+          backgroundColor: const Color(0xFF2FDC96),
+          bottom: TabBar(
+            tabs: [new Tab(text: 'DETAIL'),new Tab(text: 'DEVICE')]
+          ),
       ),
 
-      bottomNavigationBar: BottomAppBar(
+        body: TabBarView(children: <Widget>[
+          Text('Device na ja'),
+          Text('Detail na ja')
+        ],),
+
+
+        bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         child: 
           RaisedButton(
@@ -38,7 +38,37 @@ class TaskDetail extends StatelessWidget{
             child: new Text('รับทำงาน', style: TextStyle(fontSize: 20)),
           )
         )
+      
+      )
     );
+    // Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text('Network Configuration'),
+    //     backgroundColor: const Color(0xFF2FDC96),
+    //     // bottom: TabBar(
+    //       // tabs: <Widget>[
+    //       //   Text('hey'),
+    //       //   Text('hi')
+    //       // ],
+    //     // ),
+    //     ),
+
+    //   body: SingleChildScrollView(
+    //     child: buildBody(contex),
+    //   ),
+
+    //   bottomNavigationBar: BottomAppBar(
+    //     color: Colors.white,
+    //     child: 
+    //       RaisedButton(
+    //         color: const Color(0xFF2FDC96),
+    //         shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0),  ),
+    //         textColor: Colors.white,
+    //         onPressed: ()=>print('hello'),
+    //         child: new Text('รับทำงาน', style: TextStyle(fontSize: 20)),
+    //       )
+    //     )
+    // );
   }
 
 
