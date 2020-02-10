@@ -4,6 +4,9 @@ abstract class VerifyOtpState extends Equatable {
 }
 
 class VerifyOtpInitial extends VerifyOtpState {
+  final Time time;
+
+  VerifyOtpInitial({this.time});
   @override
   List<Object> get props => [];
 }

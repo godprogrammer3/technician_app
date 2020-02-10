@@ -13,7 +13,8 @@ class LodingEvent extends VerifyOtpEvent{
 
 class GetTokenEvent extends VerifyOtpEvent {
   final OtpCredential otpCredential;
-  GetTokenEvent({this.otpCredential});
+  final Time time;
+  GetTokenEvent({this.otpCredential,this.time});
   @override
   // TODO: implement props
   List<Object> get props => [otpCredential];

@@ -27,19 +27,19 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
         final tokenCredential =
             await verifyOtpModel.getToken(event.otpCredential);
         yield VerifyOtpError(message: "OTP is correct!", color: Colors.green);
-        yield VerifyOtpInitial();
+        yield VerifyOtpInitial(time:event.time);
       } on AuthenError {
         yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial();
+        yield VerifyOtpInitial(time:event.time);
       } on ServerError {
         yield VerifyOtpError(message: "Server error!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial();
+        yield VerifyOtpInitial(time:event.time);
       } on InternetError {
         yield VerifyOtpError(message: "Internet error!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial();
+        yield VerifyOtpInitial(time:event.time);
       }
     } else if (event is OtpTimeoutEvent) {
       yield VerifyOtpError(message: "OTP timeout otp was resend", color: Colors.orange);
