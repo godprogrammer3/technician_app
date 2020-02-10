@@ -13,6 +13,7 @@ part 'verify_otp_state.dart';
 
 class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
   VerifyOtpModel verifyOtpModel = new VerifyOtpModel();
+  RequestOtpModel requestOtpModel = new RequestOtpModel();
   @override
   VerifyOtpState get initialState => VerifyOtpInitial();
 
@@ -20,32 +21,51 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
   Stream<VerifyOtpState> mapEventToState(
     VerifyOtpEvent event,
   ) async* {
-    // TODO: Add Logic
+    yield VerifyOtpLoading();
     if (event is GetTokenEvent) {
-      yield VerifyOtpLoading();
       try {
         final tokenCredential =
             await verifyOtpModel.getToken(event.otpCredential);
         yield VerifyOtpError(message: "OTP is correct!", color: Colors.green);
-        yield VerifyOtpInitial(time:event.time);
+        yield VerifyOtpInitial(time: event.time);
       } on AuthenError {
         yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial(time:event.time);
+        yield VerifyOtpInitial(time: event.time);
       } on ServerError {
         yield VerifyOtpError(message: "Server error!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial(time:event.time);
+        yield VerifyOtpInitial(time: event.time);
       } on InternetError {
         yield VerifyOtpError(message: "Internet error!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));
-        yield VerifyOtpInitial(time:event.time);
+        yield VerifyOtpInitial(time: event.time);
       }
     } else if (event is OtpTimeoutEvent) {
-      yield VerifyOtpError(message: "OTP timeout otp was resend", color: Colors.orange);
-      yield VerifyOtpLoading();
-      await Future.delayed(Duration(seconds: 1));
-      yield VerifyOtpInitial();
+      try {
+        final otpCredential = await requestOtpModel.requestOtp(UserCredential(
+            username: event.otpCredential.username,
+            uuid: event.otpCredential.uuid));
+        print(otpCredential.otp);
+        yield VerifyOtpError(
+            message: "OTP timeout otp was resend", color: Colors.orange);
+        yield VerifyOtpInitial();
+      } on AuthenError {
+        yield VerifyOtpError(
+            message: "OTP timeout but userid incorrect!", color: Colors.red);
+        await Future.delayed(Duration(seconds: 1));
+        yield VerifyOtpInitial();
+      } on ServerError {
+        yield VerifyOtpError(
+            message: "OTP timeout but server error!", color: Colors.red);
+        await Future.delayed(Duration(seconds: 1));
+        yield VerifyOtpInitial();
+      } on InternetError {
+        yield VerifyOtpError(
+            message: "OTP timeout but internet error!", color: Colors.red);
+        await Future.delayed(Duration(seconds: 1));
+        yield VerifyOtpInitial();
+      }
     }
   }
 }

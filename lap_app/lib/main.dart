@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: VerifyOtpPage(
-          otpCredential:
-              OtpCredential(username: "ws0913", uuid: "cisco", otp: "9044")),
+      home: RequestOtpPage(),
     );
   }
 }

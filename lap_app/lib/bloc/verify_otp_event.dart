@@ -6,7 +6,6 @@ abstract class VerifyOtpEvent extends Equatable {
 
 class LodingEvent extends VerifyOtpEvent{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -16,14 +15,14 @@ class GetTokenEvent extends VerifyOtpEvent {
   final Time time;
   GetTokenEvent({this.otpCredential,this.time});
   @override
-  // TODO: implement props
   List<Object> get props => [otpCredential];
 
 }
 
 class OtpTimeoutEvent extends VerifyOtpEvent{
+  final OtpCredential otpCredential;
+  OtpTimeoutEvent({this.otpCredential});
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }

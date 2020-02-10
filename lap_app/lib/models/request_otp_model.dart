@@ -1,18 +1,13 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:lap_app/core/status/status.dart';
+import 'package:lap_app/data/datasources/datasources.dart';
 import 'package:lap_app/data/entities/entities.dart';
-import 'package:meta/meta.dart';
 class RequestOtpModel extends Equatable{
-  final UserCredential userCredential;
-
-  RequestOtpModel(
-    @required this.userCredential
-  );
+  final networkResource = NetworkResource();
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-  Future<Either<Error,OtpCredential>>requestOtp(){
-      
+  List<Object> get props => [
+    networkResource,
+  ];
+  Future<OtpCredential> requestOtp(UserCredential userCredential) async {
+      return await networkResource.requestOtp(userCredential);
   }
 }

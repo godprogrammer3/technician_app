@@ -7,10 +7,7 @@ import 'package:lap_app/data/entities/entities.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
 
-
 class OtpInput extends StatelessWidget {
-
-
   final OtpCredential otpCredential;
   final Time time;
 
@@ -44,11 +41,11 @@ class OtpInput extends StatelessWidget {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  PinInput(otpCredential:this.otpCredential,time:time),
+                  PinInput(otpCredential: this.otpCredential, time: time),
                   SizedBox(height: 15),
                 ])),
-        SizedBox(height:20),
-        OtpCountDown(time:time,),
+        SizedBox(height: 20),
+        OtpCountDown(time: time, otpCredential: this.otpCredential),
       ],
     );
   }
@@ -57,20 +54,37 @@ class OtpInput extends StatelessWidget {
 class PinInput extends StatefulWidget {
   final OtpCredential otpCredential;
   final Time time;
-  const PinInput({Key key,this.otpCredential, this.time}) : super(key: key);
+  const PinInput({Key key, this.otpCredential, this.time}) : super(key: key);
   @override
-  _PinInputState createState() => new _PinInputState(otpCredential:this.otpCredential,time:this.time);
+  _PinInputState createState() =>
+      new _PinInputState(otpCredential: this.otpCredential, time: this.time);
 }
 
 class _PinInputState extends State<PinInput> {
   String currentOtp;
-  Color buttonColor = Colors.grey[300]; 
+  Color buttonColor = Colors.grey[300];
+  TextEditingController txtController = TextEditingController();
   final Time time;
-  final OtpCredential otpCredential; 
-  _PinInputState({this.otpCredential,this.time});
+  final OtpCredential otpCredential;
+  _PinInputState({this.otpCredential, this.time});
   @override
   void initState() {
     super.initState();
+    Timer(new Duration(seconds: 10), () {
+      _autoFillOtp();
+    });
+  }
+
+  @override
+  void dispose(){   
+    super.dispose();
+  }
+
+  void _autoFillOtp() {
+    if(this.mounted){
+      txtController.text = otpCredential.otp;
+    }
+   
   }
 
   @override
@@ -95,12 +109,13 @@ class _PinInputState extends State<PinInput> {
                   signed: false, decimal: false),
               inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
               inactiveColor: Colors.grey,
+              controller: txtController,
               onChanged: (value) {
                 setState(() {
                   currentOtp = value;
-                  if(currentOtp.length == 4){
+                  if (currentOtp.length == 4) {
                     buttonColor = Color.fromARGB(255, 47, 220, 150);
-                  }else{
+                  } else {
                     buttonColor = Colors.grey[300];
                   }
                 });
@@ -115,12 +130,15 @@ class _PinInputState extends State<PinInput> {
           textColor: Colors.white,
           child: Text('Verify'),
           onPressed: () {
-            if( currentOtp.length == 4){
-               final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
-              verifyOtpBloc.add(GetTokenEvent(otpCredential:this.otpCredential,time:time));
-
+            if (currentOtp.length == 4) {
+              final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
+              verifyOtpBloc.add(
+                  GetTokenEvent(otpCredential: OtpCredential(
+                    username:this.otpCredential.username,
+                    uuid: this.otpCredential.uuid,
+                    otp: txtController.text,
+                  ), time: time));
             }
-           
           },
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0),
@@ -131,10 +149,12 @@ class _PinInputState extends State<PinInput> {
 
 class OtpCountDown extends StatefulWidget {
   final Time time;
-  OtpCountDown({Key key, this.time}) : super(key: key);
+  final OtpCredential otpCredential;
+  OtpCountDown({Key key, this.time, this.otpCredential}) : super(key: key);
 
   @override
-  _OtpCountDownState createState() => _OtpCountDownState(time:time);
+  _OtpCountDownState createState() =>
+      _OtpCountDownState(time: time, otpCredential: this.otpCredential);
 }
 
 class _OtpCountDownState extends State<OtpCountDown> {
@@ -142,8 +162,8 @@ class _OtpCountDownState extends State<OtpCountDown> {
   int minutes;
   int seconds;
   final Time time;
-
-  _OtpCountDownState({this.time});
+  final OtpCredential otpCredential;
+  _OtpCountDownState({this.time, this.otpCredential});
   @override
   void initState() {
     super.initState();
@@ -158,7 +178,7 @@ class _OtpCountDownState extends State<OtpCountDown> {
     if (this.mounted) {
       if (seconds == 0 && minutes == 0) {
         final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
-        verifyOtpBloc.add(OtpTimeoutEvent());
+        verifyOtpBloc.add(OtpTimeoutEvent(otpCredential: this.otpCredential));
         minutes = 5;
         seconds = 0;
       } else {

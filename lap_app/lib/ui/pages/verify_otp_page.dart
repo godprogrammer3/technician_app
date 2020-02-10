@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyOtpPage extends StatelessWidget {
   final OtpCredential otpCredential;
@@ -26,6 +24,7 @@ class VerifyOtpPageChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: true,
       body: SafeArea(
           left: true,
           top: true,
@@ -81,12 +80,14 @@ class VerifyOtpPageChild extends StatelessWidget {
           bloc: BlocProvider.of<VerifyOtpBloc>(context),
           builder: (BuildContext context, state) {
             if (state is VerifyOtpInitial) {
-              if(state.time == null){
-                return OtpInput(otpCredential: this.otpCredential,time: Time(minutes:5,seconds:0));
-              }else{ 
-                return OtpInput(otpCredential: this.otpCredential,time: state.time);
+              if (state.time == null) {
+                return OtpInput(
+                    otpCredential: this.otpCredential,
+                    time: Time(minutes: 5, seconds: 0));
+              } else {
+                return OtpInput(
+                    otpCredential: this.otpCredential, time: state.time);
               }
-              
             } else {
               return LoadingWidget(width: 100, height: 100);
             }

@@ -13,7 +13,6 @@ class VerifyOtpInitial extends VerifyOtpState {
 
 class VerifyOtpLoading extends VerifyOtpState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
   
 }
@@ -26,7 +25,7 @@ class VerifyOtpError extends VerifyOtpState {
     @required this.color,
     });
   @override
-  // TODO: implement props
+
   List<Object> get props => null;
 
 }
