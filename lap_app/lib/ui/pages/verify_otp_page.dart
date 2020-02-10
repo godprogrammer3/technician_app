@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
+import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-String currentOtp = '';
 
 class VerifyOtpPage extends StatelessWidget {
+  final OtpCredential otpCredential;
+  const VerifyOtpPage({Key key, this.otpCredential}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => VerifyOtpBloc(),
+      child: VerifyOtpPageChild(otpCredential: this.otpCredential),
+    );
+  }
+}
+
+class VerifyOtpPageChild extends StatelessWidget {
+  final OtpCredential otpCredential;
+
+  const VerifyOtpPageChild({Key key, this.otpCredential}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Verify OTP page'),
-      // ),
+      resizeToAvoidBottomPadding: true,
       body: SafeArea(
           left: true,
           top: true,
@@ -22,20 +32,27 @@ class VerifyOtpPage extends StatelessWidget {
           bottom: true,
           minimum: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
-            child: buildBody(context),
+            child: BlocListener<VerifyOtpBloc, VerifyOtpState>(
+                listener: (context, state) {
+                  if (state is VerifyOtpError) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text(state.message),
+                      backgroundColor: state.color,
+                    ));
+                  }
+                },
+                child: buildBody(context, this.otpCredential)),
           )),
     );
   }
 
-  Widget buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context, OtpCredential otpCredential) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        SizedBox(height: MediaQuery.of(context).size.height / 20.0),
-        Container(
-            width: MediaQuery.of(context).size.width - 70,
-            height: 200,
-            child:ImageDisplay(imageName:'top_verify_otp.svg'),
-        ),
+        ImageDisplay(
+            imageName: 'top_verify_otp.svg',
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.3),
         Text(
           'Verification',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0),
@@ -59,97 +76,24 @@ class VerifyOtpPage extends StatelessWidget {
           ),
         ),
         SizedBox(height: 40),
-        OtpInput(),
-        SizedBox(height: 20),
-        Text('Re-Send Code in 0:59',
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 15.0,
-            )),
+        BlocBuilder(
+          bloc: BlocProvider.of<VerifyOtpBloc>(context),
+          builder: (BuildContext context, state) {
+            if (state is VerifyOtpInitial) {
+              if (state.time == null) {
+                return OtpInput(
+                    otpCredential: this.otpCredential,
+                    time: Time(minutes: 5, seconds: 0));
+              } else {
+                return OtpInput(
+                    otpCredential: this.otpCredential, time: state.time);
+              }
+            } else {
+              return LoadingWidget(width: 100, height: 100);
+            }
+          },
+        ),
       ]),
     ]);
-  }
-}
-
-class OtpInput extends StatelessWidget {
-  const OtpInput({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 300,
-        height: 200,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: new BorderRadius.only(
-              topLeft: const Radius.circular(10.0),
-              topRight: const Radius.circular(10.0),
-              bottomLeft: const Radius.circular(10.0),
-              bottomRight: const Radius.circular(10.0),
-            ),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: Offset(1, -2),
-                  blurRadius: 5),
-              BoxShadow(
-                  color: Colors.grey.shade400,
-                  offset: Offset(-1, 2),
-                  blurRadius: 5)
-            ]),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              PinInput(),
-              SizedBox(height: 15),
-              MaterialButton(
-                  height: 50,
-                  minWidth: 250,
-                  color: Color.fromARGB(255, 47, 220, 150),
-                  textColor: Colors.white,
-                  child: Text('Verify'),
-                  onPressed: () => {},
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0),
-                      side: BorderSide(color: Colors.transparent))),
-            ]));
-  }
-}
-
-class PinInput extends StatefulWidget {
-  PinInput({Key key}) : super(key: key);
-
-  @override
-  _PinInputState createState() => _PinInputState();
-}
-
-class _PinInputState extends State<PinInput> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(0),
-      child: Padding(
-          padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-          child: PinCodeTextField(
-            length: 4,
-            obsecureText: false,
-            animationType: AnimationType.fade,
-            shape: PinCodeFieldShape.underline,
-            animationDuration: Duration(milliseconds: 300),
-            borderRadius: BorderRadius.circular(5),
-            fieldHeight: 60,
-            fieldWidth: 40,
-            backgroundColor: Colors.white,
-            textStyle: TextStyle(fontSize: 28),
-            textInputType:
-                TextInputType.numberWithOptions(signed: false, decimal: false),
-            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            onChanged: (value) {
-              setState(() {
-                currentOtp = value;
-              });
-            },
-          )),
-    );
   }
 }
