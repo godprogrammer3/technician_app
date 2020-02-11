@@ -122,6 +122,7 @@ class RequestOtpPageChild extends StatelessWidget {
 
   _onSubmitted(String otpCode, BuildContext context) {
     if (otpCode.length != 0) {
+      txtController.text = '';
       final requestOtpBloc = BlocProvider.of<RequestOtpBloc>(context);
       requestOtpBloc.add(RequestOtp(
           userCredential:
