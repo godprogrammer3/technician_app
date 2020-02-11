@@ -130,7 +130,7 @@ class _PinInputState extends State<PinInput> {
           textColor: Colors.white,
           child: Text('Verify'),
           onPressed: () {
-            if (currentOtp.length == 4) {
+            if (currentOtp != null && currentOtp.length == 4) {
               final verifyOtpBloc = BlocProvider.of<VerifyOtpBloc>(context);
               verifyOtpBloc.add(
                   GetTokenEvent(otpCredential: OtpCredential(
