@@ -19,6 +19,7 @@ class RequestOtpPage extends StatelessWidget {
 }
 
 class RequestOtpPageChild extends StatelessWidget {
+  TextEditingController txtController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +35,7 @@ class RequestOtpPageChild extends StatelessWidget {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
                     value: BlocProvider.of<RequestOtpBloc>(context),
-                    child:VerifyOtpPage(otpCredential:state.otpCredential)),
+                    child: VerifyOtpPage(otpCredential: state.otpCredential)),
               ));
             }
           },
@@ -79,16 +80,6 @@ class RequestOtpPageChild extends StatelessWidget {
   }
 
   Widget buildBodyChild(BuildContext context) {
-    final TextEditingController txtController = new TextEditingController();
-    final TextField _txtusername = new TextField(
-      decoration: new InputDecoration(
-        hintText: 'Enter your username',
-        contentPadding: EdgeInsets.only(left: 30),
-        border: InputBorder.none,
-      ),
-      keyboardType: TextInputType.text,
-      controller: txtController,
-    );
     return Column(children: <Widget>[
       Container(
         //color: Color(0xF9F9F9),
@@ -97,7 +88,16 @@ class RequestOtpPageChild extends StatelessWidget {
             color: Color.fromARGB(255, 240, 240, 240),
             border: new Border.all(width: 0.05, color: Colors.grey),
             borderRadius: const BorderRadius.all(const Radius.circular(34))),
-        child: _txtusername,
+        child: TextField(
+          decoration: new InputDecoration(
+            hintText: 'Enter your username',
+            contentPadding: EdgeInsets.only(left: 30),
+            border: InputBorder.none,
+          ),
+          keyboardType: TextInputType.text,
+          controller: txtController,
+          onSubmitted: _onSubmitted(txtController.text, context),
+        ),
       ),
       SizedBox(
         height: 25,
@@ -111,15 +111,21 @@ class RequestOtpPageChild extends StatelessWidget {
             textColor: Colors.white,
             child: Text('Request OTP'),
             onPressed: () {
-              final requestOtpBloc = BlocProvider.of<RequestOtpBloc>(context);
-              requestOtpBloc.add(RequestOtp(
-                  userCredential: UserCredential(
-                      username: txtController.text, uuid: Uuid().v1())));
+              _onSubmitted(txtController.text, context);
             },
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(34.0),
                 side: BorderSide(color: Colors.transparent))),
       ),
     ]);
+  }
+
+  _onSubmitted(String otpCode, BuildContext context) {
+    if (otpCode.length != 0) {
+      final requestOtpBloc = BlocProvider.of<RequestOtpBloc>(context);
+      requestOtpBloc.add(RequestOtp(
+          userCredential:
+              UserCredential(username: otpCode, uuid: Uuid().v1())));
+    }
   }
 }

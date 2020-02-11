@@ -26,8 +26,7 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
       try {
         final tokenCredential =
             await verifyOtpModel.getToken(event.otpCredential);
-        yield VerifyOtpError(message: "OTP is correct!", color: Colors.green);
-        yield VerifyOtpInitial(time: event.time);
+        yield VerifyOtpSuccess(tokenCredential:tokenCredential);
       } on AuthenError {
         yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);
         await Future.delayed(Duration(seconds: 1));

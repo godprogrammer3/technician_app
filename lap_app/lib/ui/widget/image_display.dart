@@ -16,11 +16,7 @@ class ImageDisplay extends StatelessWidget {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (width == null && height == null) {
-        return Container(
-          width: constraints.maxWidth,
-          height: constraints.maxHeight,
-          child: getImage(),
-        );
+        return  getImage();
       } else if (width == null) {
         return Container(
           width: constraints.maxWidth,
