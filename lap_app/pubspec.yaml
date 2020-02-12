@@ -27,3 +27,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  
+  fonts:
+    - family: supermarket
+      fonts:
+        - asset: assets/font/supermarket.ttf
+        
+#          weight: 700
+

@@ -8,9 +8,9 @@ import 'dart:async';
 import 'data/entities/entities.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((_) {
+   WidgetsFlutterBinding.ensureInitialized();
+   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+       .then((_) {
     runApp(new MyApp());
   });
 }
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: RequestOtpPage(),
+      home: Yourtask(),
     );
   }
 }
