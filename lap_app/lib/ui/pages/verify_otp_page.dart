@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
+import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 
 class VerifyOtpPage extends StatelessWidget {
@@ -38,6 +39,13 @@ class VerifyOtpPageChild extends StatelessWidget {
                     Scaffold.of(context).showSnackBar(SnackBar(
                       content: Text(state.message),
                       backgroundColor: state.color,
+                    ));
+                  } else if (state is VerifyOtpSuccess) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (_) => BlocProvider.value(
+                          value: BlocProvider.of<VerifyOtpBloc>(context),
+                          child:
+                              HomePage(tokenCredential: state.tokenCredential)),
                     ));
                   }
                 },

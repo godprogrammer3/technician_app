@@ -29,3 +29,15 @@ class VerifyOtpError extends VerifyOtpState {
   List<Object> get props => null;
 
 }
+
+class VerifyOtpSuccess extends VerifyOtpState{
+  final TokenCredential tokenCredential;
+
+  VerifyOtpSuccess({
+    @required this.tokenCredential,
+    });
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}
