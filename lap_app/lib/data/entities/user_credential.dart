@@ -1,16 +1,23 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-class Credential extends Equatable{
+class UserCredential extends Equatable{
   final String username;
   final String uuid;
-
-  Credential(
+  UserCredential({
     @required this.username, 
-    @required this.uuid);
+    @required this.uuid,
+  });
   @override
   List<Object> get props => [
     username, 
     uuid,
     ];
+
+  Map<String , dynamic > toJson(){
+    return  {
+      'username': this.username,
+      'uuid': this.uuid,
+    };
+  }
 
 }
