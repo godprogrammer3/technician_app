@@ -68,4 +68,6 @@ class NetworkResource extends Equatable {
       throw InternetError();
     }
   }
+
+  
 }
