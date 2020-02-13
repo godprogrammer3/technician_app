@@ -35,7 +35,7 @@ import 'package:flutter/material.dart';
                           //   fit: BoxFit.fill,
                           // ),
                           shape: BoxShape.rectangle,
-                          color: Colors.black
+                          color: Colors.blueGrey
                         ),
                       ),
 
