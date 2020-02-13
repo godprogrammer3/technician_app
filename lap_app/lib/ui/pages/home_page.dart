@@ -136,18 +136,16 @@ class _HomePageChildState extends State<HomePageChild> {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(context),
-                      child: YourTask(
-                        // tokenCredential: tokenCredential,
-                        // searchString: state.searchString,
-                        // jobs: state.jobs,
+                      child: YourTaskPage(
+                         tokenCredential: tokenCredential,
                       )),
                 ));
               }else if(state is ChangeToWaitTaskView) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(context),
-                      child: WaitTask(
-                        // tokenCredential: tokenCredential,
+                      child: WaitTaskPage(
+                        tokenCredential: tokenCredential,
                         // searchString: state.searchString,
                         // jobs: state.jobs,
                       )),
