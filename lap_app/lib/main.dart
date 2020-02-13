@@ -18,6 +18,21 @@ void main() async {
       .then((_) {
     runApp(new MyApp());
   });
+  // final assetResources = AssetResources();
+  // try{
+  //   final jsonString= await assetResources.loadJsonString('search_result_job.json');
+  //   try{
+  //     final json1 =  json.decode(jsonString[0]);
+  //     print(json1);
+  //   }catch(e){
+  //     print(e);
+  //   }
+    
+    
+  // }catch(e){
+  //   print(e);
+  // }
+
 }
 
 class MyApp extends StatelessWidget {

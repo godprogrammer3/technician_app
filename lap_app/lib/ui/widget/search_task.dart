@@ -3,12 +3,12 @@ import 'package:lap_app/ui/widget/widgets.dart';
 
 
 
-  Widget buildTask(BuildContext context){
+  Widget waitTask(BuildContext context){
 
       return  Stack(
         children:<Widget>[
           Align(
-            alignment:Alignment(MediaQuery.of(context).size.width * 0.0008, 0),
+            alignment:Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children:<Widget>[ 
@@ -24,28 +24,28 @@ import 'package:lap_app/ui/widget/widgets.dart';
             ), ),
 
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.125,
+              left:MediaQuery.of(context).size.width * 0.1,
               top: MediaQuery.of(context).size.width * 0.05,
               child:new Text('บมจ.ปตท.น้ำมันและการค้าปลีก\n', style: TextStyle(fontFamily: 'supermarket',fontSize:20,color: Colors.black87),),
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.125,
+              left:MediaQuery.of(context).size.width * 0.1,
               top: MediaQuery.of(context).size.width * 0.13,
               child:new Text('โครงการ : บริษัท ปตท.จำกัด', style: TextStyle(fontFamily: 'supermarket',fontSize:18,color: Colors.black87),)
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.125,
+              left:MediaQuery.of(context).size.width * 0.1,
               top: MediaQuery.of(context).size.width * 0.19,
               child:new Text('Project : PTT PUBLIC COMPANY LIMITED', style: TextStyle(fontFamily: 'supermarket',fontSize: 18,color: Colors.black87),)
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.125,
+              left:MediaQuery.of(context).size.width * 0.1,
               top: MediaQuery.of(context).size.width * 0.25,
               child:new Text('Site Code : PTT PUBLIC COMPANY LIMITED_POCRT', style: TextStyle(fontFamily: 'supermarket',fontSize: 18,color: Colors.black87),)
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.054,
-              right:MediaQuery.of(context).size.width * 0.028,
+              left:MediaQuery.of(context).size.width * 0.057,
+              right:MediaQuery.of(context).size.width * 0.057,
               top: MediaQuery.of(context).size.width * 0.32,
               child:Container(
                 height: 0.2,
@@ -53,7 +53,7 @@ import 'package:lap_app/ui/widget/widgets.dart';
                 color: Colors.grey,)
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.054,
+              left:MediaQuery.of(context).size.width * 0.057,
               top: MediaQuery.of(context).size.width * 0.322,
             
               child:ButtonTheme(
@@ -73,18 +73,6 @@ import 'package:lap_app/ui/widget/widgets.dart';
               )
 
             ),
-            
-
-            Positioned(
-              left:MediaQuery.of(context).size.width * -0.027,
-              top: MediaQuery.of(context).size.width * -0.003,
-              child: Container(
-                child:ImageDisplay(
-                  imageName: 'notcomplete_task.svg',
-                  width: MediaQuery.of(context).size.width * 0.17,
-                  height: MediaQuery.of(context).size.height * 0.17
-                ),  )),
-
         ],
         overflow: Overflow.visible,
       );
