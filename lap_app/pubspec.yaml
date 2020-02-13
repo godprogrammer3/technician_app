@@ -19,6 +19,8 @@ dependencies:
   data_connection_checker: ^0.3.4
   uuid: ^2.0.4
   rounded_floating_app_bar: ^0.1.0
+  form_floating_action_button: any
+
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +31,11 @@ flutter:
   assets:
     - assets/images/
     - assets/data/
+  
+  fonts:
+    - family: supermarket
+      fonts:
+        - asset: assets/font/supermarket.ttf
+        
+#          weight: 700
+

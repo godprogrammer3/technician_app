@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 
 
-class YourTask extends StatelessWidget{
+class WaitTask extends StatelessWidget{
 
 
   List<Color> iconColor = <Color>[
@@ -17,16 +17,11 @@ class YourTask extends StatelessWidget{
   Widget build(BuildContext context){
   
     return Scaffold(
-      // appBar: AppBar(
-      //   title: ListTile(
-      //     title: Text("Your Task"),
-      //   subtitle: Text("hello"),
-      //   ),
-      //   backgroundColor: Colors.white
+      appBar: AppBar(
+        title: Text("งานเสร็จพร้อมตรวจสอบ"),
 
-      //   ),
+        ),
       body: Container(
-        margin:EdgeInsets.only(top:20),
         child: buildBody(context),
       ), 
       
@@ -49,7 +44,7 @@ class YourTask extends StatelessWidget{
                 icon: Icon(
                   Icons.view_list,
                   size: 30,
-                  color: iconColor[0],
+                  color: iconColor[1],
                 ),
                 onPressed: () {
                 },
@@ -58,7 +53,7 @@ class YourTask extends StatelessWidget{
                 icon: Icon(
                   Icons.event_note,
                   size: 30,
-                  color: iconColor[2],
+                  color: iconColor[0],
                 ),
                 onPressed: () {
                 },
@@ -94,7 +89,7 @@ class YourTask extends StatelessWidget{
                buildTask(context);
             
           },
-          separatorBuilder: (BuildContext context,int index)=>const Divider(color:Colors.white),
+          separatorBuilder: (BuildContext context,int index)=>const Divider(),
         )
       );
       
