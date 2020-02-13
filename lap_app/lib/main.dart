@@ -12,25 +12,10 @@ import 'package:lap_app/data/datasources/datasources.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-  //     .then((_) {
-  //   runApp(new MyApp());
-  // });
-  final assetResources = AssetResources();
-  try{
-    final jsonString= await assetResources.loadJsonString('search_result_job.json');
-    try{
-      final json1 =  json.decode(jsonString[0]);
-      print(json1);
-    }catch(e){
-      print(e);
-    }
-    
-    
-  }catch(e){
-    print(e);
-  }
-
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(new MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: SearchResultPage(),
+      home: RequestOtpPage(),
     );
   }
 }

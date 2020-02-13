@@ -6,7 +6,7 @@ import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 
 class HomePage extends StatelessWidget {
-  final TokenCredential tokenCredential; 
+  final TokenCredential tokenCredential;
   const HomePage({Key key, this.tokenCredential}) : super(key: key);
 
   @override
@@ -21,13 +21,16 @@ class HomePage extends StatelessWidget {
 }
 
 class HomePageChild extends StatefulWidget {
-  HomePageChild({Key key}) : super(key: key);
+  final TokenCredential tokenCredential;
+  HomePageChild({Key key, this.tokenCredential}) : super(key: key);
 
   @override
-  _HomePageChildState createState() => _HomePageChildState();
+  _HomePageChildState createState() =>
+      _HomePageChildState(tokenCredential: tokenCredential);
 }
 
 class _HomePageChildState extends State<HomePageChild> {
+  final TokenCredential tokenCredential;
   int _selectedIndex = 0;
   List<Color> iconColor = <Color>[
     Color.fromARGB(255, 47, 220, 150),
@@ -35,6 +38,8 @@ class _HomePageChildState extends State<HomePageChild> {
     Colors.grey[400],
     Colors.grey[400],
   ];
+
+  _HomePageChildState({this.tokenCredential});
   void _onItemTapped(int index) {
     setState(() {
       for (int i = 0; i < 4; i++) {
@@ -46,7 +51,7 @@ class _HomePageChildState extends State<HomePageChild> {
       }
     });
   }
-  TextEditingController txtController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,12 +112,22 @@ class _HomePageChildState extends State<HomePageChild> {
         body: SingleChildScrollView(
           child: BlocListener<HomeBloc, HomeState>(
             listener: (context, state) {
-              // if (state is RequestOtpError) {
-              //   Scaffold.of(context).showSnackBar(SnackBar(
-              //     content: Text(state.message),
-              //     backgroundColor: state.color,
-              //   ));
-              // }
+              if (state is HomeErrorState) {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: state.color,
+                ));
+              } else if (state is HomeGotoSearchPage) {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (_) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(context),
+                      child: SearchResultPage(
+                        tokenCredential: tokenCredential,
+                        searchString: state.searchString,
+                        jobs: state.jobs,
+                      )),
+                ));
+              }
             },
             child: buildBody(context),
           ),
@@ -130,30 +145,55 @@ class _HomePageChildState extends State<HomePageChild> {
           height: MediaQuery.of(context).size.height * 0.2,
         ),
       ]),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        Container(
-          padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-          decoration: new BoxDecoration(
-              color: Color.fromARGB(255, 240, 240, 240),
-              border: new Border.all(width: 0.05, color: Colors.grey),
-              borderRadius: const BorderRadius.all(const Radius.circular(34))),
-          width: MediaQuery.of(context).size.width * 0.74,
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: 'ค้นหางานใหม่รอดำเนินการ',
-              prefixIcon: Icon(Icons.search),
-              border: InputBorder.none,
-            ),
-            onSubmitted: _onSubmitted(context,txtController.text),
-            controller: txtController,
-            textInputAction: TextInputAction.search,
-          ),
-        ),
-      ]),
+      BlocBuilder(
+        bloc: BlocProvider.of<HomeBloc>(context),
+        builder: (BuildContext context, state) {
+          if (state is HomeInitial) {
+            return searchInput(context);
+          } else {
+            return LoadingWidget(width: 100, height: 100);
+          }
+        },
+      ),
     ]);
   }
 
-  _onSubmitted(BuildContext context,String searchString){
-    txtController.text = '';
+  TextEditingController txtController = new TextEditingController();
+  Widget searchInput(BuildContext context) {
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Container(
+        padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+        decoration: new BoxDecoration(
+            color: Color.fromARGB(255, 240, 240, 240),
+            border: new Border.all(width: 0.05, color: Colors.grey),
+            borderRadius: const BorderRadius.all(const Radius.circular(34))),
+        width: MediaQuery.of(context).size.width * 0.74,
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: 'ค้นหางานใหม่รอดำเนินการ',
+            prefixIcon: Icon(Icons.search),
+            border: InputBorder.none,
+          ),
+          onSubmitted: _onSubmitted(context, txtController.text),
+          controller: txtController,
+          textInputAction: TextInputAction.search,
+        ),
+      ),
+    ]);
+  }
+
+  _onSubmitted(BuildContext context, String searchString) {
+    if (searchString.length != 0) {
+      txtController.text = '';
+      final homeBloc = BlocProvider.of<HomeBloc>(context);
+      if (searchString.length > 3) {
+        homeBloc.add(HomeSearchEvent(searchString: searchString));
+      } else {
+        homeBloc.add(HomeErrorEvent(
+          message: 'String search length must longer than 3!',
+          color: Colors.red,
+        ));
+      }
+    }
   }
 }

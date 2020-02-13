@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
 class Job extends Equatable {
   final List<Equipment> equipments;
   final int jobId;
@@ -13,42 +14,47 @@ class Job extends Equatable {
   final String ownBy;
 
   Job({
-    @required this.equipments, 
-    @required this.jobId, 
-    @required this.nonSearch, 
-    @required this.projectNameTh, 
-    @required this.siteCode, 
-    @required this.projectNameEn, 
-    @required this.services, 
-    @required this.projectName, 
-    @required this.customerName, 
+    @required this.equipments,
+    @required this.jobId,
+    @required this.nonSearch,
+    @required this.projectNameTh,
+    @required this.siteCode,
+    @required this.projectNameEn,
+    @required this.services,
+    @required this.projectName,
+    @required this.customerName,
     @required this.ownBy,
-    });
+  });
   @override
   // TODO: implement props
   List<Object> get props => [
-    equipments,
-    jobId,
-    nonSearch,
-    projectNameTh,
-    siteCode,
-    projectNameEn,
-    services,
-    projectName,
-    customerName,
-    ownBy,
-  ];
+        equipments,
+        jobId,
+        nonSearch,
+        projectNameTh,
+        siteCode,
+        projectNameEn,
+        services,
+        projectName,
+        customerName,
+        ownBy,
+      ];
 
-  factory Job.fromJson(Map<String,dynamic> json){
+  factory Job.fromJson(Map<String, dynamic> json) {
     final equipmentList = json['equipments'];
-    final List<Equipment> equipments = equipmentList.map((i)=> Equipment.fromJson(i)).toList();
-    final servicesList = json['services'];
-    final List<Service> services = servicesList.map((i)=> Service.fromJson(i)).toList();
-      
+    final List<Equipment> equipments = List<dynamic>();
+    for(int i = 0; i < equipmentList.length;i++){
+      equipments.add(Equipment.fromJson(equipmentList[i]));
+    }
+    final serviceList = json['services'];
+    final List<Service> services = List<dynamic>();
+    for(int i = 0; i < serviceList.length;i++){
+      services.add(Service.fromJson(serviceList[i]));
+    }
     return Job(
       equipments: equipments,
       jobId: json['jobId'],
-      nonSearch : json['nonSearch'],
+      nonSearch: json['nonSearch'],
       projectNameTh: json['projectNameTh'],
       siteCode: json['siteCode'],
       projectNameEn: json['projectNameEn'],
@@ -68,32 +74,36 @@ class Equipment extends Equatable {
   final String brand;
 
   Equipment({
-    @required this.imgs, 
-    @required this.name, 
-    @required this.model, 
-    @required this.type, 
+    @required this.imgs,
+    @required this.name,
+    @required this.model,
+    @required this.type,
     @required this.brand,
-    });
+  });
   @override
   // TODO: implement props
   List<Object> get props => [
-    imgs,
-    name,
-    model,
-    type,
-    brand,
-  ];
+        imgs,
+        name,
+        model,
+        type,
+        brand,
+      ];
 
-  factory Equipment.fromJson(Map<String,dynamic> json) {
+  factory Equipment.fromJson(Map<String, dynamic> json) {
     final imgList = json['imgs'];
-    List<Img> imgs = imgList.map((i)=> Img.fromJson(i)).toList();
+    List<Img> imgs = List<dynamic>();
+    for( int i = 0; i<imgList.length; i++){
+      imgs.add( Img.fromJson(imgList[i]));
+    }
+
     return Equipment(
-      imgs: imgs, 
-      name: json['name'], 
+      imgs: imgs,
+      name: json['name'],
       model: json['model'],
       type: json['type'],
       brand: json['brand'],
-      );
+    );
   }
 }
 
@@ -102,7 +112,7 @@ class Img extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => null;
-  factory Img.fromJson(Map<String,dynamic> json){
+  factory Img.fromJson(Map<String, dynamic> json) {
     return Img();
   }
 }
@@ -124,13 +134,13 @@ class Service extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [
-    edsCircuitNumber,
-    name,
-    ipRanId,
-    nonMobileId,
-    referenceId,
-  ];
-  factory Service.fromJson(Map<String,dynamic> json) {
+        edsCircuitNumber,
+        name,
+        ipRanId,
+        nonMobileId,
+        referenceId,
+      ];
+  factory Service.fromJson(Map<String, dynamic> json) {
     return Service(
       edsCircuitNumber: json['edsCircuitNumber'],
       name: json['name'],
