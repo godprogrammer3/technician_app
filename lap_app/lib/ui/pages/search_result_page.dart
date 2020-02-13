@@ -15,31 +15,40 @@ class SearchResultPage extends StatelessWidget {
       {Key key,
       @required this.tokenCredential,
       @required this.searchString,
-      @required this.jobs})
+      @required this.jobs}
+      )
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SearchResultBloc(),
-      child: SearchResultPageChild(jobs: jobs,searchString: searchString,),
+      child: SearchResultPageChild(
+        jobs: jobs,
+        searchString: searchString,
+      ),
     );
   }
 }
 
-class SearchResultPageChild extends StatefulWidget{
+class SearchResultPageChild extends StatefulWidget {
   final TokenCredential tokenCredential;
   final String searchString;
   final List<dynamic> jobs;
 
-  const SearchResultPageChild({Key key, this.tokenCredential, this.searchString, this.jobs}) : super(key: key);
+  const SearchResultPageChild(
+      {Key key, this.tokenCredential, this.searchString, this.jobs})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _SearchResultPageChildState(tokenCredential: tokenCredential,searchString: searchString,jobs: jobs);
+    return _SearchResultPageChildState(
+        tokenCredential: tokenCredential,
+        searchString: searchString,
+        jobs: jobs);
   }
-
 }
+
 class _SearchResultPageChildState extends State<SearchResultPageChild> {
   final TokenCredential tokenCredential;
   final String searchString;
@@ -49,13 +58,13 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
   final txtController = TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     txtController.text = this.searchString;
   }
 
   @override
-  void dispose(){
-    if(txtController != null){
+  void dispose() {
+    if (txtController != null) {
       txtController.dispose();
     }
     super.dispose();
@@ -146,27 +155,29 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
             return ListView.builder(
                 itemCount: jobs.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildItem(jobs, index);
+                  return buildItem(context, jobs[index]);
                 });
           } else if (state is SearchResultRebuildState) {
             return ListView.builder(
                 itemCount: state.jobs.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildItem(state.jobs, index);
+                  return buildItem(context, state.jobs[index]);
                 });
           } else {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center, 
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    LoadingWidget(width: 100, height: 100),
+                    LoadingWidget(
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      height: MediaQuery.of(context).size.width * 0.2,
+                    ),
                   ],
                 )
               ],
             );
-            
           }
         },
       ),
@@ -177,10 +188,10 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
     if (searchString.length != 0) {
       txtController.text = '';
       final searchResultBloc = BlocProvider.of<SearchResultBloc>(context);
-      if (searchString.length > 3) { 
+      if (searchString.length > 3) {
         print(searchString);
-        searchResultBloc.add(SearchResultSearchEvent(searchString: searchString));
-       
+        searchResultBloc
+            .add(SearchResultSearchEvent(searchString: searchString));
       } else {
         searchResultBloc.add(SearchResultErrorEvent(
           message: 'String search length must longer than 3!',
@@ -190,15 +201,80 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
     }
   }
 
-  Widget buildItem(List<dynamic> jobs, int index) {
-    //TODO: Decoration here 
-    return Column(
-      children: <Widget>[
-        Text('Network Configuration'),
-        Text('โครงการ : '+jobs[index]['customerName']),
-        Text('Project : '+jobs[index]['projectNameEn']),
-        Text('Site Code : '+jobs[index]['siteCode']),
-      ],
+  Widget buildItem(BuildContext context, Map<String, dynamic> jobs) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+      margin: EdgeInsets.all(7),
+      decoration: BoxDecoration(
+        color: new Color.fromARGB(255, 240, 240, 240),
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child:
+                    Text('โครงการ : '+jobs['customerName'],
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontFamily: 'sans',
+                        fontSize: 21,                  
+                        color: Colors.black87)),
+                ) 
+                
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text('Project : '+jobs['projectNameEn'],
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontFamily: 'sans',
+                        fontSize: 20,
+                        color: Colors.black87)),
+              ),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text('Site Code : '+jobs['siteCode'],
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontFamily: 'sans',
+                        fontSize: 20,
+                        color: Colors.black87)),
+              ),
+            ],
+          ),
+          Divider(
+            color: Colors.grey,
+            //height:double.maxFinite
+          ),
+          ButtonTheme(
+              minWidth: 365.0,
+              height: 46.0,
+              child: FlatButton(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  onPressed: () {},
+                  child: Text(
+                    'รายละเอียดงาน',
+                    style: TextStyle(
+                        fontFamily: 'supermarket',
+                        fontSize: 18,
+                        color: Colors.green),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: (const Radius.circular(8)),
+                          bottomRight: (const Radius.circular(8))),
+                      side: BorderSide(color: Colors.transparent))))
+        ],
+      ),
     );
   }
 }

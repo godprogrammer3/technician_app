@@ -130,6 +130,35 @@ class WaitTaskPageChild extends StatelessWidget {
       ),
     );
   }
+  Widget buildBody(BuildContext context){
+      return  Container(
+        child: ListView.separated(
+          itemCount: 6,
+          itemBuilder: (BuildContext context,int index){
+            return 
+               buildTask(context);
+            
+          },
+          separatorBuilder: (BuildContext context,int index)=>const Divider(),
+        )
+      );
+      
+      
+      // Stack(
+      //   children:<Widget>[
+      //     Align(
+      //       alignment:Alignment(MediaQuery.of(context).size.width * 0.0008, 0),
+      //       child: Column(
+      //         mainAxisAlignment: MainAxisAlignment.start,
+      //         children:<Widget>[ 
+      //           Container(
+      //             decoration: new BoxDecoration(
+      //               color: new Color.fromARGB(255, 240, 240, 240),
+      //               borderRadius: BorderRadius.all(Radius.circular(8.0)),),
+      //             width: 365,
+      //             height: 177,
+                  
+      //           ),]
 
   Widget buildBody(BuildContext context) {
     return CustomScrollView(
