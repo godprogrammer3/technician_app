@@ -7,25 +7,27 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class TaskDetail extends StatelessWidget{
 
-  
   @override
   Widget build(BuildContext contex){
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Network Configuration'),
+          title: Text('Network Configuration',style: TextStyle(color: Colors.black),),
           centerTitle: true,
-          backgroundColor: const Color(0xFF2FDC96),
+          backgroundColor: Colors.white,
           bottom: TabBar(
-            tabs: [new Tab(text: 'DETAIL'),new Tab(text: 'DEVICE')]
+            indicatorColor: const Color(0xff36B772),
+            labelColor: Colors.black,
+            tabs: [new Tab(text: 'DETAIL',),new Tab(text: 'DEVICE')]
           ),
       ),
 
         body: TabBarView(children: <Widget>[
-          Text('Device na ja'),
           // Text('Detail na ja')
-          buildBody(contex)
+          buildBodyDetail(contex),
+          // Text('Device na ja')
+          buildBodyDevice(contex)
         ],),
 
         bottomNavigationBar: BottomAppBar(
@@ -45,23 +47,4 @@ class TaskDetail extends StatelessWidget{
   }
 
 
-  Widget buildBody(BuildContext contex){
-      return  Stack(
-        children:<Widget>[
-          Align(
-            alignment:Alignment.center,
-            child: 
-              Text(
-                'Hello, this isn device scaffold na ja',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )
-
-          ),
-
-        ],
-        overflow: Overflow.visible,
-      );
-  }
 }
