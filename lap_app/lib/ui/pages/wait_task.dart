@@ -86,10 +86,10 @@ class WaitTask extends StatelessWidget{
           itemCount: 6,
           itemBuilder: (BuildContext context,int index){
             return 
-               buildTask(context);
+               waitTask(context);
             
           },
-          separatorBuilder: (BuildContext context,int index)=>const Divider(),
+          separatorBuilder: (BuildContext context,int index)=>const Divider(color:Colors.white),
         )
       );
       

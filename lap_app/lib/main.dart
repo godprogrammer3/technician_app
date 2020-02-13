@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: YourTask(),//SearchResultPage
+      home: WaitTask(),//SearchResultPage
     );
   }
 }
