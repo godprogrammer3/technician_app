@@ -32,14 +32,21 @@ class TaskDetail extends StatelessWidget{
 
         bottomNavigationBar: BottomAppBar(
         color: Colors.white,
-        child: 
-          RaisedButton(
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: 
+            RaisedButton(
             color: const Color(0xFF2FDC96),
             shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0),  ),
             textColor: Colors.white,
             onPressed: ()=>print('hello'),
-            child: new Text('รับทำงาน', style: TextStyle(fontSize: 20)),
-          )
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: Text('รับทำงาน', style: TextStyle(fontSize: 20)) 
+            ),
+          ),
+        )
+          
         )
       
       )

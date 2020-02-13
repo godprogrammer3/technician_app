@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44" height="44" viewBox="0 0 44 44">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="16" height="16" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="but_npress" transform="translate(-300 -138)">
+    <g id="piece">
+      <g id="Rectangle_1801" data-name="Rectangle 1801" transform="translate(300 138)" fill="#fff" stroke="rgba(167,167,167,0.76)" stroke-width="0.3">
+        <rect width="44" height="44" rx="4" stroke="none"/>
+        <rect x="0.15" y="0.15" width="43.7" height="43.7" rx="3.85" fill="none"/>
+      </g>
+    </g>
+    <g id="Backward_arrow" data-name="Backward arrow" transform="translate(330 168) rotate(180)" clip-path="url(#clip-path)">
+      <path id="Path_10" data-name="Path 10" d="M8,0,6.545,1.455l5.506,5.506H0V9.039H12.052L6.545,14.545,8,16l8-8Z" transform="translate(16 16) rotate(180)" fill="rgba(167,167,167,0.76)"/>
+    </g>
+  </g>
+</svg>
