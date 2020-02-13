@@ -84,6 +84,9 @@ class _HomePageChildState extends State<HomePageChild> {
                 ),
                 onPressed: () {
                   _onItemTapped(1);
+                  final homeBloc = BlocProvider.of<HomeBloc>(context);
+                  homeBloc.add(ChangeToYourTaskViewEvent());
+
                 },
               ),
               IconButton(
@@ -94,6 +97,8 @@ class _HomePageChildState extends State<HomePageChild> {
                 ),
                 onPressed: () {
                   _onItemTapped(2);
+                  final homeBloc = BlocProvider.of<HomeBloc>(context);
+                  homeBloc.add(ChangeToWaitTaskViewEvent());
                 },
               ),
               IconButton(
@@ -125,6 +130,26 @@ class _HomePageChildState extends State<HomePageChild> {
                         tokenCredential: tokenCredential,
                         searchString: state.searchString,
                         jobs: state.jobs,
+                      )),
+                ));
+              }else if(state is ChangeToYourTaskView) {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (_) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(context),
+                      child: YourTask(
+                        // tokenCredential: tokenCredential,
+                        // searchString: state.searchString,
+                        // jobs: state.jobs,
+                      )),
+                ));
+              }else if(state is ChangeToWaitTaskView) {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (_) => BlocProvider.value(
+                      value: BlocProvider.of<HomeBloc>(context),
+                      child: WaitTask(
+                        // tokenCredential: tokenCredential,
+                        // searchString: state.searchString,
+                        // jobs: state.jobs,
                       )),
                 ));
               }

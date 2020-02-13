@@ -29,3 +29,17 @@ class HomeErrorEvent extends HomeEvent {
   List<Object> get props => null;
   
 }
+
+//////////////////////////////////////
+///change page Event
+///
+class ChangeToYourTaskViewEvent extends HomeEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}
+class ChangeToWaitTaskViewEvent extends HomeEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+}

@@ -24,7 +24,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
       await Future.delayed(Duration(seconds: 1));
       yield HomeInitial();
-    } else if (event is HomeSearchEvent) {
+    } 
+    
+    else if (event is HomeSearchEvent) {
       yield HomeLoadingState();
       try{
         final assets = AssetResources();
@@ -39,8 +41,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           color: Colors.red,
         );
         yield HomeInitial();
-      }
-     
+      } 
     }
+
+    else if (event is ChangeToYourTaskViewEvent){
+      yield ChangeToYourTaskView();
+    }
+    else if (event is ChangeToWaitTaskViewEvent){
+      yield ChangeToWaitTaskView();
+    }
+
   }
 }

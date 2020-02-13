@@ -191,6 +191,7 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
   }
 
   Widget buildItem(List<dynamic> jobs, int index) {
+    //TODO: Decoration here 
     return Column(
       children: <Widget>[
         Text('Network Configuration'),
