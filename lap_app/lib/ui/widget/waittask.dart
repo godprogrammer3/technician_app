@@ -3,7 +3,7 @@ import 'package:lap_app/ui/widget/widgets.dart';
 
 
 
-  Widget buildTask(BuildContext context){
+  Widget waittTask(BuildContext context){
 
       return  Stack(
         children:<Widget>[
@@ -80,7 +80,7 @@ import 'package:lap_app/ui/widget/widgets.dart';
               top: MediaQuery.of(context).size.width * -0.003,
               child: Container(
                 child:ImageDisplay(
-                  imageName: 'notcomplete_task.svg',
+                  imageName: 'wait__task.svg',
                   width: MediaQuery.of(context).size.width * 0.17,
                   height: MediaQuery.of(context).size.height * 0.17
                 ),  )),
