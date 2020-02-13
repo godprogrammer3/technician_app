@@ -84,7 +84,7 @@ class RequestOtpPageChild extends StatelessWidget {
   Widget buildBodyChild(BuildContext context) {
     return Column(children: <Widget>[
       Container(
-        //color: Color(0xF9F9F9),
+       
         margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.17, 0, MediaQuery.of(context).size.width * 0.17, 0),
         decoration: new BoxDecoration(
             color: Color.fromARGB(255, 240, 240, 240),

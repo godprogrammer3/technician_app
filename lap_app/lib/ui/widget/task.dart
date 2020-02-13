@@ -34,7 +34,7 @@ class Yourtask extends StatelessWidget{
             Positioned(
               left:MediaQuery.of(context).size.width * 0.14,
               top: MediaQuery.of(context).size.width * 0.03,
-              child:new Text('Network Configuration\n', style: TextStyle(fontSize: 18,color: Colors.black87),),
+              child:new Text('บมจ.ปตท.น้ำมันและการค้าปลีก\n', style: TextStyle(fontFamily: 'supermarket',fontSize:20,color: Colors.black87),),
                 ),
             Positioned(
               left:MediaQuery.of(context).size.width * 0.14,
@@ -52,12 +52,21 @@ class Yourtask extends StatelessWidget{
               child:new Text('Site Code : PTT PUBLIC COMPANY LIMITED_POCRT', style: TextStyle(fontFamily: 'supermarket',fontSize: 18,color: Colors.black87),)
                 ),
             Positioned(
-              left:MediaQuery.of(context).size.width * 0.1,
-              top: MediaQuery.of(context).size.width * 0.316,
-              
+              left:MediaQuery.of(context).size.width * 0.075,
+              right:MediaQuery.of(context).size.width * 0.038,
+              top: MediaQuery.of(context).size.width * 0.32,
+              child:Container(
+                height: 0.2,
+                width: double.maxFinite,
+                color: Colors.grey,)
+                ),
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.076,
+              top: MediaQuery.of(context).size.width * 0.322,
+            
               child:ButtonTheme(
-                minWidth: 350.0,
-                height: 40.0,
+                minWidth: 365.0,
+                height: 46.0,
                 child: FlatButton(
                   materialTapTargetSize:MaterialTapTargetSize.shrinkWrap,
                   onPressed: (){
@@ -65,7 +74,10 @@ class Yourtask extends StatelessWidget{
                 }, child: Text('รายละเอียดงาน', 
                         style: TextStyle(fontFamily: 'supermarket',
                         fontSize: 18,
-                        color: Colors.green),), )
+                        color: Colors.green),),
+                  shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.only(bottomLeft: (const Radius.circular(8)),bottomRight: (const Radius.circular(8))),
+                  side: BorderSide(color: Colors.transparent)) )
               )
 
             ),
