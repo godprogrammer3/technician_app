@@ -85,7 +85,7 @@ class RequestOtpPageChild extends StatelessWidget {
     return Column(children: <Widget>[
       Container(
        
-        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.17, 0, MediaQuery.of(context).size.width * 0.17, 0),
+        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.14, 0, MediaQuery.of(context).size.width * 0.14, 0),
         decoration: new BoxDecoration(
             color: Color.fromARGB(255, 240, 240, 240),
             border: new Border.all(width: 0.05, color: Colors.grey),
@@ -93,7 +93,7 @@ class RequestOtpPageChild extends StatelessWidget {
         child: TextField(
           decoration: new InputDecoration(
             hintText: 'Enter your username',
-            contentPadding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.15,right:MediaQuery.of(context).size.width * 0.15),
+            contentPadding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.14,right:MediaQuery.of(context).size.width * 0.15),
             border: InputBorder.none,
           ),
           keyboardType: TextInputType.text,
@@ -111,7 +111,7 @@ class RequestOtpPageChild extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: MaterialButton(
             height: MediaQuery.of(context).size.width * 0.118,
-            minWidth: MediaQuery.of(context).size.width * 0.67,
+            minWidth: MediaQuery.of(context).size.width * 0.73,
             color: Color.fromARGB(255, 47, 220, 150),
             textColor: Colors.white,
             child: Text('Request OTP'),
