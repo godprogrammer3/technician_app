@@ -9,7 +9,7 @@ import 'dart:async';
 
 import 'data/entities/entities.dart';
 import 'package:lap_app/data/datasources/datasources.dart';
-
+// cil
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
