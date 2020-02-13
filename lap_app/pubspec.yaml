@@ -20,6 +20,7 @@ dependencies:
   uuid: ^2.0.4
   rounded_floating_app_bar: ^0.1.0
   form_floating_action_button: any
+  splashscreen: any
 
 
 dev_dependencies:
