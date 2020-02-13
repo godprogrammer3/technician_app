@@ -47,27 +47,29 @@ class RequestOtpPageChild extends StatelessWidget {
 
   Widget buildBody(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 50, top: 200, right: 41),
+      
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: 100,
+              margin: EdgeInsets.only(left: MediaQuery.of(context).size.width* 0.17, 
+              top: MediaQuery.of(context).size.width* 0.5,
+              right:  MediaQuery.of(context).size.width* 0.1),
               child: ImageDisplay(imageName: 'aislogo.png'),
             ),
             Container(
-              margin: EdgeInsets.only(top: 68),
+              margin: EdgeInsets.only(top: MediaQuery.of(context).size.width* 0.17),
             ),
             BlocBuilder(
+              
               bloc: BlocProvider.of<RequestOtpBloc>(context),
               builder: (BuildContext context, state) {
                 if (state is RequestOtpInitial) {
                   return buildBodyChild(context);
                 } else {
                   return LoadingWidget(
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    height: MediaQuery.of(context).size.width * 0.25,
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    height: MediaQuery.of(context).size.width * 0.1,
                   );
                 }
               },
@@ -82,16 +84,16 @@ class RequestOtpPageChild extends StatelessWidget {
   Widget buildBodyChild(BuildContext context) {
     return Column(children: <Widget>[
       Container(
-        //color: Color(0xF9F9F9),
-        margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+       
+        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.17, 0, MediaQuery.of(context).size.width * 0.17, 0),
         decoration: new BoxDecoration(
             color: Color.fromARGB(255, 240, 240, 240),
             border: new Border.all(width: 0.05, color: Colors.grey),
-            borderRadius: const BorderRadius.all(const Radius.circular(34))),
-        child: TextFormField(
+            borderRadius: const BorderRadius.all(const Radius.circular(16))),
+        child: TextField(
           decoration: new InputDecoration(
             hintText: 'Enter your username',
-            contentPadding: EdgeInsets.only(left: 30),
+            contentPadding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.15,right:MediaQuery.of(context).size.width * 0.15),
             border: InputBorder.none,
           ),
           keyboardType: TextInputType.text,
@@ -108,8 +110,8 @@ class RequestOtpPageChild extends StatelessWidget {
       Container(
         margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: MaterialButton(
-            height: 50,
-            minWidth: 270,
+            height: MediaQuery.of(context).size.width * 0.118,
+            minWidth: MediaQuery.of(context).size.width * 0.67,
             color: Color.fromARGB(255, 47, 220, 150),
             textColor: Colors.white,
             child: Text('Request OTP'),

@@ -1,204 +1,101 @@
-import 'package:configurable_expansion_tile/configurable_expansion_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 class Yourtask extends StatelessWidget{
   @override
-  Widget build(BuildContext contex){
+  Widget build(BuildContext context){
   
     return Scaffold(
       body: SingleChildScrollView(
-        child: buildBody(contex),
+        child: buildBody(context),
       )
     );
   }
-  Widget buildBody(BuildContext contex){
+  Widget buildBody(BuildContext context){
       return  Stack(
-        
         children:<Widget>[
-          
           Align(
-            alignment:Alignment.center,
+            alignment:Alignment(MediaQuery.of(context).size.width * 0.0008, 0),
             child: Column(
-            children:<Widget>[ 
-              Container(  //////////////////////////////////////////////////////////////////////////name
-                padding: EdgeInsets.only(left: 80.0 ),
-                decoration: new BoxDecoration(
-                  color: new Color.fromARGB(255, 240, 240, 240),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:<Widget>[ 
+                Container(
+                  decoration: new BoxDecoration(
+                    color: new Color.fromARGB(255, 240, 240, 240),
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),),
+                  width: 365,
+                  height: 177,
+                  
+                ),]
 
-                
+            ), ),
+
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.14,
+              top: MediaQuery.of(context).size.width * 0.03,
+              child:new Text('บมจ.ปตท.น้ำมันและการค้าปลีก\n', style: TextStyle(fontFamily: 'supermarket',fontSize:20,color: Colors.black87),),
                 ),
-                width: 340,
-                height: 177,
-                // child: new Row(
-                //   children: <Widget>[
-                //     new Text('test',
-                //             style: TextStyle(fontSize: 14,color: Colors.black87),
-                //             ),], ),
-              
-              ),
-              
-            ]
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.14,
+              top: MediaQuery.of(context).size.width * 0.13,
+              child:new Text('โครงการ : บริษัท ปตท.จำกัด', style: TextStyle(fontFamily: 'supermarket',fontSize:18,color: Colors.black87),)
+                ),
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.14,
+              top: MediaQuery.of(context).size.width * 0.19,
+              child:new Text('Project : PTT PUBLIC COMPANY LIMITED', style: TextStyle(fontFamily: 'supermarket',fontSize: 18,color: Colors.black87),)
+                ),
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.14,
+              top: MediaQuery.of(context).size.width * 0.25,
+              child:new Text('Site Code : PTT PUBLIC COMPANY LIMITED_POCRT', style: TextStyle(fontFamily: 'supermarket',fontSize: 18,color: Colors.black87),)
+                ),
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.075,
+              right:MediaQuery.of(context).size.width * 0.038,
+              top: MediaQuery.of(context).size.width * 0.32,
+              child:Container(
+                height: 0.2,
+                width: double.maxFinite,
+                color: Colors.grey,)
+                ),
+            Positioned(
+              left:MediaQuery.of(context).size.width * 0.076,
+              top: MediaQuery.of(context).size.width * 0.322,
+            
+              child:ButtonTheme(
+                minWidth: 365.0,
+                height: 46.0,
+                child: FlatButton(
+                  materialTapTargetSize:MaterialTapTargetSize.shrinkWrap,
+                  onPressed: (){
 
-          ),
-          ),
-          Positioned(
-            left:7,
-            top: 40,
-            child: Container(
-              child: Icon(Icons.mood_bad,size:60,color:Colors.redAccent),
-          )),
+                }, child: Text('รายละเอียดงาน', 
+                        style: TextStyle(fontFamily: 'supermarket',
+                        fontSize: 18,
+                        color: Colors.green),),
+                  shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.only(bottomLeft: (const Radius.circular(8)),bottomRight: (const Radius.circular(8))),
+                  side: BorderSide(color: Colors.transparent)) )
+              )
+
+            ),
+            
+
+            Positioned(
+              left:MediaQuery.of(context).size.width * -0.01,
+              top: MediaQuery.of(context).size.width * -0.003,
+              child: Container(
+                child:ImageDisplay(
+                  imageName: 'notcomplete_task.svg',
+                  width: MediaQuery.of(context).size.width * 0.17,
+                  height: MediaQuery.of(context).size.height * 0.17
+                ),  )),
 
         ],
         overflow: Overflow.visible,
-         
-      
-    // //    decoration: new BoxDecoration(
-    // //      color: Colors.white,
-    // //      borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    // //    ),
-    // //    width: 334,
-    // //   margin: EdgeInsets.only(top:100,left:30),
-    //   Stack(
-    //     children: <Widget>[
-    //       Positioned(
-    //         left:-50,
-    //         child: Container(
-    //           child: Icon(Icons.mood,size:60,color:Colors.redAccent),
-    //       )),
-    //       Column(
-    //         children: <Widget>[
-              // Container(  //////////////////////////////////////////////////////////////////////////name
-              //   padding: EdgeInsets.only(left: 80.0 ),
-              //   decoration: new BoxDecoration(
-              //     color: new Color(0xFFF9A9A9),
-              //     borderRadius: BorderRadius.only(
-              //       topLeft: Radius.circular(8.0),
-              //       topRight: Radius.circular(8.0)
-
-              //     ),
-              //   ),
-              //   width: 334,
-              //   height: 26,
-              //   child: new Row(
-              //     children: <Widget>[
-              //       new Text('test',
-              //               style: TextStyle(fontSize: 14,color: Colors.black87),
-              //               ),
-                
-                
-              //     ],
-              //   ),
-              
-              // ),
-
-      
-    //           ConfigurableExpansionTile(   
-    //                 header: Container(
-                      
-    //                   child: new Row(
-    //                     mainAxisAlignment: MainAxisAlignment.start,
-    //                     children: <Widget>[                  
-                          
-    //                       Column(
-    //                         crossAxisAlignment: CrossAxisAlignment.start,
-    //                         children: <Widget>[
-    //                           Container(
-    //                             margin: EdgeInsets.only(
-    //                               left: 10,
-    //                               top: 10
-    //                             ),
-    //                             width:250 ,
-    //                             child: 
-    //                             new Text('test',
-    //                             style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: Color(0xFFF34949)),
-    //                             ),
-                                
-    //                           ),
-    //                           Container(
-    //                             margin: EdgeInsets.only(
-    //                               top: 3
-    //                             ),
-    //                             child: Row(
-    //                               mainAxisAlignment: MainAxisAlignment.start,
-    //                               children: <Widget>[
-    //                                 Text('  '),
-    //                                 Icon(Icons.access_time,size: 20,color: Colors.red[300],),
-    //                                 Text(' '),
-    //                                 Text('test',style: TextStyle( fontSize: 15,color: Colors.black87)),
-    //                                 //
-    //                               ],
-    //                             )
-    //                           ),
-    //                           Container(
-    //                             margin: EdgeInsets.only(
-    //                               top: 3
-    //                             ),
-    //                             child: Row(
-                                
-    //                               children: <Widget>[
-    //                                 Text('  '),
-    //                                 Icon(Icons.location_on,size: 20,color: Colors.red[300]),
-    //                                 Text(' '),
-    //                                 Text('test',style: TextStyle( fontSize: 15,color: Colors.black87),),
-                                                                      
-    //                               ],
-    //                             )
-    //                           ),
-                      
-
-    //                           Container(
-    //                             margin: EdgeInsets.only(
-    //                               left: 85
-    //                             ),
-                              
-    //                             child: Icon(Icons.expand_more,size:20,color:Colors.red[300]),),
-    //                         ],
-    //                       ),
-
-    //                     ],
-    //                   )
-                      
-    //                 ),
-                    
-                      
-    //                 children: [
-    //                   Row(
-    //                     children: <Widget>[
-    //                       Container(
-    //                         margin: EdgeInsets.all(10),
-    //                       ),
-    //                       Flexible(
-    //                             child : Text('test',style: TextStyle(
-    //                             color: Colors.red[400],
-    //                             fontSize: 15),overflow:TextOverflow.clip,)
-    //                         ),
-                          
-    //                       Container(
-    //                         margin: EdgeInsets.all(10),
-    //                       ),
-                          
-    //                       ],
-    //                   ),
-    //                   Container(height: 10,)
-    //                 ],
-    //               ),
-                  
-    //         ],
-            
-                
-    //           ),
-    //     ]
-    //     overflow: Overflow.visible,
-        
       );
-  
-     
- 
-      
     
   }
 }
