@@ -1,0 +1,611 @@
+[
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608AC-EB1955-POE",
+                "model": "ISCOM2608G-PWR-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "SWR2608AC-EM1955-POE",
+                "model": "ISCOM2608G-PWR-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R1111.EB1955",
+                "model": "C1111-4P",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R1111.EM1955",
+                "model": "C1111-4P",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 23,
+        "nonSearch": "9000103384,9000105290,9000102021,9000100524",
+        "projectNameTh": "Tesco_Lotus WAN Store",
+        "siteCode": "Tesco_Lotus WAN Store_1955",
+        "projectNameEn": "Tesco_Lotus WAN Store",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0042710",
+                "name": "Tesco Lotus_1955_ค้อวัง ยโสธร_งาน Internet Back up",
+                "ipRanId": "IPR41707",
+                "nonMobileId": "9000103384",
+                "referenceId": "AWN-NW-201811-000038"
+            },
+            {
+                "edsCircuitNumber": "EDS0042708",
+                "name": "Tesco Lotus_1955_ค้อวัง ยโสธร_งาน Private Back up",
+                "ipRanId": "IPR41705",
+                "nonMobileId": "9000105290",
+                "referenceId": "AWN-NW-201811-000051"
+            },
+            {
+                "edsCircuitNumber": "EDS0042706",
+                "name": "Tesco Lotus_1955_ค้อวัง ยโสธร_งาน Internet Main",
+                "ipRanId": "IPR41703",
+                "nonMobileId": "9000102021",
+                "referenceId": "AWN-NW-201811-000029"
+            },
+            {
+                "edsCircuitNumber": "EDS0042702",
+                "name": "Tesco Lotus_1955_ค้อวัง ยโสธร_งาน Private Main",
+                "ipRanId": "IPR41699",
+                "nonMobileId": "9000100524",
+                "referenceId": "AWN-NW-201811-000023"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท เอก-ชัย ดีสทริบิวชั่น ซิสเทม จำกัด-WAN Store Service-Express (Existing)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608AC-EM1988-POE",
+                "model": "ISCOM2608G-PWR-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "SWR2608AC-EB1988-POE",
+                "model": "ISCOM2608G-PWR-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R1111.EM1988",
+                "model": "C1111-4P",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R1111.EB1988",
+                "model": "C1111-4P",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 26,
+        "nonSearch": "9000099580,9000102728,9000104282,9000101298",
+        "projectNameTh": "Tesco_Lotus WAN Store",
+        "siteCode": "Tesco_Lotus WAN Store_1988",
+        "projectNameEn": "Tesco_Lotus WAN Store",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0040736",
+                "name": "Tesco Lotus_1988_เขาวง กาฬสินธุ์_งาน Private Main",
+                "ipRanId": "IPR39904",
+                "nonMobileId": "9000099580",
+                "referenceId": "AWN-NW-201811-000021"
+            },
+            {
+                "edsCircuitNumber": "EDS0040746",
+                "name": "Tesco Lotus_1988_เขาวง กาฬสินธุ์_งาน Internet Back up",
+                "ipRanId": "IPR39914",
+                "nonMobileId": "9000102728",
+                "referenceId": "AWN-NW-201811-000033"
+            },
+            {
+                "edsCircuitNumber": "EDS0040745",
+                "name": "Tesco Lotus_1988_เขาวง กาฬสินธุ์_งาน Private Back up",
+                "ipRanId": "IPR39913",
+                "nonMobileId": "9000104282",
+                "referenceId": "AWN-NW-201811-000049"
+            },
+            {
+                "edsCircuitNumber": "EDS0040740",
+                "name": "Tesco Lotus_1988_เขาวง กาฬสินธุ์_งาน Internet Main",
+                "ipRanId": "IPR39908",
+                "nonMobileId": "9000101298",
+                "referenceId": "AWN-NW-201811-000027"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท เอก-ชัย ดีสทริบิวชั่น ซิสเทม จำกัด-WAN Store Service-Express (Existing)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608AC-JMRCPM-POE",
+                "model": "ISCOM2608G-PWR-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R161F.JMRCPM",
+                "model": "AR161F",
+                "type": "ROUTER",
+                "brand": "HUAWEI"
+            }
+        ],
+        "jobId": 49,
+        "nonSearch": "9000113820_WiFi,9000113820,9000113819",
+        "projectNameTh": "เจมาร์ท โมบาย",
+        "siteCode": "Jaymart Mobile_JMRCPM",
+        "projectNameEn": "Jaymart Mobile",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0043751",
+                "name": "Jaymart _Robinson Chaiyaphum_Corporate Wifi",
+                "ipRanId": "IPR42657",
+                "nonMobileId": "9000113820_WiFi",
+                "referenceId": "AWN-NW-1901-000139"
+            },
+            {
+                "edsCircuitNumber": "EDS0043748",
+                "name": "Jaymart _Robinson Chaiyaphum_Corporate Wifi",
+                "ipRanId": "IPR42654",
+                "nonMobileId": "9000113820",
+                "referenceId": "AWN-NW-201901-000027"
+            },
+            {
+                "edsCircuitNumber": "EDS0043745",
+                "name": "Jaymart_Robinson Chaiyaphum",
+                "ipRanId": "IPR42651",
+                "nonMobileId": "9000113819",
+                "referenceId": "AWN-NW-201901-000027"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท เจมาร์ท โมบาย จำกัด",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608AC-11213#2",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "SWR2608AC-11213",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11213#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11213",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 915,
+        "nonSearch": "9000115765,9000115900",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11213",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0048960",
+                "name": "11213_BigC_Hyper_Mukdaharn_Main",
+                "ipRanId": "IPR45754",
+                "nonMobileId": "9000115765",
+                "referenceId": "AWN-NW-1902-000455"
+            },
+            {
+                "edsCircuitNumber": "EDS0048963",
+                "name": "11213_BigC_Hyper_Mukdaharn_Back up",
+                "ipRanId": "IPR45757",
+                "nonMobileId": "9000115900",
+                "referenceId": "AWN-NW-1902-000307"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608GE-15039",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R819.15039",
+                "model": "C819G-LTE-LA-K9",
+                "type": "3G ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.15039",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 920,
+        "nonSearch": "9000116176,9000116068",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ - Market",
+        "siteCode": "Big C - Market_15039",
+        "projectNameEn": "Big C - Market",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0048657",
+                "name": "15039_BigC_Market_Borrabue_Back up",
+                "ipRanId": null,
+                "nonMobileId": "9000116176",
+                "referenceId": "AWN-NW-1902-001390"
+            },
+            {
+                "edsCircuitNumber": "EDS0048629",
+                "name": "15039_BigC_Market_Borrabue_Main",
+                "ipRanId": "IPR45658",
+                "nonMobileId": "9000116068",
+                "referenceId": "AWN-NW-1902-000480"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWF4820AC-11205",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "SWF4820AC-11205#2",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11205",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11205#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 955,
+        "nonSearch": "9000115745,9000115879",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11205",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0048948",
+                "name": "11205_BigC_Hyper_Udonthani2_Main",
+                "ipRanId": "IPR45744",
+                "nonMobileId": "9000115745",
+                "referenceId": "AWN-NW-1902-000466"
+            },
+            {
+                "edsCircuitNumber": "EDS0048950",
+                "name": "11205_BigC_Hyper_Udonthani2_Back up",
+                "ipRanId": "IPR45746",
+                "nonMobileId": "9000115879",
+                "referenceId": "AWN-NW-1902-000213"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608GE-11228",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "SWR2608GE-11228#2",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11228",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11228#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 964,
+        "nonSearch": "9000115640,9000115907",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11228",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0049024",
+                "name": "11228_BigC_Hyper_Phonphisai_Main",
+                "ipRanId": "IPR45806",
+                "nonMobileId": "9000115640",
+                "referenceId": "AWN-NW-1902-000331"
+            },
+            {
+                "edsCircuitNumber": "EDS0049027",
+                "name": "11228_BigC_Hyper_Phonphisai_Back up",
+                "ipRanId": "IPR45809",
+                "nonMobileId": "9000115907",
+                "referenceId": "AWN-NW-1902-000314"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWF4820AC-11215",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "SWF4820AC-11215#2",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11215",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11215#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 1017,
+        "nonSearch": "9000115709,9000115975",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11215",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0048965",
+                "name": "11215_BigC_Hyper_RoiEt_Main",
+                "ipRanId": "IPR45759",
+                "nonMobileId": "9000115709",
+                "referenceId": "AWN-NW-1902-000422"
+            },
+            {
+                "edsCircuitNumber": "EDS0048968",
+                "name": "11215_BigC_Hyper_RoiEt_Back up",
+                "ipRanId": "IPR45762",
+                "nonMobileId": "9000115975",
+                "referenceId": "AWN-NW-1902-000245"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608GE-11153",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "SWR2608GE-11153#2",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11153",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11153#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 1024,
+        "nonSearch": "9000115894,9000115759",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11153",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0049020",
+                "name": "11153_BigC_Hyper_Buriram_Back up",
+                "ipRanId": "IPR45804",
+                "nonMobileId": "9000115894",
+                "referenceId": "AWN-NW-1902-000277"
+            },
+            {
+                "edsCircuitNumber": "EDS0049017",
+                "name": "11153_BigC_Hyper_Buriram_Main",
+                "ipRanId": "IPR45801",
+                "nonMobileId": "9000115759",
+                "referenceId": "AWN-NW-1902-000459"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWF4820AC-BCSHR",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "SWF4820AC-BCSHR#2",
+                "model": "S4820-10T-GF",
+                "type": "SWITCH",
+                "brand": "FIBERHOME"
+            },
+            {
+                "imgs": [],
+                "name": "R841.BCSHR",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.BCSHR#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 1115,
+        "nonSearch": "9000119820,9000062098",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11240",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0049736",
+                "name": "11240_BigC_Hyper_Suwannaphum Roied_Back Up",
+                "ipRanId": "IPR46229",
+                "nonMobileId": "9000119820",
+                "referenceId": "AWN-NW-1903-000441"
+            },
+            {
+                "edsCircuitNumber": "EDS0019222",
+                "name": "บจ.บิ๊กซี ซูเปอร์เซ็นเตอร์ - Hyper สาขาสุวรรณภูมิ ร้อยเอ็ด",
+                "ipRanId": "IPR30999",
+                "nonMobileId": "9000062098",
+                "referenceId": "AWN-UP-1903-000180"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    },
+    {
+        "equipments": [
+            {
+                "imgs": [],
+                "name": "SWR2608GE-11242#2",
+                "model": "ISCOM2608G-2GE-AC",
+                "type": "SWITCH",
+                "brand": "RAISECOM"
+            },
+            {
+                "imgs": [],
+                "name": "R841-4P.11242#2",
+                "model": "C841M-4P/K9",
+                "type": "ROUTER",
+                "brand": "CISCO"
+            }
+        ],
+        "jobId": 1120,
+        "nonSearch": "9000119824",
+        "projectNameTh": "บิ๊กซี ซูเปอร์เซ็นเตอร์ Hyper",
+        "siteCode": "Big C SupperCenter Hyper_11242",
+        "projectNameEn": "Big C SupperCenter Hyper",
+        "services": [
+            {
+                "edsCircuitNumber": "EDS0049872",
+                "name": "11242_BigC_Hyper_Khamtakla_Back Up",
+                "ipRanId": "IPR46323",
+                "nonMobileId": "9000119824",
+                "referenceId": "AWN-NW-1903-000443"
+            }
+        ],
+        "projectName": null,
+        "customerName": "บริษัท บิ๊กซี ซูเปอร์เซ็นเตอร์ จำกัด (มหาชน)",
+        "ownBy": null
+    }
+]

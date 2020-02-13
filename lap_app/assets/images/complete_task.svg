@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <filter id="Ellipse_137" x="0" y="0" width="58" height="58" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellipse_136" x="5" y="5" width="48" height="48" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <rect width="14" height="14" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="complete" transform="translate(9 6)">
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Ellipse_137)">
+      <circle id="Ellipse_137-2" data-name="Ellipse 137" cx="20" cy="20" r="20" transform="translate(9 6)" fill="#f4f5f4"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Ellipse_136)">
+      <circle id="Ellipse_136-2" data-name="Ellipse 136" cx="15" cy="15" r="15" transform="translate(14 11)" fill="rgba(47,220,150,0.7)"/>
+    </g>
+    <g id="Yes" transform="translate(13 13)" clip-path="url(#clip-path)">
+      <path id="Checkbox" d="M6.134,10,1,5.173,2.218,4.027l3.916,3.6L13.182,1,14.4,2.145Z" transform="translate(-1 1)" fill="#fff"/>
+      <rect id="Rectangle_556" data-name="Rectangle 556" width="14" height="14" fill="none"/>
+    </g>
+  </g>
+</svg>
