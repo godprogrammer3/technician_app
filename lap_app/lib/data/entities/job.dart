@@ -39,23 +39,36 @@ class Job extends Equatable {
     ownBy,
   ];
 
-  // factory Job.fromJson(Map<String,dynamic> json){
-  //   return Job(
-  //     equipments:json['equipments'],
+  factory Job.fromJson(Map<String,dynamic> json){
+    final equipmentList = json['equipments'];
+    final List<Equipment> equipments = equipmentList.map((i)=> Equipment.fromJson(i)).toList();
+    final servicesList = json['services'];
+    final List<Service> services = servicesList.map((i)=> Service.fromJson(i)).toList();
       
-  //   );
-  // }
+    return Job(
+      equipments: equipments,
+      jobId: json['jobId'],
+      nonSearch : json['nonSearch'],
+      projectNameTh: json['projectNameTh'],
+      siteCode: json['siteCode'],
+      projectNameEn: json['projectNameEn'],
+      services: services,
+      projectName: json['projectName'],
+      customerName: json['customerName'],
+      ownBy: json['ownBy'],
+    );
+  }
 }
 
 class Equipment extends Equatable {
-  final List<Img> imgList;
+  final List<Img> imgs;
   final String name;
   final String model;
   final String type;
   final String brand;
 
   Equipment({
-    @required this.imgList, 
+    @required this.imgs, 
     @required this.name, 
     @required this.model, 
     @required this.type, 
@@ -64,18 +77,34 @@ class Equipment extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [
-    imgList,
+    imgs,
     name,
     model,
     type,
     brand,
   ];
+
+  factory Equipment.fromJson(Map<String,dynamic> json) {
+    final imgList = json['imgs'];
+    List<Img> imgs = imgList.map((i)=> Img.fromJson(i)).toList();
+    return Equipment(
+      imgs: imgs, 
+      name: json['name'], 
+      model: json['model'],
+      type: json['type'],
+      brand: json['brand'],
+      );
+  }
 }
 
 class Img extends Equatable {
+  Img();
   @override
   // TODO: implement props
   List<Object> get props => null;
+  factory Img.fromJson(Map<String,dynamic> json){
+    return Img();
+  }
 }
 
 class Service extends Equatable {
@@ -101,4 +130,13 @@ class Service extends Equatable {
     nonMobileId,
     referenceId,
   ];
+  factory Service.fromJson(Map<String,dynamic> json) {
+    return Service(
+      edsCircuitNumber: json['edsCircuitNumber'],
+      name: json['name'],
+      ipRanId: json['ipRanId'],
+      nonMobileId: json['nonMobileId'],
+      referenceId: json['referenceId'],
+    );
+  }
 }
