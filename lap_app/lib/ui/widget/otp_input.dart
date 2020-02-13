@@ -70,7 +70,7 @@ class _PinInputState extends State<PinInput> {
   @override
   void initState() {
     super.initState();
-    Timer(new Duration(seconds: 10), () {
+    Timer(new Duration(seconds: 5), () {
       _autoFillOtp();
     });
   }
@@ -120,6 +120,7 @@ class _PinInputState extends State<PinInput> {
                   }
                 });
               },
+    
             )),
       ),
       SizedBox(height: 20),
