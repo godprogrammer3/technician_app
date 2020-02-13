@@ -21,9 +21,11 @@ import 'package:flutter/material.dart';
                   // height: 50,
                   // color: Colors.amber[colorCodes[index]],
                   child: Row(
+                    
                     children: <Widget>[
 
                       Container(
+                        margin: EdgeInsets.all(16),
                         height: 78.0,
                         width: 78.0,
                         decoration: new BoxDecoration(
@@ -37,18 +39,21 @@ import 'package:flutter/material.dart';
                         ),
                       ),
 
-                      Container(
+                      Expanded(
+                        
                         child: Column(
                           children: <Widget>[
-                            Text('${nameDevice[index]}'),
-                            Text('รุ่นอุปกรณ์ : ${modelDevice[index]} '),
-                            Text('TYPE : ${typeDevice[index]}'),
+                            Align(alignment: Alignment.centerLeft,child:  Text('${nameDevice[index]}')),
+                            Align(alignment: Alignment.centerLeft,child:  Text('รุ่นอุปกรณ์ : ${modelDevice[index]} '),),
+                            Align(alignment: Alignment.centerLeft,child:  Text('TYPE : ${typeDevice[index]}'),),
                           ],
+                          
                         ),
 
                       ),
 
                       Container(
+                        margin: EdgeInsets.all(16),
                           child: IconButton(iconSize: 44.0,icon: Icon(Icons.arrow_right),onPressed: null,),
                       )
                     ],

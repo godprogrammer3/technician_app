@@ -18,7 +18,7 @@ class TaskDetail extends StatelessWidget{
           backgroundColor: Colors.white,
           bottom: TabBar(
             indicatorColor: const Color(0xff36B772),
-            labelColor: Colors.black,
+            labelColor: Color(0xff69736D),
             tabs: [new Tab(text: 'DETAIL',),new Tab(text: 'DEVICE')]
           ),
       ),
