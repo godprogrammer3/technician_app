@@ -31,6 +31,7 @@ flutter:
   assets:
     - assets/images/
     - assets/data/
+    - assets/images/but_npress.svg
   
   fonts:
     - family: supermarket
@@ -38,5 +39,4 @@ flutter:
         - asset: assets/font/supermarket.ttf
         
 #          weight: 700
-    - assets/images/but_npress.svg
 
