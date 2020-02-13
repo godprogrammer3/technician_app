@@ -90,7 +90,7 @@ class RequestOtpPageChild extends StatelessWidget {
             color: Color.fromARGB(255, 240, 240, 240),
             border: new Border.all(width: 0.05, color: Colors.grey),
             borderRadius: const BorderRadius.all(const Radius.circular(16))),
-        child: TextField(
+        child: TextFormField(
           decoration: new InputDecoration(
             hintText: 'Enter your username',
             contentPadding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.14,right:MediaQuery.of(context).size.width * 0.15),
@@ -99,9 +99,9 @@ class RequestOtpPageChild extends StatelessWidget {
           keyboardType: TextInputType.text,
           controller: txtController,
           textInputAction: TextInputAction.next,
-          // onFieldSubmitted: (n) {
-          //   _onSubmitted(txtController.text, context);
-          // },
+          onFieldSubmitted: (n) {
+            _onSubmitted(txtController.text, context);
+          },
         ),
       ),
       SizedBox(

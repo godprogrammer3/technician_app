@@ -8,11 +8,15 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 class TaskDetail extends StatelessWidget{
 
   @override
-  Widget build(BuildContext contex){
+  Widget build(BuildContext context){
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+           leading: new IconButton(
+          icon: new Icon(Icons.keyboard_backspace,color: Colors.black,),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
           title: Text('Network Configuration',style: TextStyle(color: Colors.black),),
           centerTitle: true,
           backgroundColor: Colors.white,
@@ -25,9 +29,9 @@ class TaskDetail extends StatelessWidget{
 
         body: TabBarView(children: <Widget>[
           // Text('Detail na ja')
-          buildBodyDetail(contex),
+          buildBodyDetail(context),
           // Text('Device na ja')
-          buildBodyDevice(contex)
+          buildBodyDevice(context)
         ],),
 
         bottomNavigationBar: BottomAppBar(
