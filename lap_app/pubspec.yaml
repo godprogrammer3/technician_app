@@ -36,6 +36,13 @@ flutter:
     - family: supermarket
       fonts:
         - asset: assets/font/supermarket.ttf
+    - family: kanit
+      fonts:
+        # - asset: assets/font/Kanit-Regular.ttf
+        - asset: assets/font/Kanit-ExtraLight.ttf
+    - family: sans
+      fonts:
+        - asset: assets/font/ThaiSansNeue-Regular.ttf
         
 #          weight: 700
 

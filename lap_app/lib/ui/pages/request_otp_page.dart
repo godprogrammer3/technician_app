@@ -68,8 +68,8 @@ class RequestOtpPageChild extends StatelessWidget {
                   return buildBodyChild(context);
                 } else {
                   return LoadingWidget(
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    height: MediaQuery.of(context).size.width * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.width * 0.2,
                   );
                 }
               },
@@ -105,7 +105,7 @@ class RequestOtpPageChild extends StatelessWidget {
         ),
       ),
       SizedBox(
-        height: 25,
+        height: 30,
       ),
       Container(
         margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
