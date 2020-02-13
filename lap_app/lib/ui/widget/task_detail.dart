@@ -14,17 +14,22 @@ import 'package:flutter/material.dart';
         scrollDirection: Axis.vertical,
         children:<Widget>[
           Align(
-            alignment:Alignment.center,
+            alignment:Alignment.centerLeft,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                   
                 Container(
+                  padding: EdgeInsets.all(10),
                   child: Text('รายละเอียดโปรเจค'),
+                    
                   ),
-
+                // SizedBox(height: 10,),
                 Container(
+                  padding: EdgeInsets.all(10),
                     child: Container(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text('ชื่อลูกค้า : $nameCustomer'),
                           Text('Project : $nameProject'),
@@ -34,10 +39,12 @@ import 'package:flutter/material.dart';
                   ),
       
                 Container(
+                  padding: EdgeInsets.all(10),
                   child: Text('รายละเอียดงาน'),
                   ),
 
                 Container(
+                  padding: EdgeInsets.all(10),
                   child: Text('$detailJob'),
                   )
 

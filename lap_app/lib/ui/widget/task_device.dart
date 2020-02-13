@@ -54,7 +54,7 @@ import 'package:flutter/material.dart';
 
                       Container(
                         margin: EdgeInsets.all(16),
-                          child: IconButton(iconSize: 44.0,icon: Icon(Icons.arrow_right),onPressed: null,),
+                          child: IconButton(iconSize: 44.0,icon: Icon(Icons.keyboard_arrow_right),onPressed: null,),
                       )
                     ],
                   )
