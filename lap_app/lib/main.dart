@@ -6,6 +6,7 @@ import 'package:lap_app/ui/pages/pages.dart';
 import 'dart:async';
 
 import 'data/entities/entities.dart';
+import 'package:lap_app/data/datasources/datasources.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ void main() async {
       .then((_) {
     runApp(new MyApp());
   });
+
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: SearchResultPage(),
+      home: HomePage(),
     );
   }
 }
