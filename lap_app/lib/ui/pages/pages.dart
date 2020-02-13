@@ -4,3 +4,4 @@ export './yourtask.dart';
 export './home_page.dart';
 export './search_result_page.dart';
 export './wait_task.dart';
+export './splashscreen.dart';
