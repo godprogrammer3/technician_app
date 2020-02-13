@@ -99,9 +99,9 @@ class RequestOtpPageChild extends StatelessWidget {
           keyboardType: TextInputType.text,
           controller: txtController,
           textInputAction: TextInputAction.next,
-          onFieldSubmitted: (n) {
-            _onSubmitted(txtController.text, context);
-          },
+          // onFieldSubmitted: (n) {
+          //   _onSubmitted(txtController.text, context);
+          // },
         ),
       ),
       SizedBox(

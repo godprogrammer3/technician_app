@@ -2,17 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 
 
-class Yourtask extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-  
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: buildBody(context),
-      )
-    );
-  }
-  Widget buildBody(BuildContext context){
+
+  Widget buildTask(BuildContext context){
+
       return  Stack(
         children:<Widget>[
           Align(
@@ -33,7 +25,7 @@ class Yourtask extends StatelessWidget{
 
             Positioned(
               left:MediaQuery.of(context).size.width * 0.14,
-              top: MediaQuery.of(context).size.width * 0.03,
+              top: MediaQuery.of(context).size.width * 0.05,
               child:new Text('บมจ.ปตท.น้ำมันและการค้าปลีก\n', style: TextStyle(fontFamily: 'supermarket',fontSize:20,color: Colors.black87),),
                 ),
             Positioned(
@@ -98,4 +90,3 @@ class Yourtask extends StatelessWidget{
       );
     
   }
-}
