@@ -38,4 +38,5 @@ flutter:
         - asset: assets/font/supermarket.ttf
         
 #          weight: 700
+    - assets/images/but_npress.svg
 
