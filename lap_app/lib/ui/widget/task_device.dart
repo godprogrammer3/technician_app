@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
       final List<String> entries = <String>['A', 'B', 'C'];
       final List<int> colorCodes = <int>[600, 500, 100];
 
-      List<String> nameDevice = <String>['ABC','DEF','GHI'];
+      List<String> nameDevice = <String>['SWITCH1','SWITCH1','SWITCH1'];
       List<String> modelDevice = <String>['123','456','789'];
       List<String> typeDevice = <String>['Switch','Lab','Multimeter'];
 
@@ -35,7 +35,7 @@ import 'package:flutter/material.dart';
                           //   fit: BoxFit.fill,
                           // ),
                           shape: BoxShape.rectangle,
-                          color: Colors.blueGrey
+                          color: Colors.green[100]
                         ),
                       ),
 
@@ -43,9 +43,11 @@ import 'package:flutter/material.dart';
                         
                         child: Column(
                           children: <Widget>[
-                            Align(alignment: Alignment.centerLeft,child:  Text('${nameDevice[index]}')),
-                            Align(alignment: Alignment.centerLeft,child:  Text('รุ่นอุปกรณ์ : ${modelDevice[index]} '),),
-                            Align(alignment: Alignment.centerLeft,child:  Text('TYPE : ${typeDevice[index]}'),),
+                            Align(alignment: Alignment.centerLeft,child:  Text('${nameDevice[index]}',style: TextStyle(fontFamily: 'supermarket',fontSize: 18),)),
+                            Container(margin: EdgeInsets.only(top: 6),),
+                            Align(alignment: Alignment.centerLeft,child:  Text('รุ่นอุปกรณ์ : ${modelDevice[index]} ',style: TextStyle(fontFamily: 'supermarket',fontSize: 18)),),
+                            Container(margin: EdgeInsets.only(top: 6),),
+                            Align(alignment: Alignment.centerLeft,child:  Text('TYPE : ${typeDevice[index]}',style: TextStyle(fontFamily: 'supermarket',fontSize: 18)),),
                           ],
                           
                         ),
@@ -54,7 +56,9 @@ import 'package:flutter/material.dart';
 
                       Container(
                         margin: EdgeInsets.all(16),
-                          child: IconButton(iconSize: 44.0,icon: Icon(Icons.keyboard_arrow_right),onPressed: null,),
+                          child: IconButton(
+                            iconSize: 44.0,
+                            icon: Icon(Icons.keyboard_arrow_right),color: Colors.grey[50],onPressed: null,),
                       )
                     ],
                   )
