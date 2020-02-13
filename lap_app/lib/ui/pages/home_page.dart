@@ -146,6 +146,7 @@ class _HomePageChildState extends State<HomePageChild> {
             ),
             onSubmitted: _onSubmitted(context,txtController.text),
             controller: txtController,
+            textInputAction: TextInputAction.search,
           ),
         ),
       ]),

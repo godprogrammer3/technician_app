@@ -66,8 +66,8 @@ class RequestOtpPageChild extends StatelessWidget {
                   return buildBodyChild(context);
                 } else {
                   return LoadingWidget(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.width * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.25,
+                    height: MediaQuery.of(context).size.width * 0.25,
                   );
                 }
               },
@@ -88,7 +88,7 @@ class RequestOtpPageChild extends StatelessWidget {
             color: Color.fromARGB(255, 240, 240, 240),
             border: new Border.all(width: 0.05, color: Colors.grey),
             borderRadius: const BorderRadius.all(const Radius.circular(34))),
-        child: TextField(
+        child: TextFormField(
           decoration: new InputDecoration(
             hintText: 'Enter your username',
             contentPadding: EdgeInsets.only(left: 30),
@@ -96,7 +96,10 @@ class RequestOtpPageChild extends StatelessWidget {
           ),
           keyboardType: TextInputType.text,
           controller: txtController,
-          onSubmitted: _onSubmitted(txtController.text, context),
+          textInputAction: TextInputAction.next,
+          onFieldSubmitted: (n) {
+            _onSubmitted(txtController.text, context);
+          },
         ),
       ),
       SizedBox(
