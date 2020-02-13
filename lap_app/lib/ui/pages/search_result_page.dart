@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
+import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
@@ -89,6 +90,13 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                         value: BlocProvider.of<SearchResultBloc>(context),
                         child: HomePage(
                           tokenCredential: tokenCredential,
+                        )),
+                  ));
+                }else if( state is GotoDetailJobState){
+                   Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => BlocProvider.value(
+                        value: BlocProvider.of<SearchResultBloc>(context),
+                        child: TaskDetail(
                         )),
                   ));
                 }
@@ -260,7 +268,10 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
               height: 46.0,
               child: FlatButton(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  onPressed: () {},
+                  onPressed: () {
+                    final searchResultBloc = BlocProvider.of<SearchResultBloc>(context);
+                    searchResultBloc.add(GotoDetailJobEvent());
+                  },
                   child: Text(
                     'รายละเอียดงาน',
                     style: TextStyle(

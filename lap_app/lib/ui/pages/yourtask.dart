@@ -90,7 +90,7 @@ class YourTaskPageChild extends StatelessWidget {
           children: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.home,
+                Icons.search,
                 size: 30,
                 color: iconColor[0],
               ),

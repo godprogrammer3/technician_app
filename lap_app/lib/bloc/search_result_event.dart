@@ -36,3 +36,10 @@ class SearchResultSearchEvent extends SearchResultEvent{
   List<Object> get props => null;
 
 }
+
+class GotoDetailJobEvent extends SearchResultEvent{
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}

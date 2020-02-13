@@ -57,7 +57,7 @@ class _HomePageChildState extends State<HomePageChild> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Home', style: TextStyle(color: Colors.black)),
+          title: Text('Search', style: TextStyle(color: Colors.black)),
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
@@ -68,7 +68,7 @@ class _HomePageChildState extends State<HomePageChild> {
             children: <Widget>[
               IconButton(
                 icon: Icon(
-                  Icons.home,
+                  Icons.search,
                   size: 30,
                   color: iconColor[0],
                 ),

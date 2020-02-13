@@ -56,7 +56,8 @@ class WaitTaskPageChild extends StatelessWidget {
           backgroundColor: Color(0xfafafa),
           elevation: 0),
       body: BlocListener<WaitTaskBloc, WaitTaskState>(
-        listener: (context, state) {
+        bloc: BlocProvider.of<WaitTaskBloc>(context),
+        listener: (BuildContext context, state) {
           if (state is WaitTaskChangePageState) {
             switch (state.pageIndex) {
               case 0:
@@ -89,13 +90,13 @@ class WaitTaskPageChild extends StatelessWidget {
           children: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.home,
+                Icons.search,
                 size: 30,
                 color: iconColor[0],
               ),
               onPressed: () {
-                final yourTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
-                yourTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 0));
+                final waitTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
+                waitTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 0));
               },
             ),
             IconButton(
@@ -105,8 +106,8 @@ class WaitTaskPageChild extends StatelessWidget {
                 color: iconColor[1],
               ),
               onPressed: () {
-                final yourTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
-                yourTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 1));
+                 final waitTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
+                waitTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 1));
               },
             ),
             IconButton(
@@ -115,7 +116,9 @@ class WaitTaskPageChild extends StatelessWidget {
                 size: 30,
                 color: iconColor[2],
               ),
-              onPressed: () {},
+              onPressed: () {
+               
+              },
             ),
             IconButton(
               icon: Icon(
@@ -130,35 +133,6 @@ class WaitTaskPageChild extends StatelessWidget {
       ),
     );
   }
-  Widget buildBody(BuildContext context){
-      return  Container(
-        child: ListView.separated(
-          itemCount: 6,
-          itemBuilder: (BuildContext context,int index){
-            return 
-               buildTask(context);
-            
-          },
-          separatorBuilder: (BuildContext context,int index)=>const Divider(),
-        )
-      );
-      
-      
-      // Stack(
-      //   children:<Widget>[
-      //     Align(
-      //       alignment:Alignment(MediaQuery.of(context).size.width * 0.0008, 0),
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.start,
-      //         children:<Widget>[ 
-      //           Container(
-      //             decoration: new BoxDecoration(
-      //               color: new Color.fromARGB(255, 240, 240, 240),
-      //               borderRadius: BorderRadius.all(Radius.circular(8.0)),),
-      //             width: 365,
-      //             height: 177,
-                  
-      //           ),]
 
   Widget buildBody(BuildContext context) {
     return CustomScrollView(

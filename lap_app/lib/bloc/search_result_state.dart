@@ -48,3 +48,11 @@ class SearchResultRebuildState extends SearchResultState{
   List<Object> get props => null;
 
 }
+
+
+class GotoDetailJobState extends SearchResultState{
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}

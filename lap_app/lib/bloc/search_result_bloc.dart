@@ -41,6 +41,9 @@ class SearchResultBloc extends Bloc<SearchResultEvent, SearchResultState> {
       
     }else if( event is SearchResultBackPageEvent){
       yield SearchResultBackPageState(); 
+    }else if( event is GotoDetailJobEvent){
+      yield GotoDetailJobState();
+      yield  SearchResultInitial();
     }
   }
 }
