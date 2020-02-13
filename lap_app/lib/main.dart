@@ -6,7 +6,7 @@ import 'package:lap_app/ui/pages/pages.dart';
 import 'dart:async';
 
 import 'data/entities/entities.dart';
-
+// cil2
 void main() async {
    WidgetsFlutterBinding.ensureInitialized();
    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
