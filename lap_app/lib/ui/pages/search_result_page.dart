@@ -90,7 +90,8 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                    Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => BlocProvider.value(
                         value: BlocProvider.of<SearchResultBloc>(context),
-                        child: TaskDetail(
+                        child: TaskDetailPage(
+                          tokenCredential: tokenCredential,
                         )),
                   ));
                 }
