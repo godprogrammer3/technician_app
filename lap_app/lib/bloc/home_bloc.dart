@@ -40,8 +40,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           message:e.toString(),
           color: Colors.red,
         );
-        yield HomeInitial();
-      } 
+        
+      }
+      yield HomeInitial();
     }
 
     else if (event is ChangeToYourTaskViewEvent){

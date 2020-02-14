@@ -85,13 +85,7 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                     backgroundColor: state.color,
                   ));
                 } else if (state is SearchResultBackPageState) {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<SearchResultBloc>(context),
-                        child: HomePage(
-                          tokenCredential: tokenCredential,
-                        )),
-                  ));
+                  Navigator.pop(context);
                 }else if( state is GotoDetailJobState){
                    Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => BlocProvider.value(

@@ -86,7 +86,6 @@ class _HomePageChildState extends State<HomePageChild> {
                   _onItemTapped(1);
                   final homeBloc = BlocProvider.of<HomeBloc>(context);
                   homeBloc.add(ChangeToYourTaskViewEvent());
-
                 },
               ),
               IconButton(
@@ -123,7 +122,7 @@ class _HomePageChildState extends State<HomePageChild> {
                   backgroundColor: state.color,
                 ));
               } else if (state is HomeGotoSearchPage) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(context),
                       child: SearchResultPage(
@@ -132,22 +131,20 @@ class _HomePageChildState extends State<HomePageChild> {
                         jobs: state.jobs,
                       )),
                 ));
-              }else if(state is ChangeToYourTaskView) {
+              } else if (state is ChangeToYourTaskView) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(context),
                       child: YourTaskPage(
-                         tokenCredential: tokenCredential,
+                        tokenCredential: tokenCredential,
                       )),
                 ));
-              }else if(state is ChangeToWaitTaskView) {
+              } else if (state is ChangeToWaitTaskView) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (_) => BlocProvider.value(
                       value: BlocProvider.of<HomeBloc>(context),
                       child: WaitTaskPage(
                         tokenCredential: tokenCredential,
-                        // searchString: state.searchString,
-                        // jobs: state.jobs,
                       )),
                 ));
               }
@@ -191,13 +188,13 @@ class _HomePageChildState extends State<HomePageChild> {
             border: new Border.all(width: 0.05, color: Colors.grey),
             borderRadius: const BorderRadius.all(const Radius.circular(34))),
         width: MediaQuery.of(context).size.width * 0.74,
-        child: TextField(
+        child: TextFormField(
           decoration: InputDecoration(
             hintText: 'ค้นหางานใหม่รอดำเนินการ',
-            prefixIcon: Icon(Icons.search),
             border: InputBorder.none,
+            prefixIcon: Icon(Icons.search)
           ),
-          onSubmitted: _onSubmitted(context, txtController.text),
+          onFieldSubmitted: (_) => _onSubmitted(context, txtController.text),
           controller: txtController,
           textInputAction: TextInputAction.search,
         ),
