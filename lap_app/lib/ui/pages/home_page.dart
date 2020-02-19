@@ -122,31 +122,24 @@ class _HomePageChildState extends State<HomePageChild> {
                   backgroundColor: state.color,
                 ));
               } else if (state is HomeGotoSearchPage) {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: SearchResultPage(
-                        tokenCredential: tokenCredential,
-                        searchString: state.searchString,
-                        jobs: state.jobs,
-                      )),
-                ));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SearchResultPage(
+                    tokenCredential: tokenCredential,
+                    searchString: state.searchString,
+                    jobs: state.jobs,
+                  );
+                }));
               } else if (state is ChangeToYourTaskView) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: YourTaskPage(
-                        tokenCredential: tokenCredential,
-                      )),
-                ));
+                Navigator.of(context).pushReplacement(_createRoute(
+                    YourTaskPage(
+                      tokenCredential: tokenCredential,
+                    )));
               } else if (state is ChangeToWaitTaskView) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: WaitTaskPage(
-                        tokenCredential: tokenCredential,
-                      )),
-                ));
+                Navigator.of(context).pushReplacement(_createRoute(
+                    WaitTaskPage(
+                      tokenCredential: tokenCredential,
+                    )));
               }
             },
             child: buildBody(context),
@@ -190,10 +183,9 @@ class _HomePageChildState extends State<HomePageChild> {
         width: MediaQuery.of(context).size.width * 0.74,
         child: TextFormField(
           decoration: InputDecoration(
-            hintText: 'ค้นหางานใหม่รอดำเนินการ',
-            border: InputBorder.none,
-            prefixIcon: Icon(Icons.search)
-          ),
+              hintText: 'ค้นหางานใหม่รอดำเนินการ',
+              border: InputBorder.none,
+              prefixIcon: Icon(Icons.search)),
           onFieldSubmitted: (_) => _onSubmitted(context, txtController.text),
           controller: txtController,
           textInputAction: TextInputAction.search,
@@ -216,4 +208,22 @@ class _HomePageChildState extends State<HomePageChild> {
       }
     }
   }
+}
+
+Route _createRoute(StatelessWidget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset.zero;
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

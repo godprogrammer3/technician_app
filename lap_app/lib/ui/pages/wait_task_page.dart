@@ -62,20 +62,14 @@ class WaitTaskPageChild extends StatelessWidget {
             switch (state.pageIndex) {
               case 0:
                 {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<WaitTaskBloc>(context),
-                        child: HomePage(tokenCredential: tokenCredential)),
-                  ));
+                  Navigator.of(context).pushReplacement(_createRoute(
+                      HomePage(tokenCredential: tokenCredential)));
                   break;
                 }
               case 1:
                 {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<WaitTaskBloc>(context),
-                        child: YourTaskPage(tokenCredential: tokenCredential)),
-                  ));
+                  Navigator.of(context).pushReplacement(_createRoute(
+                      YourTaskPage(tokenCredential: tokenCredential)));
                   break;
                 }
             }
@@ -106,7 +100,7 @@ class WaitTaskPageChild extends StatelessWidget {
                 color: iconColor[1],
               ),
               onPressed: () {
-                 final waitTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
+                final waitTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
                 waitTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 1));
               },
             ),
@@ -116,9 +110,7 @@ class WaitTaskPageChild extends StatelessWidget {
                 size: 30,
                 color: iconColor[2],
               ),
-              onPressed: () {
-               
-              },
+              onPressed: () {},
             ),
             IconButton(
               icon: Icon(
@@ -152,4 +144,22 @@ class WaitTaskPageChild extends StatelessWidget {
       ],
     );
   }
+}
+
+Route _createRoute(StatelessWidget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset.zero;
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

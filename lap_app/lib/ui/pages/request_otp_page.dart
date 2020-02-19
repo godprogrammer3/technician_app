@@ -32,11 +32,13 @@ class RequestOtpPageChild extends StatelessWidget {
                 backgroundColor: state.color,
               ));
             } else if (state is RequestOtpSuccess) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (_) => BlocProvider.value(
-                    value: BlocProvider.of<RequestOtpBloc>(context),
-                    child: VerifyOtpPage(otpCredential: state.otpCredential)),
-              ));
+               Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return VerifyOtpPage(otpCredential: state.otpCredential);
+                  }
+                )
+              );
             }
           },
           child: buildBody(context),

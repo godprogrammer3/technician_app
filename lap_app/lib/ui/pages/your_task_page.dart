@@ -62,20 +62,14 @@ class YourTaskPageChild extends StatelessWidget {
             switch (state.pageIndex) {
               case 0:
                 {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<YourTaskBloc>(context),
-                        child: HomePage(tokenCredential: tokenCredential)),
-                  ));
+                  Navigator.of(context).pushReplacement(_createRoute(
+                      HomePage(tokenCredential: tokenCredential)));
                   break;
                 }
               case 2:
                 {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<YourTaskBloc>(context),
-                        child: WaitTaskPage(tokenCredential: tokenCredential)),
-                  ));
+                  Navigator.of(context).pushReplacement(_createRoute(
+                      WaitTaskPage(tokenCredential: tokenCredential)));
                   break;
                 }
             }
@@ -150,4 +144,22 @@ class YourTaskPageChild extends StatelessWidget {
       ],
     );
   }
+}
+
+Route _createRoute(StatelessWidget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset.zero;
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
