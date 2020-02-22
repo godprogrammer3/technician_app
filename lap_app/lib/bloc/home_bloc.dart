@@ -24,33 +24,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
       await Future.delayed(Duration(seconds: 1));
       yield HomeInitial();
-    } 
-    
-    else if (event is HomeSearchEvent) {
+    } else if (event is HomeSearchEvent) {
       yield HomeLoadingState();
-      try{
+      try {
         final assets = AssetResources();
-        final jobs = await assets.loadJsonString('search_result_job.json');
+        final jobs = await assets.loadJson('search_result_job.json');
         yield HomeGotoSearchPage(
           searchString: event.searchString,
           jobs: jobs,
         );
-      }catch(e){
+      } catch (e) {
         yield HomeErrorState(
-          message:e.toString(),
+          message: e.toString(),
           color: Colors.red,
         );
-        
       }
       yield HomeInitial();
+    }else if(event is HomeChangePageEvent){
+      yield HomeChangePageState(pageIndex: event.pageIndex);
     }
-
-    else if (event is ChangeToYourTaskViewEvent){
-      yield ChangeToYourTaskView();
-    }
-    else if (event is ChangeToWaitTaskViewEvent){
-      yield ChangeToWaitTaskView();
-    }
-
   }
 }

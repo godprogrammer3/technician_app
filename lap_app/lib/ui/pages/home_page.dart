@@ -40,18 +40,6 @@ class _HomePageChildState extends State<HomePageChild> {
   ];
 
   _HomePageChildState({this.tokenCredential});
-  void _onItemTapped(int index) {
-    setState(() {
-      for (int i = 0; i < 4; i++) {
-        if (i == index) {
-          iconColor[i] = Color.fromARGB(255, 47, 220, 150);
-        } else {
-          iconColor[i] = Colors.grey[400];
-        }
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,9 +60,7 @@ class _HomePageChildState extends State<HomePageChild> {
                   size: 30,
                   color: iconColor[0],
                 ),
-                onPressed: () {
-                  _onItemTapped(0);
-                },
+                onPressed: () {},
               ),
               IconButton(
                 icon: Icon(
@@ -83,9 +69,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[1],
                 ),
                 onPressed: () {
-                  _onItemTapped(1);
                   final homeBloc = BlocProvider.of<HomeBloc>(context);
-                  homeBloc.add(ChangeToYourTaskViewEvent());
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 1));
                 },
               ),
               IconButton(
@@ -95,9 +80,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[2],
                 ),
                 onPressed: () {
-                  _onItemTapped(2);
                   final homeBloc = BlocProvider.of<HomeBloc>(context);
-                  homeBloc.add(ChangeToWaitTaskViewEvent());
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 2));
                 },
               ),
               IconButton(
@@ -107,7 +91,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[3],
                 ),
                 onPressed: () {
-                  _onItemTapped(3);
+                  final homeBloc = BlocProvider.of<HomeBloc>(context);
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 3));
                 },
               ),
             ],
@@ -130,16 +115,33 @@ class _HomePageChildState extends State<HomePageChild> {
                     jobs: state.jobs,
                   );
                 }));
-              } else if (state is ChangeToYourTaskView) {
-                Navigator.of(context).pushReplacement(_createRoute(
-                    YourTaskPage(
-                      tokenCredential: tokenCredential,
-                    )));
-              } else if (state is ChangeToWaitTaskView) {
-                Navigator.of(context).pushReplacement(_createRoute(
-                    WaitTaskPage(
-                      tokenCredential: tokenCredential,
-                    )));
+              } else if (state is HomeChangePageState) {
+                switch (state.pageIndex) {
+                  case 1:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(YourTaskPage(
+                        tokenCredential: tokenCredential,
+                      )));
+                      break;
+                    }
+                  case 2:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(WaitTaskPage(
+                        tokenCredential: tokenCredential,
+                      )));
+                      break;
+                    }
+                  case 3:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(NotificationPage(
+                        tokenCredential: tokenCredential,
+                      )));
+                      break;
+                    }
+                }
               }
             },
             child: buildBody(context),

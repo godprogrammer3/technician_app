@@ -62,14 +62,20 @@ class WaitTaskPageChild extends StatelessWidget {
             switch (state.pageIndex) {
               case 0:
                 {
-                  Navigator.of(context).pushReplacement(_createRoute(
-                      HomePage(tokenCredential: tokenCredential)));
+                  Navigator.of(context).pushReplacement(
+                      _createRoute(HomePage(tokenCredential: tokenCredential)));
                   break;
                 }
               case 1:
                 {
                   Navigator.of(context).pushReplacement(_createRoute(
                       YourTaskPage(tokenCredential: tokenCredential)));
+                  break;
+                }
+              case 3:
+                {
+                  Navigator.of(context).pushReplacement(_createRoute(
+                      NotificationPage(tokenCredential: tokenCredential)));
                   break;
                 }
             }
@@ -118,7 +124,10 @@ class WaitTaskPageChild extends StatelessWidget {
                 size: 30,
                 color: iconColor[3],
               ),
-              onPressed: () {},
+              onPressed: () {
+                 final waitTarkBloc = BlocProvider.of<WaitTaskBloc>(context);
+                waitTarkBloc.add(WaitTaskChangePageEvent(pageIndex: 3));
+              },
             ),
           ],
         ),
