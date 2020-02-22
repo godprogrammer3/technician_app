@@ -40,18 +40,6 @@ class _HomePageChildState extends State<HomePageChild> {
   ];
 
   _HomePageChildState({this.tokenCredential});
-  void _onItemTapped(int index) {
-    setState(() {
-      for (int i = 0; i < 4; i++) {
-        if (i == index) {
-          iconColor[i] = Color.fromARGB(255, 47, 220, 150);
-        } else {
-          iconColor[i] = Colors.grey[400];
-        }
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,9 +60,7 @@ class _HomePageChildState extends State<HomePageChild> {
                   size: 30,
                   color: iconColor[0],
                 ),
-                onPressed: () {
-                  _onItemTapped(0);
-                },
+                onPressed: () {},
               ),
               IconButton(
                 icon: Icon(
@@ -83,9 +69,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[1],
                 ),
                 onPressed: () {
-                  _onItemTapped(1);
                   final homeBloc = BlocProvider.of<HomeBloc>(context);
-                  homeBloc.add(ChangeToYourTaskViewEvent());
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 1));
                 },
               ),
               IconButton(
@@ -95,9 +80,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[2],
                 ),
                 onPressed: () {
-                  _onItemTapped(2);
                   final homeBloc = BlocProvider.of<HomeBloc>(context);
-                  homeBloc.add(ChangeToWaitTaskViewEvent());
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 2));
                 },
               ),
               IconButton(
@@ -107,7 +91,8 @@ class _HomePageChildState extends State<HomePageChild> {
                   color: iconColor[3],
                 ),
                 onPressed: () {
-                  _onItemTapped(3);
+                  final homeBloc = BlocProvider.of<HomeBloc>(context);
+                  homeBloc.add(HomeChangePageEvent(pageIndex: 3));
                 },
               ),
             ],
@@ -122,31 +107,41 @@ class _HomePageChildState extends State<HomePageChild> {
                   backgroundColor: state.color,
                 ));
               } else if (state is HomeGotoSearchPage) {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: SearchResultPage(
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SearchResultPage(
+                    tokenCredential: tokenCredential,
+                    searchString: state.searchString,
+                    jobs: state.jobs,
+                  );
+                }));
+              } else if (state is HomeChangePageState) {
+                switch (state.pageIndex) {
+                  case 1:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(YourTaskPage(
                         tokenCredential: tokenCredential,
-                        searchString: state.searchString,
-                        jobs: state.jobs,
-                      )),
-                ));
-              } else if (state is ChangeToYourTaskView) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: YourTaskPage(
+                      )));
+                      break;
+                    }
+                  case 2:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(WaitTaskPage(
                         tokenCredential: tokenCredential,
-                      )),
-                ));
-              } else if (state is ChangeToWaitTaskView) {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<HomeBloc>(context),
-                      child: WaitTaskPage(
+                      )));
+                      break;
+                    }
+                  case 3:
+                    {
+                      Navigator.of(context)
+                          .pushReplacement(_createRoute(NotificationPage(
                         tokenCredential: tokenCredential,
-                      )),
-                ));
+                      )));
+                      break;
+                    }
+                }
               }
             },
             child: buildBody(context),
@@ -190,10 +185,9 @@ class _HomePageChildState extends State<HomePageChild> {
         width: MediaQuery.of(context).size.width * 0.74,
         child: TextFormField(
           decoration: InputDecoration(
-            hintText: 'ค้นหางานใหม่รอดำเนินการ',
-            border: InputBorder.none,
-            prefixIcon: Icon(Icons.search)
-          ),
+              hintText: 'ค้นหางานใหม่รอดำเนินการ',
+              border: InputBorder.none,
+              prefixIcon: Icon(Icons.search)),
           onFieldSubmitted: (_) => _onSubmitted(context, txtController.text),
           controller: txtController,
           textInputAction: TextInputAction.search,
@@ -216,4 +210,22 @@ class _HomePageChildState extends State<HomePageChild> {
       }
     }
   }
+}
+
+Route _createRoute(StatelessWidget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset.zero;
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }

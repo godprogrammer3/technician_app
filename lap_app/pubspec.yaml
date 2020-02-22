@@ -21,6 +21,7 @@ dependencies:
   rounded_floating_app_bar: ^0.1.0
   form_floating_action_button: any
   splashscreen: any
+  sqflite: ^1.2.1
 
 
 dev_dependencies:

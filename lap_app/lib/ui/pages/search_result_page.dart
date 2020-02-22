@@ -16,8 +16,7 @@ class SearchResultPage extends StatelessWidget {
       {Key key,
       @required this.tokenCredential,
       @required this.searchString,
-      @required this.jobs}
-      )
+      @required this.jobs})
       : super(key: key);
 
   @override
@@ -42,7 +41,6 @@ class SearchResultPageChild extends StatefulWidget {
       : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _SearchResultPageChildState(
         tokenCredential: tokenCredential,
         searchString: searchString,
@@ -86,13 +84,13 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                   ));
                 } else if (state is SearchResultBackPageState) {
                   Navigator.pop(context);
-                }else if( state is GotoDetailJobState){
-                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<SearchResultBloc>(context),
-                        child: TaskDetail(
-                        )),
-                  ));
+                } else if (state is GotoDetailJobState) {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return TaskDetailPage(
+                      tokenCredential: tokenCredential,
+                    );
+                  }));
                 }
               },
               child: buildBody(context),
@@ -191,7 +189,6 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
       txtController.text = '';
       final searchResultBloc = BlocProvider.of<SearchResultBloc>(context);
       if (searchString.length > 3) {
-        print(searchString);
         searchResultBloc
             .add(SearchResultSearchEvent(searchString: searchString));
       } else {
@@ -216,23 +213,20 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
           Row(
             children: <Widget>[
               Expanded(
-                child: Container(
-                  child:
-                    Text('โครงการ : '+jobs['customerName'],
+                  child: Container(
+                child: Text('โครงการ : ' + jobs['customerName'],
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'sans',
-                        fontSize: 21,                  
+                        fontSize: 21,
                         color: Colors.black87)),
-                ) 
-                
-              ),
+              )),
             ],
           ),
           Row(
             children: <Widget>[
               Expanded(
-                child: Text('Project : '+jobs['projectNameEn'],
+                child: Text('Project : ' + jobs['projectNameEn'],
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'sans',
@@ -244,7 +238,7 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
           Row(
             children: <Widget>[
               Expanded(
-                child: Text('Site Code : '+jobs['siteCode'],
+                child: Text('Site Code : ' + jobs['siteCode'],
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'sans',
@@ -263,7 +257,8 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
               child: FlatButton(
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   onPressed: () {
-                    final searchResultBloc = BlocProvider.of<SearchResultBloc>(context);
+                    final searchResultBloc =
+                        BlocProvider.of<SearchResultBloc>(context);
                     searchResultBloc.add(GotoDetailJobEvent());
                   },
                   child: Text(

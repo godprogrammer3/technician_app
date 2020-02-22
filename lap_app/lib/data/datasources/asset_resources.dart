@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:lap_app/data/entities/entities.dart';
 
 class AssetResources {
-  Future< List<dynamic>> loadJsonString(String fileName) async {
+  Future< List<dynamic>> loadJson(String fileName) async {
     try{
       final jsonString = await rootBundle.loadString('assets/data/'+fileName);
       return json.decode(jsonString);  
@@ -21,6 +21,16 @@ class AssetResources {
       final jsonString = await rootBundle.loadString('assets/data/'+fileName);
       final jsonList = json.decode(jsonString);
       return jsonList.map((i)=> Equipment.fromJson(i)).toList();
+    }catch(e){
+      print(e);
+      throw Error();
+    }
+  }
+
+  Future<String> loadRawString(String fileName) async {
+    try{
+      final result = await rootBundle.loadString('assets/data/'+fileName);
+      return result;
     }catch(e){
       print(e);
       throw Error();

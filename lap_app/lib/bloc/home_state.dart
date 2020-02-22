@@ -45,16 +45,6 @@ class HomeGotoSearchPage extends HomeState {
 
 }
 
-/////////////////////////////////////////////////
-/// 
-///
-// class HomeGoToYouTaskPage extends HomeState {
-//   @override
-//   // TODO: implement props
-//   List<Object> get props => null;
-// }
-
-
 class ChangeToYourTaskView extends HomeState{
   @override
   // TODO: implement props
@@ -62,6 +52,18 @@ class ChangeToYourTaskView extends HomeState{
 
 }
 class ChangeToWaitTaskView extends HomeState{
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}
+
+class HomeChangePageState extends HomeState{
+  final int pageIndex;
+
+  HomeChangePageState({
+    @required this.pageIndex,
+  });
   @override
   // TODO: implement props
   List<Object> get props => null;

@@ -41,12 +41,10 @@ class VerifyOtpPageChild extends StatelessWidget {
                       backgroundColor: state.color,
                     ));
                   } else if (state is VerifyOtpSuccess) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (_) => BlocProvider.value(
-                          value: BlocProvider.of<VerifyOtpBloc>(context),
-                          child:
-                              HomePage(tokenCredential: state.tokenCredential)),
-                    ));
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return  HomePage(tokenCredential: state.tokenCredential);
+                    }));
                   }
                 },
                 child: buildBody(context, this.otpCredential)),

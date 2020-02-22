@@ -28,7 +28,7 @@ class SearchResultBloc extends Bloc<SearchResultEvent, SearchResultState> {
       yield SearchResultLoadingState();
       try{
         final assets = AssetResources();
-        final jobs = await assets.loadJsonString('search_result_job.json');
+        final jobs = await assets.loadJson('search_result_job.json');
         yield SearchResultRebuildState(
           jobs: jobs,
         );

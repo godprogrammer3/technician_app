@@ -43,3 +43,15 @@ class ChangeToWaitTaskViewEvent extends HomeEvent {
   // TODO: implement props
   List<Object> get props => null;
 }
+
+class HomeChangePageEvent extends HomeEvent {
+  final int pageIndex;
+
+  HomeChangePageEvent({
+    @required this.pageIndex,
+    });
+  @override
+  // TODO: implement props
+  List<Object> get props => null;
+
+}
