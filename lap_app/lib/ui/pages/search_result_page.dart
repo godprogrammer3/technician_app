@@ -186,7 +186,6 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
 
   _onSubmitted(BuildContext context, String searchString) {
     if (searchString.length != 0) {
-      txtController.text = '';
       final searchResultBloc = BlocProvider.of<SearchResultBloc>(context);
       if (searchString.length > 3) {
         searchResultBloc
