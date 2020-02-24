@@ -85,10 +85,15 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                 } else if (state is SearchResultBackPageState) {
                   Navigator.pop(context);
                 } else if (state is GotoDetailJobState) {
-                  Navigator.of(context)
+                  // Navigator.of(context)
+                  //     .push(MaterialPageRoute(builder: (BuildContext context) {
+                  //   return TaskDetailPage(
+                  //     tokenCredential: tokenCredential,
+                  //   );
+                  // }));
+                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return TaskDetailPage(
-                      tokenCredential: tokenCredential,
+                    return ConsolePage(
                     );
                   }));
                 }

@@ -37,7 +37,6 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
     List<UsbDevice> devices = await UsbSerial.listDevices();
     if (devices.length != 0) {
       _device = devices[0];
-      _isConnected = false;
       _connectFunction = () async {
         if (this.mounted) {
           setState(() {
@@ -49,10 +48,10 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
               _connectText = 'connect';
             }
           });
-        } 
-        if (!_isConnected) {
-          await _connectTo(_device);
-        } else {
+        }
+        if(!_isConnected){
+           await _connectTo(_device);
+        }else{
           await _connectTo(null);
         }
       };
@@ -65,7 +64,6 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
       }
     } else {
       _device = null;
-      _isConnected = false;
       _connectFunction = null;
       if (this.mounted) {
         setState(() {
@@ -74,12 +72,16 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
           _connectColor = Colors.green;
         });
       }
-      await _connectTo(null);
+      if(_isConnected){
+        await _connectTo(null);
+      }
+      
     }
   }
 
   @override
   void initState() {
+    super.initState();
     UsbSerial.usbEventStream.listen((UsbEvent event) {
       setState(() {
         _updatePorts();
@@ -89,15 +91,25 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
   }
 
   @override
+  void dispose() {
+    if(_port != null) {
+      _port.close();
+    }
+    if( _subscription != null ) {
+      _subscription.cancel();
+    }
+    if( _transaction != null ){
+      _transaction.dispose();
+    }
+    txtController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(_deviceText, style: TextStyle(fontSize: 15)),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -161,7 +173,7 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
                   style: TextStyle(color: Colors.green),
                   decoration: InputDecoration(
                     hintText: 'Type command here',
-                    hintStyle: TextStyle(color:Colors.white),
+                    hintStyle: TextStyle(color: Colors.white),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.green, width: 3),
                     ),
@@ -169,21 +181,19 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
                       borderSide: BorderSide(color: Colors.green, width: 3),
                     ),
                     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-    
-  
                   ),
                   controller: txtController,
                 ),
               ),
               IconButton(
-                          icon: Icon(Icons.clear,color: Colors.white),
-                          onPressed: () {
-                            txtController.clear();
-                          }),
+                  icon: Icon(Icons.clear, color: Colors.white),
+                  onPressed: () {
+                    txtController.clear();
+                  }),
               IconButton(
                 icon: Icon(
                   Icons.send,
-                  color: (_isConnected)?Colors.green:Colors.grey,
+                  color: (_isConnected) ? Colors.green : Colors.grey,
                   size: 30,
                 ),
                 onPressed: (_isConnected)
@@ -230,7 +240,7 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
       _isConnected = false;
       setState(() {
         _widgetList.add(
-            Text("> Disconnected", style: TextStyle(color: Colors.yellow)));
+            Text("> ***Disconnected***", style: TextStyle(color: Colors.yellow)));
       });
       return true;
     }
@@ -239,12 +249,12 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
     if (!await _port.open()) {
       setState(() {
         _widgetList.add(
-            Text("Failed to open port", style: TextStyle(color: Colors.red)));
+            Text("> ***Failed to open port***", style: TextStyle(color: Colors.red)));
       });
       return false;
     }
-    await _port.setDTR(false);
-    await _port.setRTS(false);
+    await _port.setDTR(true);
+    await _port.setRTS(true);
     await _port.setPortParameters(
         9600, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
 
@@ -260,7 +270,7 @@ class _ConsolePageChildState extends State<ConsolePageChild> {
 
     setState(() {
       _widgetList
-          .add(Text("> Connected", style: TextStyle(color: Colors.green[200])));
+          .add(Text("> ***Connected***", style: TextStyle(color: Colors.green[200])));
     });
     _isConnected = true;
     return true;
