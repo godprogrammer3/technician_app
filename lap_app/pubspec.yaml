@@ -3,7 +3,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,7 +22,7 @@ dependencies:
   form_floating_action_button: any
   splashscreen: any
   sqflite: ^1.2.1
-
+  usb_serial: ^0.2.3
 
 dev_dependencies:
   flutter_test:
