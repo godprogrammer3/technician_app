@@ -48,53 +48,94 @@ class TaskWorkingPage extends StatelessWidget {
               ],
             ),
             bottomNavigationBar: BottomAppBar(
-                color: Colors.white,
-                child: new Row(
+              color: Colors.white,
+              child: Container(
+                margin: EdgeInsets.all(10),
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    RaisedButton(
-                    color: const Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(8.0),
-                      side: BorderSide(color: const Color(0xFF36B772))
-                    ),
-                    textColor: Colors.white,
-                    onPressed: () {
-                      confirmDialog(context);
-                    },
-                    child: Container(
-                        margin: EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                        ),
+                    ButtonTheme(
+                      
+                      minWidth: MediaQuery.of(context).size.width*0.52,
+                      height:50,
+                      child: FlatButton(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(8.0),
+                            side: BorderSide(color: Colors.green)),
+                        color: Color(0xFAFAFA),
+                        textColor: Colors.red,
+                        padding: EdgeInsets.all(17.0),
+                        onPressed: () {},
                         child: Text(
                           'จบการทำงาน',
-                          style: TextStyle(
-                              fontFamily: 'supermarket', fontSize: 20, color: const Color(0xFF46B085)),
-                        )),
-                  ),
-                RaisedButton(
-                    color: const Color(0xFF2FDC96),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(8.0),
+                          style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: const Color(0xFF46B085)), ),
+                      ),
                     ),
-                    textColor: Colors.white,
-                    onPressed: () {
-                      confirmDialog(context);
-                    },
-                    child: Container(
-                        margin: EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                        ),
+                    
+                   
+                    ButtonTheme(
+                      
+                      minWidth: MediaQuery.of(context).size.width*0.4,
+                      height:50,
+                      child: FlatButton(
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(8.0),
+                            side: BorderSide(color: Colors.green)),
+                        color: Color(0xFAFAFA),
+                        textColor: Colors.red,
+                        padding: EdgeInsets.all(17.0),
+                        onPressed: () {},
                         child: Text(
-                          'Console >',
-                          style: TextStyle(
-                              fontFamily: 'supermarket', fontSize: 20),
-                        )),
-                  )
+                          'จบการทำงาน',
+                          style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: const Color(0xFF46B085)), ),
+                      ),
+                    ),
+                  //   RaisedButton(
+                  //   color: const Color(0xFFFFFFFF),
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: new BorderRadius.circular(8.0),
+                  //     side: BorderSide(color: const Color(0xFF36B772))
+                  //   ),
+                  //   textColor: Colors.white,
+                  //   onPressed: () {
+                  //     confirmDialog(context);
+                  //   },
+                  //   child: Container(
+                  //       margin: EdgeInsets.only(
+                  //         left: 10,
+                  //         right: 10,
+                  //       ),
+                  //       child: Text(
+                  //         'จบการทำงาน',
+                  //         style: TextStyle(
+                  //             fontFamily: 'supermarket', fontSize: 20, color: const Color(0xFF46B085)),
+                  //       )),
+                  // ),
+                // RaisedButton(
+                //     color: const Color(0xFF2FDC96),
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: new BorderRadius.circular(8.0),
+                //     ),
+                //     textColor: Colors.white,
+                //     onPressed: () {
+                //       confirmDialog(context);
+                //     },
+                //     child: Container(
+                //         margin: EdgeInsets.only(
+                //           left: 10,
+                //           right: 10,
+                //         ),
+                //         child: Text(
+                //           'Console >',
+                //           style: TextStyle(
+                //               fontFamily: 'supermarket', fontSize: 20),
+                //         )),
+                //   )
 
                   ],
-                )
+              )
+              )
+               
 
               )
         )
