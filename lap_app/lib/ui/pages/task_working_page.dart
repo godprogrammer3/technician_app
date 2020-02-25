@@ -125,7 +125,8 @@ class TaskWorkingPage extends StatelessWidget {
                         textColor: Colors.red,
                         padding: EdgeInsets.all(17.0),
                         onPressed: () {
-                          confirmDialog(context);
+                          // confirmDialog(context);
+                          Navigator.pop(context);
                         },
                         child: Text(
                           'ยกเลิก',
@@ -146,7 +147,9 @@ class TaskWorkingPage extends StatelessWidget {
                         textColor: Colors.green,
                         padding: EdgeInsets.all(17.0),
                         onPressed: () {
-                          confirmDialog(context);
+                          // confirmDialog(context);
+                          Navigator.pop(context);
+                          showButtoSheet(context);
                         },
                         child: Text(
                           'ยืนยัน',
@@ -178,6 +181,39 @@ class TaskWorkingPage extends StatelessWidget {
         return cfDialog;
       }
     );
-
   }
+
+  void showButtoSheet(BuildContext context){
+    showModalBottomSheet(context: context, builder: (context){
+       return Container( color: const Color(0xFF737373),
+        height: 340,
+         child: Container(
+         child: Column( children: <Widget>[
+                  ListTile(title: Text("Reset Factory")),
+                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
+                  ListTile(title: Text("Erase")),
+                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
+                  ListTile(title: Text("Install config")),
+                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
+                  ListTile(title: Text("Update")),
+                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
+                  ListTile(title: Text("Post check")),
+                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
+                  ListTile(title: Text("Remote control from server")),
+                  ],
+                ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).canvasColor,
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(8),
+            topRight: const Radius.circular(8),
+          )
+        ),
+       )
+       );
+       
+    });
+  }
+
+
 }
