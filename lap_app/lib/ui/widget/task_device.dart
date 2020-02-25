@@ -64,7 +64,7 @@ import 'package:flutter_svg/flutter_svg.dart';
                               borderRadius: new BorderRadius.circular(4.0),
                               side: BorderSide(color: Colors.grey)),
                           color: Color(0xFAFAFA),
-                          textColor: Colors.red,
+                          textColor: Colors.grey,
                           padding: EdgeInsets.all(10.0),
                           onPressed: () {},
                           child: Icon(Icons.arrow_forward, color: Colors.grey)
