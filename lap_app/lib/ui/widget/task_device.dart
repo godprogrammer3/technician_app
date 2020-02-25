@@ -56,19 +56,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 
                       ),
 
-                      Expanded(
-                        // width:57,
-                        // height:57,
-                        // margin: EdgeInsets.all(16),
-                          child: FlatButton(
-                            //padding: EdgeInsets.all(10),
-                            onPressed: (){},
-                            child:ImageDisplay(imageName: 'but_npress.svg',height:50,width:50),
-                          )
-                          // IconButton(
-                          //   iconSize: 44.0,
-                          //   icon: Icon(Icons.keyboard_arrow_right),color: Colors.grey[50],onPressed: null,),
+                     ButtonTheme(
+                        minWidth: 44,
+                        height:44,
+                        child: FlatButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(4.0),
+                              side: BorderSide(color: Colors.grey)),
+                          color: Color(0xFAFAFA),
+                          textColor: Colors.red,
+                          padding: EdgeInsets.all(10.0),
+                          onPressed: () {},
+                          child: Icon(Icons.arrow_forward, color: Colors.grey)
+                      ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right:MediaQuery.of(context).size.width* 0.047)
                       )
+                      
                     ],
                   )
 
