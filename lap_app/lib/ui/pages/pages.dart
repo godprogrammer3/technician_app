@@ -9,3 +9,4 @@ export './task_detail_page.dart';
 export './notification_page.dart';
 export './console_page.dart';
 export './device_page.dart';
+export './task_working_page.dart';

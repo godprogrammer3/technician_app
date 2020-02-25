@@ -4,10 +4,10 @@ import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:meta/meta.dart';
 
-class TaskDetailPage extends StatelessWidget {
+class TaskWorkingPage extends StatelessWidget {
   final TokenCredential tokenCredential;
 
-  const TaskDetailPage({Key key, 
+  const TaskWorkingPage({Key key, 
     @required this.tokenCredential,
   }) : super(key: key);
   @override
@@ -49,11 +49,30 @@ class TaskDetailPage extends StatelessWidget {
             ),
             bottomNavigationBar: BottomAppBar(
                 color: Colors.white,
-                child: Container(
-                  margin: EdgeInsets.all(20),
-                  width: double.infinity,
-                  height: 50,
-                  child: RaisedButton(
+                child: new Row(
+                  children: <Widget>[
+                    RaisedButton(
+                    color: const Color(0xFFFFFFFF),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(8.0),
+                      side: BorderSide(color: const Color(0xFF36B772))
+                    ),
+                    textColor: Colors.white,
+                    onPressed: () {
+                      confirmDialog(context);
+                    },
+                    child: Container(
+                        margin: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
+                        child: Text(
+                          'จบการทำงาน',
+                          style: TextStyle(
+                              fontFamily: 'supermarket', fontSize: 20, color: const Color(0xFF46B085)),
+                        )),
+                  ),
+                RaisedButton(
                     color: const Color(0xFF2FDC96),
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8.0),
@@ -68,16 +87,20 @@ class TaskDetailPage extends StatelessWidget {
                           right: 10,
                         ),
                         child: Text(
-                          'รับทำงาน',
+                          'Console >',
                           style: TextStyle(
                               fontFamily: 'supermarket', fontSize: 20),
                         )),
-                  ),
+                  )
+
+                  ],
                 )
-                )
+
               )
-            );
+        )
+      );
   }
+
   void confirmDialog(BuildContext context){
     var cfDialog = AlertDialog(
       title: Text("ยืนยันการรับทำงาน"),
