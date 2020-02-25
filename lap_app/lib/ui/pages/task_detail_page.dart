@@ -35,7 +35,7 @@ class TaskDetailPage extends StatelessWidget {
                     new Tab(
                       text: 'DETAIL',
                     ),
-                    new Tab(text: 'DEVICE')
+                    new Tab(text: 'EQUIPMENT')
                   ]),
             ),
             body: TabBarView(

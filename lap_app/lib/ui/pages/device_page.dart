@@ -1,139 +1,114 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
-import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
-import 'package:uuid/uuid.dart';
+import 'package:meta/meta.dart';
 
-class RequestOtpPage extends StatelessWidget {
-  const RequestOtpPage({Key key}) : super(key: key);
+class DevicePage extends StatelessWidget {
+  final TokenCredential tokenCredential;
 
+  const DevicePage({Key key, 
+    @required this.tokenCredential,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RequestOtpBloc(),
-      child: RequestOtpPageChild(),
-    );
-  }
-}
+   
 
-class RequestOtpPageChild extends StatelessWidget {
-  TextEditingController txtController = new TextEditingController();
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: BlocListener<RequestOtpBloc, RequestOtpState>(
-          listener: (context, state) {
-            if (state is RequestOtpError) {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text(state.message),
-                backgroundColor: state.color,
-              ));
-            } else if (state is RequestOtpSuccess) {
-               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return VerifyOtpPage(otpCredential: state.otpCredential);
-                  }
-                )
-              );
-            }
-          },
-          child: buildBody(context),
-        ),
-      ),
-    );
-  }
-
-  Widget buildBody(BuildContext context) {
-    return Container(
-      
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(left: MediaQuery.of(context).size.width* 0.17, 
-              top: MediaQuery.of(context).size.width* 0.5,
-              right:  MediaQuery.of(context).size.width* 0.1),
-              child: ImageDisplay(imageName: 'aislogo.png'),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: MediaQuery.of(context).size.width* 0.17),
-            ),
-            BlocBuilder(
+            appBar: AppBar(
+              leading: new IconButton(
+                icon: new Icon(
+                  Icons.keyboard_backspace,
+                  color: Colors.black,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              title: Text(
+                'SWITCH_1_238734',
+                style: TextStyle(color: Colors.black),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.white,
               
-              bloc: BlocProvider.of<RequestOtpBloc>(context),
-              builder: (BuildContext context, state) {
-                if (state is RequestOtpInitial) {
-                  return buildBodyChild(context);
-                } else {
-                  return LoadingWidget(
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    height: MediaQuery.of(context).size.width * 0.2,
-                  );
-                }
-              },
             ),
-            SizedBox(
-              height: 12,
+            body: SafeArea(
+              child: buildBody(context),
+                
+              
             ),
-          ]),
-    );
+            bottomNavigationBar: BottomAppBar(
+                color: Colors.white,
+                child: Container(
+                  margin: EdgeInsets.all(20),
+                  width: double.infinity,
+                  height: 50,
+                  child: RaisedButton(
+                    color: const Color(0xFF2FDC96),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(8.0),
+                    ),
+                    textColor: Colors.white,
+                    onPressed: () => print('hello'),
+                    child: Container(
+                        margin: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
+                        child: Text(
+                          'รับทำงาน',
+                          style: TextStyle(
+                              fontFamily: 'supermarket', fontSize: 20),
+                        )),
+                  ),
+                )));
   }
+  Widget buildBody(BuildContext context) {
+     List<String> nameDevice = <String>['SWITCH1','SWITCH1','SWITCH1'];
+     List<String> modelDevice = <String>['123','456','789'];
+     List<String> typeDevice = <String>['Switch','Lab','Multimeter'];
+    return Container(
+      margin: EdgeInsets.all(16),
+      child: Row(
+        children: <Widget>[
 
-  Widget buildBodyChild(BuildContext context) {
-    return Column(children: <Widget>[
-      Container(
-       
-        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.14, 0, MediaQuery.of(context).size.width * 0.14, 0),
-        decoration: new BoxDecoration(
-            color: Color.fromARGB(255, 240, 240, 240),
-            border: new Border.all(width: 0.05, color: Colors.grey),
-            borderRadius: const BorderRadius.all(const Radius.circular(16))),
-        child: TextFormField(
-          decoration: new InputDecoration(
-            hintText: 'Enter your username',
-            contentPadding: EdgeInsets.only(left:MediaQuery.of(context).size.width * 0.14,right:MediaQuery.of(context).size.width * 0.15),
-            border: InputBorder.none,
+          Container(
+            margin: EdgeInsets.all(16),
+            height: 78.0,
+            width: 78.0,
+            child:ImageDisplay(imageName: 'aislogo.png'),
+
           ),
-          keyboardType: TextInputType.text,
-          controller: txtController,
-          textInputAction: TextInputAction.next,
-          onFieldSubmitted: (n) {
-            _onSubmitted(txtController.text, context);
-          },
-        ),
-      ),
-      SizedBox(
-        height: 30,
-      ),
-      Container(
-        margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
-        child: MaterialButton(
-            height: MediaQuery.of(context).size.width * 0.118,
-            minWidth: MediaQuery.of(context).size.width * 0.73,
-            color: Color.fromARGB(255, 47, 220, 150),
-            textColor: Colors.white,
-            child: Text('Request OTP'),
-            onPressed: () {
-              _onSubmitted(txtController.text, context);
-            },
-            shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(34.0),
-                side: BorderSide(color: Colors.transparent))),
-      ),
-    ]);
-  }
 
-  _onSubmitted(String otpCode, BuildContext context) {
-    if (otpCode.length != 0) {
-      txtController.text = '';
-      final requestOtpBloc = BlocProvider.of<RequestOtpBloc>(context);
-      requestOtpBloc.add(RequestOtp(
-          userCredential:
-              UserCredential(username: otpCode, uuid: Uuid().v1())));
-    }
+          Expanded(
+            
+            child: Column(
+              children: <Widget>[
+                Align(alignment: Alignment.centerLeft,child:  Text('${nameDevice[0]}',style: TextStyle(fontFamily: 'supermarket',fontSize: 18),)),
+                Container(margin: EdgeInsets.only(top: 6),),
+                Align(alignment: Alignment.centerLeft,child:  Text('รุ่นอุปกรณ์ : ${modelDevice[0]} ',style: TextStyle(fontFamily: 'supermarket',fontSize: 18)),),
+                Container(margin: EdgeInsets.only(top: 6),),
+                Align(alignment: Alignment.centerLeft,child:  Text('TYPE : ${typeDevice[0]}',style: TextStyle(fontFamily: 'supermarket',fontSize: 18)),),
+              ],
+              
+            ),
+
+          ),
+
+          Expanded(
+            // width:57,
+            // height:57,
+            // margin: EdgeInsets.all(16),
+              child: FlatButton(
+                //padding: EdgeInsets.all(10),
+                onPressed: (){},
+                child:ImageDisplay(imageName: 'but_npress.svg',height:50,width:50),
+              )
+              // IconButton(
+              //   iconSize: 44.0,
+              //   icon: Icon(Icons.keyboard_arrow_right),color: Colors.grey[50],onPressed: null,),
+          )
+        ],
+      )
+
+    );
   }
 }
