@@ -41,9 +41,7 @@ class TaskWorkingPage extends StatelessWidget {
             ),
             body: TabBarView(
               children: <Widget>[
-                // Text('Detail na ja')
                 buildBodyDetail(context),
-                // Text('Device na ja')
                 buildBodyDevice(context)
               ],
             ),
@@ -66,7 +64,7 @@ class TaskWorkingPage extends StatelessWidget {
                         textColor: Colors.green,
                         padding: EdgeInsets.all(17.0),
                         onPressed: () {
-                          confirmDialog(context);
+                          _displayDialog(context);
                         },
                         child: Text(
                           'จบการทำงาน',
@@ -74,7 +72,6 @@ class TaskWorkingPage extends StatelessWidget {
                       ),
                     ),
                     
-                   
                     ButtonTheme(
                       
                       minWidth: MediaQuery.of(context).size.width*0.38,
@@ -87,133 +84,78 @@ class TaskWorkingPage extends StatelessWidget {
                         textColor: Colors.green,
                         padding: EdgeInsets.all(17.0),
                         onPressed: () {
-                          confirmDialog(context);
+                          _displayDialog(context);
                         },
                         child: Text(
                           'Console >',
                           style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.white), ),
-                      ),
-                    ),
-                  ],
-              )
-              )
-               
-
+                      ), ), ], ) )
               )
         )
       );
   }
-
-  void confirmDialog(BuildContext context){
-    var cfDialog = AlertDialog(
-      title: Text("ยืนยันการรับทำงาน",style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.black),textAlign: TextAlign.center,),
-      content: Text("ชื่องาน/โปรเจคที่จะรับนะจ้ะ pass ค่ามาให้ด้วย"),
+  
+  void _displayDialog(BuildContext context) async {
+    int _currentIndex = 1;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("ยืนยันการจบการทำงาน",style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.black),textAlign: TextAlign.center,),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          RadioListTile(
+              title: Text("ทำงานสำเร็จ",style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.black),textAlign: TextAlign.left,),
+              groupValue: _currentIndex,
+              value: 1,
+              onChanged: (val) {
+                _currentIndex = val;    
+              },
+            ),
+            RadioListTile(
+              title: Text("ยกเลิกการเป็นเจ้าของงาน",style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.black),textAlign: TextAlign.left,),
+              groupValue: _currentIndex,
+              value: 2,
+              onChanged: (val) {
+                
+                  _currentIndex = val;
+                
+              },
+            ),
+        ]
+      ),
       actions: <Widget>[
-        Row(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    
-                    ButtonTheme(
-                      
-                      minWidth: MediaQuery.of(context).size.width*0.35,
-                      height:10,
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(8.0),
-                            side: BorderSide(color: Colors.red)),
-                        color: Color(0xFAFAFA),
-                        textColor: Colors.red,
-                        padding: EdgeInsets.all(17.0),
-                        onPressed: () {
-                          // confirmDialog(context);
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'ยกเลิก',
-                          style: TextStyle(fontFamily: 'supermarket', fontSize: 18, color:Colors.red), ),
-                      ),
-                    ),
-                    Container(margin:EdgeInsets.only(left:14),),
-                   
-                    ButtonTheme(
-                      
-                      minWidth: MediaQuery.of(context).size.width*0.35,
-                      height:10,
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(8.0),
-                            side: BorderSide(color: Colors.green)),
-                        color: Color(0xFAFAFA),
-                        textColor: Colors.green,
-                        padding: EdgeInsets.all(17.0),
-                        onPressed: () {
-                          // confirmDialog(context);
-                          Navigator.pop(context);
-                          showButtoSheet(context);
-                        },
-                        child: Text(
-                          'ยืนยัน',
-                          style: TextStyle(fontFamily: 'supermarket', fontSize: 18, color: const Color(0xFF46B085)), ),
-                      ),
-                    ),
-                    Container(margin:EdgeInsets.only(left:5),),
-                  ],
-              )
-        // OutlineButton(
+        new Row(
           
-        //   child: Text("ยกเลิก"),
-        //   onPressed: (){
-        //     Navigator.pop(context);
-        //  },),
-        // OutlineButton(
-        //   child: Text("ยืนยัน"),
-        //   onPressed: (){
-        //     print('Yeah ok you got this job by API and going to next page');
-        //     // Navigator.pop(context);
-        //   },)
+          children: <Widget>[
+            FlatButton(
+                child: new Text('CANCEL'),
+                textColor: Colors.red,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              Container(margin: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.13),),
+              FlatButton(
+                child: new Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                
+              ),
+              Container(margin: EdgeInsets.only(left:MediaQuery.of(context).size.width*0.1),),
+          ],
+        )
+              
+              ]
+          );});}
 
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return cfDialog;
-      }
-    );
-  }
-
-  void showButtoSheet(BuildContext context){
-    showModalBottomSheet(context: context, builder: (context){
-       return Container( color: const Color(0xFF737373),
-        height: 340,
-         child: Container(
-         child: Column( children: <Widget>[
-                  ListTile(title: Text("Reset Factory")),
-                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
-                  ListTile(title: Text("Erase")),
-                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
-                  ListTile(title: Text("Install config")),
-                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
-                  ListTile(title: Text("Update")),
-                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
-                  ListTile(title: Text("Post check")),
-                  Divider(height: 0,color: const Color(0x15000014),thickness: 1,indent: 16,endIndent: 16,),
-                  ListTile(title: Text("Remote control from server")),
-                  ],
-                ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
-          borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(8),
-            topRight: const Radius.circular(8),
-          )
-        ),
-       )
-       );
-       
-    });
-  }
-
-
+  
 }
+
+
+
+
+ 
+

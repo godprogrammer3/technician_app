@@ -30,15 +30,7 @@ import 'package:flutter_svg/flutter_svg.dart';
                         height: 78.0,
                         width: 78.0,
                         child:ImageDisplay(imageName: 'aislogo.png'),
-                        // decoration: new BoxDecoration(
-                        //   // image: DecorationImage(
-                        //   //   image: new AssetImage(
-                        //   //       ''),
-                        //   //   fit: BoxFit.fill,
-                        //   // ),
-                        //   shape: BoxShape.rectangle,
-                        //   color: Colors.green[100]
-                       // ),
+               
                       ),
 
                       Expanded(
@@ -62,12 +54,12 @@ import 'package:flutter_svg/flutter_svg.dart';
                         child: FlatButton(
                           shape: new RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(4.0),
-                              side: BorderSide(color: Colors.grey)),
+                              side: BorderSide(color: Color.fromARGB(255, 54, 183, 114))),
                           color: Color(0xFAFAFA),
-                          textColor: Colors.grey,
+                          textColor: Color.fromARGB(255, 54, 183, 114),
                           padding: EdgeInsets.all(10.0),
                           onPressed: () {},
-                          child: Icon(Icons.arrow_forward, color: Colors.grey)
+                          child: Icon(Icons.arrow_forward, color: Color.fromARGB(255, 54, 183, 114))
                       ),
                       ),
                       Container(
