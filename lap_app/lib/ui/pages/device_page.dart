@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:meta/meta.dart';
+// import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:lap_app/ui/pages/pages.dart';
 
 class DevicePage extends StatelessWidget {
   final TokenCredential tokenCredential;
@@ -74,8 +76,14 @@ class DevicePage extends StatelessWidget {
                         color: Color.fromARGB(255, 47, 220, 150),
                         textColor: Colors.green,
                         padding: EdgeInsets.all(17.0),
-                        onPressed: () {
-                          confirmDialog(context);
+                        onPressed: () async {
+                          // confirmDialog(context);
+                          print('pdfff');
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>  Calendar2020PDFScreen() )
+                          );
+                           
                         },
                         child: Text(
                           'Console >',
@@ -123,12 +131,11 @@ class DevicePage extends StatelessWidget {
             height:10
           )
       ]
-              
-                
-                
        
             );
   }
+
+
   void confirmDialog(BuildContext context){
     var cfDialog = AlertDialog(
       title: Text("ยืนยันการรับทำงาน",style: TextStyle(fontFamily: 'supermarket', fontSize: 20, color: Colors.black),textAlign: TextAlign.center,),
@@ -205,4 +212,8 @@ class DevicePage extends StatelessWidget {
     );
 
   }
+ 
 }
+
+
+  

@@ -10,3 +10,4 @@ export './notification_page.dart';
 export './console_page.dart';
 export './device_page.dart';
 export './task_working_page.dart';
+export './pdf_page.dart';
