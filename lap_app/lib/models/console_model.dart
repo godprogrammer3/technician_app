@@ -34,7 +34,7 @@ class ConsoleModel extends Equatable {
       await _port.setDTR(false);
       await _port.setRTS(false);
       await _port.setPortParameters(
-          9600, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
+        9600, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
 
       _transaction = Transaction.stringTerminated(
           _port.inputStream, Uint8List.fromList([13, 10]));

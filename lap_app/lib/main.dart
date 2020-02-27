@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: AutoConsolePage(commands: commands,),
+      home: ConsoleSettingPage(),
     );
   }
 }
