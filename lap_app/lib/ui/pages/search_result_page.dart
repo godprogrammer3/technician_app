@@ -58,6 +58,7 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
 
   @override
   void initState() {
+    super.initState();
     txtController.text = this.searchString;
   }
 
