@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
@@ -36,7 +37,7 @@ class TaskDetailPage extends StatelessWidget {
                     new Tab(
                       text: 'DETAIL',
                     ),
-                    new Tab(text: 'DEVICE')
+                    new Tab(text: 'EQUIPMENT')
                   ]),
             ),
             body: TabBarView(
@@ -59,12 +60,6 @@ class TaskDetailPage extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
                     textColor: Colors.white,
-                    onPressed: (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return AutoConsolePage();
-                        })
-                      );
                     },
                     child: Container(
                         margin: EdgeInsets.only(
@@ -77,6 +72,37 @@ class TaskDetailPage extends StatelessWidget {
                               fontFamily: 'supermarket', fontSize: 20),
                         )),
                   ),
-                ))));
+                )
+                )
+              )
+            );
+  }
+  void confirmDialog(BuildContext context){
+    var cfDialog = AlertDialog(
+      title: Text("ยืนยันการรับทำงาน"),
+      content: Text("ชื่องาน/โปรเจคที่จะรับนะจ้ะ pass ค่ามาให้ด้วย"),
+      actions: <Widget>[
+        OutlineButton(
+          child: Text("ยกเลิก"),
+          onPressed: (){
+            Navigator.pop(context);
+         },),
+        OutlineButton(
+          child: Text("ยืนยัน"),
+          onPressed: (){
+            print('Yeah ok you got this job by API and going to next page');
+            // Navigator.pop(context);
+          },)
+
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return cfDialog;
+      }
+    );
+
   }
 }

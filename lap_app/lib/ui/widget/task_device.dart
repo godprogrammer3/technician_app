@@ -4,7 +4,8 @@ import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
-
+import 'package:lap_app/ui/widget/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
   Widget buildBodyDevice(BuildContext contex){
       final List<String> entries = <String>['A', 'B', 'C'];
       final List<int> colorCodes = <int>[600, 500, 100];
@@ -28,15 +29,8 @@ import 'package:flutter/material.dart';
                         margin: EdgeInsets.all(16),
                         height: 78.0,
                         width: 78.0,
-                        decoration: new BoxDecoration(
-                          // image: DecorationImage(
-                          //   image: new AssetImage(
-                          //       ''),
-                          //   fit: BoxFit.fill,
-                          // ),
-                          shape: BoxShape.rectangle,
-                          color: Colors.green[100]
-                        ),
+                        child:ImageDisplay(imageName: 'aislogo.png'),
+               
                       ),
 
                       Expanded(
@@ -54,12 +48,24 @@ import 'package:flutter/material.dart';
 
                       ),
 
+                     ButtonTheme(
+                        minWidth: 44,
+                        height:44,
+                        child: FlatButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(4.0),
+                              side: BorderSide(color: Color.fromARGB(255, 54, 183, 114))),
+                          color: Color(0xFAFAFA),
+                          textColor: Color.fromARGB(255, 54, 183, 114),
+                          padding: EdgeInsets.all(10.0),
+                          onPressed: () {},
+                          child: Icon(Icons.arrow_forward, color: Color.fromARGB(255, 54, 183, 114))
+                      ),
+                      ),
                       Container(
-                        margin: EdgeInsets.all(16),
-                          child: IconButton(
-                            iconSize: 44.0,
-                            icon: Icon(Icons.keyboard_arrow_right),color: Colors.grey[50],onPressed: null,),
+                        margin: EdgeInsets.only(right:MediaQuery.of(context).size.width* 0.047)
                       )
+                      
                     ],
                   )
 
