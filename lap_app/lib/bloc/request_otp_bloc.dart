@@ -18,7 +18,6 @@ class RequestOtpBloc extends Bloc<RequestOtpEvent, RequestOtpState> {
   Stream<RequestOtpState> mapEventToState(
     RequestOtpEvent event,
   ) async* {
-    // TODO: Add Logic
     yield RequestOtpLoading();
     if (event is RequestOtp) {
       try {

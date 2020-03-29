@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import 'package:lap_app/core/status/status.dart';
-import 'package:lap_app/data/datasources/datasources.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/models/models.dart';
 part 'verify_otp_event.dart';
@@ -26,6 +25,7 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
       try {
         final tokenCredential =
             await verifyOtpModel.getToken(event.otpCredential);
+      
         yield VerifyOtpSuccess(tokenCredential:tokenCredential);
       } on AuthenError {
         yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);

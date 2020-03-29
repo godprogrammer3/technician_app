@@ -53,6 +53,34 @@ class NetworkResource extends Equatable {
           },
           body: jsonEncode(otpCredential.toJson()),
         );
+        
+        if (response.statusCode == 200) {
+          return TokenCredential.fromJson({'token':json.decode(response.body)['token'],'uid':otpCredential.uuid});
+        } else if (response.statusCode == 400) {
+          throw AuthenError();
+        } else {
+          throw ServerError();
+        }
+      } on SocketException {
+        throw InternetError();
+      }
+    } else {
+      throw InternetError();
+    }
+  }
+
+  Future<TokenCredential> checkLogin(TokenCredential tokenCredential) async {
+    if (await networkInfo.isConnected) {
+      const String url = 'http://lapais.cloud:54002/lapapp/api/requestLogin';
+      try {
+        final response = await http.post(
+          url,
+          headers: {
+            'Content-Type': 'application/json',
+            'BlueToken':tokenCredential.token,
+            'LapId':tokenCredential.uid
+          },
+        );
 
         if (response.statusCode == 200) {
           return TokenCredential.fromJson(json.decode(response.body));

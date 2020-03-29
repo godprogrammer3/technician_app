@@ -7,7 +7,6 @@ abstract class ListItemEvent extends Equatable {
 
 class ListItemInitialEvent extends ListItemEvent{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }

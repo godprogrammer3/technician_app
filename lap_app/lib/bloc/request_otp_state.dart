@@ -10,7 +10,6 @@ class RequestOtpInitial extends RequestOtpState {
 
 class RequestOtpLoading extends RequestOtpState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -20,8 +19,7 @@ class RequestOtpSuccess extends RequestOtpState {
 
   RequestOtpSuccess({@required this.otpCredential});
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [otpCredential];
 
 }
 class RequestOtpError extends RequestOtpState {
@@ -34,6 +32,5 @@ class RequestOtpError extends RequestOtpState {
     });
 
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [message, color];
 }

@@ -9,7 +9,6 @@ class RequestOtp extends RequestOtpEvent {
 
   RequestOtp({this.userCredential});
   @override
-  // TODO: implement props
   List<Object> get props => [userCredential];
 }
 

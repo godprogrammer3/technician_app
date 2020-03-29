@@ -11,8 +11,9 @@ class HomeSearchEvent extends HomeEvent {
     @required this.searchString,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [
+    searchString
+  ];
 
 }
 
@@ -25,8 +26,10 @@ class HomeErrorEvent extends HomeEvent {
     @required this.color, 
   });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [
+    message,
+    color
+  ];
   
 }
 
@@ -35,12 +38,10 @@ class HomeErrorEvent extends HomeEvent {
 ///
 class ChangeToYourTaskViewEvent extends HomeEvent {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 }
 class ChangeToWaitTaskViewEvent extends HomeEvent {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 }
 
@@ -51,7 +52,8 @@ class HomeChangePageEvent extends HomeEvent {
     @required this.pageIndex,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [
+    pageIndex
+  ];
 
 }

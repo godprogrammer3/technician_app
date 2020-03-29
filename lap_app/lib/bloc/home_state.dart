@@ -14,58 +14,45 @@ class HomeErrorState extends HomeState {
   final Color color;
 
   HomeErrorState({
-    @required this.message, 
+    @required this.message,
     @required this.color,
-    });
+  });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-
+  List<Object> get props => [message, color];
 }
-
 
 class HomeLoadingState extends HomeState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
-
 }
-
 
 class HomeGotoSearchPage extends HomeState {
   final String searchString;
   final List<dynamic> jobs;
   HomeGotoSearchPage({
     @required this.searchString,
-    @required this.jobs, 
-    });
+    @required this.jobs,
+  });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-
+  List<Object> get props => [searchString,jobs];
 }
 
-class ChangeToYourTaskView extends HomeState{
+class ChangeToYourTaskView extends HomeState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
-
-}
-class ChangeToWaitTaskView extends HomeState{
-  @override
-  // TODO: implement props
-  List<Object> get props => null;
-
 }
 
-class HomeChangePageState extends HomeState{
+class ChangeToWaitTaskView extends HomeState {
+  @override
+  List<Object> get props => null;
+}
+
+class HomeChangePageState extends HomeState {
   final int pageIndex;
 
   HomeChangePageState({
     @required this.pageIndex,
   });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-
+  List<Object> get props => [pageIndex];
 }

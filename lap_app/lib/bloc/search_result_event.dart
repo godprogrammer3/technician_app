@@ -6,7 +6,6 @@ abstract class SearchResultEvent extends Equatable {
 
 class SearchResultBackPageEvent extends SearchResultEvent{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -20,7 +19,6 @@ class SearchResultErrorEvent extends SearchResultEvent{
     @required this.color,
     });
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -32,14 +30,12 @@ class SearchResultSearchEvent extends SearchResultEvent{
     @required this.searchString,
   });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [searchString];
 
 }
 
 class GotoDetailJobEvent extends SearchResultEvent{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/datasources/datasources.dart';
 import 'package:meta/meta.dart';
 part 'search_result_event.dart';

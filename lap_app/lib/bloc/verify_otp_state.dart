@@ -37,7 +37,6 @@ class VerifyOtpSuccess extends VerifyOtpState{
     @required this.tokenCredential,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [tokenCredential];
 
 }

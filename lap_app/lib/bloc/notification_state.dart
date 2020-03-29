@@ -17,7 +17,6 @@ class NotificationChangePageState extends NotificationState {
    @required this.pageIndex
   });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [pageIndex];
 
 }

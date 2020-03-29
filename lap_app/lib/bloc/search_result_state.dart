@@ -11,7 +11,6 @@ class SearchResultInitial extends SearchResultState {
 
 class SearchResultBackPageState extends SearchResultState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -25,14 +24,12 @@ class SearchResultErrorState extends SearchResultState {
     @required this.color,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [message, color];
 
 }
 
 class  SearchResultLoadingState extends SearchResultState{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
@@ -44,15 +41,13 @@ class SearchResultRebuildState extends SearchResultState{
     @required this.jobs,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [jobs];
 
 }
 
 
 class GotoDetailJobState extends SearchResultState{
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }

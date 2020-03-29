@@ -20,14 +20,12 @@ class  ListItemCompletedState extends ListItemState {
     @required this.content,
     });
   @override
-  // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [img,title,content];
 
 }
 
 class ListItemErrorState  extends ListItemState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 
 }
