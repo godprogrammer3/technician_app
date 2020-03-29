@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:meta/meta.dart';
+import 'package:lap_app/ui/pages/pages.dart';
 
 class TaskDetailPage extends StatelessWidget {
   final TokenCredential tokenCredential;
@@ -58,7 +59,13 @@ class TaskDetailPage extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
                     textColor: Colors.white,
-                    onPressed: () => print('hello'),
+                    onPressed: (){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return AutoConsolePage();
+                        })
+                      );
+                    },
                     child: Container(
                         margin: EdgeInsets.only(
                           left: 10,

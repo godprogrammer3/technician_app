@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/models/models.dart';
+import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
 import 'package:usb_serial/usb_serial.dart';
 
@@ -175,7 +176,11 @@ class _AutoPageChildState extends State<AutoPageChild> {
           IconButton(
               icon: Icon(Icons.settings),
               onPressed: () {
-                print('setting button');
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context){
+                    return ConsoleSettingPage();
+                  })
+                );
               }),
         ],
       ),
