@@ -45,10 +45,9 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
         final otpCredential = await requestOtpModel.requestOtp(UserCredential(
             username: event.otpCredential.username,
             uuid: event.otpCredential.uuid));
-        print(otpCredential.otp);
         yield VerifyOtpError(
             message: "OTP timeout otp was resend", color: Colors.orange);
-        yield VerifyOtpInitial();
+        yield VerifyOtpInitial(otpCredential:otpCredential);
       } on AuthenError {
         yield VerifyOtpError(
             message: "OTP timeout but userid incorrect!", color: Colors.red);

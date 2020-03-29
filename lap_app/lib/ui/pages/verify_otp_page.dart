@@ -19,9 +19,9 @@ class VerifyOtpPage extends StatelessWidget {
 }
 
 class VerifyOtpPageChild extends StatelessWidget {
-  final OtpCredential otpCredential;
+  OtpCredential otpCredential;
 
-  const VerifyOtpPageChild({Key key, this.otpCredential}) : super(key: key);
+  VerifyOtpPageChild({Key key, this.otpCredential}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +86,9 @@ class VerifyOtpPageChild extends StatelessWidget {
           bloc: BlocProvider.of<VerifyOtpBloc>(context),
           builder: (BuildContext context, state) {
             if (state is VerifyOtpInitial) {
+              if(state.otpCredential != null) {
+                this.otpCredential = state.otpCredential;
+              }
               if (state.time == null) {
                 return OtpInput(
                     otpCredential: this.otpCredential,
