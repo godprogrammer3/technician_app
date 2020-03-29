@@ -49,7 +49,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 consoleSettingBloc.add(ConsoleSettingInitEvent());
                 return LoadingWidget(width: 50, height: 50);
               } else if (state is ConsoleSettingReadyState) {
-                if( _isFirstLoad){
+                if (_isFirstLoad) {
                   _baudrateValue = state.consoleSetting.baudrateValue;
                   _dataBitValue = state.consoleSetting.dataBitValue;
                   _parityValue = state.consoleSetting.parityValue;
@@ -57,7 +57,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                   _customBaudrateValue = state.customBaudrateValue;
                   _isFirstLoad = false;
                 }
-              
+
                 return buildBody(context);
               }
             }),
@@ -102,7 +102,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 38400,
                 57600,
                 115200,
-                _customBaudrateValue*-1
+                _customBaudrateValue * -1
               ].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
@@ -177,8 +177,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                   _parityValue = newValue;
                 });
               },
-              items: <int>[0, 1, 2]
-                  .map<DropdownMenuItem<int>>((int value) {
+              items: <int>[0, 1, 2].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: parityValueToWidget(value),
@@ -215,8 +214,11 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                   _stopBitValue = newValue;
                 });
               },
-              items: <int>[1,3,2,]
-                  .map<DropdownMenuItem<int>>((int value) {
+              items: <int>[
+                1,
+                3,
+                2,
+              ].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
                   child: stopBitToWidget(value),
@@ -226,47 +228,67 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
           ),
         ],
       ),
-      RaisedButton(
-        onPressed: () async {
-          print('Saved');
-        },
-        child: Text('Save setting'),
+      SizedBox(height:20),
+      ButtonTheme(
+        minWidth: MediaQuery.of(context).size.width * 0.38,
+        height: 40,
+        child: FlatButton(
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(8.0),
+              side: BorderSide(color: Colors.white)),
+          color: Colors.white,
+          textColor: Colors.green,
+          padding: EdgeInsets.all(17.0),
+          onPressed: () {
+            print('Save setting');
+          },
+          child: Text(
+            'Save setting',
+            style: TextStyle(
+                fontFamily: 'supermarket', fontSize: 20, color: Colors.green),
+          ),
+        ),
       ),
     ]);
   }
 
   Widget parityValueToWidget(int value) {
     switch (value) {
-      case 0:{
-        return Text('     None');
-        break;
-      }
-      case 1:{
-        return Text('     Odd');
-        break;
-      }
-      case 2:{
-        return Text('     Even');
-        break;
-      }
-    
-    }  
+      case 0:
+        {
+          return Text('     None');
+          break;
+        }
+      case 1:
+        {
+          return Text('     Odd');
+          break;
+        }
+      case 2:
+        {
+          return Text('     Even');
+          break;
+        }
+    }
   }
 
-  Widget stopBitToWidget(int value){
-    switch(value){
-      case 1:{
-        return Text('   1');
-        break;
-      }
-      case 3:{
-        return Text('   1.5');
-        break;
-      }
-      case 2:{
-        return Text('    2');
-        break;
-      }
+  Widget stopBitToWidget(int value) {
+    switch (value) {
+      case 1:
+        {
+          return Text('   1');
+          break;
+        }
+      case 3:
+        {
+          return Text('   1.5');
+          break;
+        }
+      case 2:
+        {
+          return Text('    2');
+          break;
+        }
     }
   }
 }

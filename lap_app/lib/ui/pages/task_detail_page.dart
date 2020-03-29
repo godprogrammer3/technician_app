@@ -8,7 +8,7 @@ import 'package:lap_app/ui/pages/pages.dart';
 class TaskDetailPage extends StatelessWidget {
   final TokenCredential tokenCredential;
 
-  const TaskDetailPage({Key key, 
+  TaskDetailPage({Key key, 
     @required this.tokenCredential,
   }) : super(key: key);
   @override
@@ -55,12 +55,14 @@ class TaskDetailPage extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: RaisedButton(
+                    onPressed:(){
+                      print('accept job');
+                    },
                     color: const Color(0xFF2FDC96),
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(8.0),
                     ),
                     textColor: Colors.white,
-                    },
                     child: Container(
                         margin: EdgeInsets.only(
                           left: 10,
