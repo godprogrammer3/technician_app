@@ -21,11 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Command> commands = [
-      Command(sendCommand: 'auto config',receiveCompleted: 'completed'),
-      Command(sendCommand: 'auto config',receiveCompleted: 'completed'),
-      Command(sendCommand: 'auto config',receiveCompleted: 'completed')
-    ];
     return MaterialApp(
       title: 'Lab App',
       theme: ThemeData(
