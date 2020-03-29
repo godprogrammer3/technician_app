@@ -4,3 +4,4 @@ export './otp_credential.dart';
 export './time.dart';
 export './job.dart';
 export './command.dart';
+export './console_setting.dart';

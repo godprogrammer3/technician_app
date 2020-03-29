@@ -140,7 +140,7 @@ class _AutoPageChildState extends State<AutoPageChild> {
         _updatePorts();
     });
     _updatePorts();
-   
+    
   }
 
   @override

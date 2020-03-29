@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:equatable/equatable.dart';
 import 'package:usb_serial/transaction.dart';
 import 'package:usb_serial/usb_serial.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class ConsoleModel extends Equatable {
   UsbPort _port;
   StreamSubscription<String> _subscription;
@@ -33,8 +33,30 @@ class ConsoleModel extends Equatable {
       }
       await _port.setDTR(false);
       await _port.setRTS(false);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var baudrateValue = prefs.getInt('baudrateValue');
+      if(baudrateValue == null) {
+        baudrateValue = 9600;
+        await prefs.setInt('baudrateValue', baudrateValue);
+      }
+      var dataBitValue = prefs.getInt('dataBitValue');
+      if(dataBitValue == null) {
+        dataBitValue = 8;
+        await prefs.setInt('dataBitValue', dataBitValue);
+      }
+      var parityValue = prefs.getInt('parityValue');
+      if( parityValue == null ) {
+        parityValue = 0;
+        await prefs.setInt('parityValue', parityValue);
+      }
+      var stopBitValue = prefs.getInt('stopBitValue');
+      if( stopBitValue == null ) {
+        stopBitValue = 1;
+        await prefs.setInt('stopBitValue', stopBitValue);
+      }
+
       await _port.setPortParameters(
-        9600, UsbPort.DATABITS_8, UsbPort.STOPBITS_1, UsbPort.PARITY_NONE);
+        baudrateValue, dataBitValue,stopBitValue,parityValue);
 
       _transaction = Transaction.stringTerminated(
           _port.inputStream, Uint8List.fromList([13, 10]));

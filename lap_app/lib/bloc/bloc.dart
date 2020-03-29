@@ -7,3 +7,4 @@ export './wait_task_bloc.dart';
 export './notification_bloc.dart';
 export './list_item_bloc.dart';
 export './auto_console_bloc.dart';
+export './console_setting_bloc.dart';
