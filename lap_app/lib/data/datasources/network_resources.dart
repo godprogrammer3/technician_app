@@ -83,7 +83,7 @@ class NetworkResource extends Equatable {
         );
 
         if (response.statusCode == 200) {
-          return TokenCredential.fromJson(json.decode(response.body));
+          return tokenCredential;
         } else if (response.statusCode == 400) {
           throw AuthenError();
         } else {

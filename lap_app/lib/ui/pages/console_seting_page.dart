@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConsoleSettingPage extends StatelessWidget {
   const ConsoleSettingPage({Key key}) : super(key: key);
@@ -30,8 +32,8 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
   int _dataBitValue;
   int _parityValue;
   int _stopBitValue;
-  int _customBaudrateValue;
   bool _isFirstLoad = true;
+  TextEditingController txtController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +56,6 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                   _dataBitValue = state.consoleSetting.dataBitValue;
                   _parityValue = state.consoleSetting.parityValue;
                   _stopBitValue = state.consoleSetting.stopBitValue;
-                  _customBaudrateValue = state.customBaudrateValue;
                   _isFirstLoad = false;
                 }
 
@@ -94,6 +95,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 setState(() {
                   _baudrateValue = newValue;
                 });
+                updateSetting();
               },
               items: <int>[
                 2400,
@@ -102,11 +104,10 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 38400,
                 57600,
                 115200,
-                _customBaudrateValue * -1
               ].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
                   value: value,
-                  child: Text('      ' + value.toString()),
+                  child: Container(child: baudrateValueToWidget(value)),
                 );
               }).toList(),
             ),
@@ -139,6 +140,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 setState(() {
                   _dataBitValue = newValue;
                 });
+                updateSetting();
               },
               items: <int>[5, 6, 7, 8].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
@@ -176,6 +178,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 setState(() {
                   _parityValue = newValue;
                 });
+                updateSetting();
               },
               items: <int>[0, 1, 2].map<DropdownMenuItem<int>>((int value) {
                 return DropdownMenuItem<int>(
@@ -213,6 +216,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
                 setState(() {
                   _stopBitValue = newValue;
                 });
+                updateSetting();
               },
               items: <int>[
                 1,
@@ -228,27 +232,7 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
           ),
         ],
       ),
-      SizedBox(height:20),
-      ButtonTheme(
-        minWidth: MediaQuery.of(context).size.width * 0.38,
-        height: 40,
-        child: FlatButton(
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(8.0),
-              side: BorderSide(color: Colors.white)),
-          color: Colors.white,
-          textColor: Colors.green,
-          padding: EdgeInsets.all(17.0),
-          onPressed: () {
-            print('Save setting');
-          },
-          child: Text(
-            'Save setting',
-            style: TextStyle(
-                fontFamily: 'supermarket', fontSize: 20, color: Colors.green),
-          ),
-        ),
-      ),
+      SizedBox(height: 20),
     ]);
   }
 
@@ -290,5 +274,17 @@ class _ConsoleSettingPageChildState extends State<ConsoleSettingPageChild> {
           break;
         }
     }
+  }
+
+  Widget baudrateValueToWidget(int value) {
+    return Text('    ' + value.toString());
+  }
+
+  void updateSetting() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('baudrateValue', _baudrateValue);
+    await prefs.setInt('dataBitValue', _dataBitValue);
+    await prefs.setInt('parityValue', _parityValue);
+    await prefs.setInt('stopBitValue', _stopBitValue);
   }
 }

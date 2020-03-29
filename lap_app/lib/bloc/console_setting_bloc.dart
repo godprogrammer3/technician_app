@@ -39,18 +39,12 @@ class ConsoleSettingBloc
         stopBitValue = 1;
         await prefs.setInt('stopBitValue', stopBitValue);
       }
-      var customBaudrateValue = prefs.getInt('customBaudrateValue');
-      if(customBaudrateValue == null) {
-        customBaudrateValue = 9600;
-        await prefs.setInt('customBaudrateValue', customBaudrateValue);
-      }
       yield ConsoleSettingReadyState(
           consoleSetting: ConsoleSetting(
               baudrateValue: baudrateValue,
               dataBitValue: dataBitValue,
               parityValue: parityValue,
               stopBitValue: stopBitValue),
-          customBaudrateValue: customBaudrateValue
               );
     }
   }

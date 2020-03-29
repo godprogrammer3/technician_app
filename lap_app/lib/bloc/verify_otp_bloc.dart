@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:lap_app/core/status/status.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/models/models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 part 'verify_otp_event.dart';
 part 'verify_otp_state.dart';
 
@@ -25,7 +26,9 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
       try {
         final tokenCredential =
             await verifyOtpModel.getToken(event.otpCredential);
-      
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', tokenCredential.token);
+        await prefs.setString('uid',tokenCredential.uid);
         yield VerifyOtpSuccess(tokenCredential:tokenCredential);
       } on AuthenError {
         yield VerifyOtpError(message: "OTP is incorrect!", color: Colors.red);

@@ -12,14 +12,11 @@ class ConsoleSettingInitial extends ConsoleSettingState {
 class ConsoleSettingReadyState extends ConsoleSettingState {
   @override
   final ConsoleSetting consoleSetting;
-  final int customBaudrateValue;
   ConsoleSettingReadyState({
     @required this.consoleSetting,
-    @required this.customBaudrateValue
   });
   List<Object> get props => [
-    consoleSetting,
-    customBaudrateValue
+    consoleSetting
   ];
 
 }
