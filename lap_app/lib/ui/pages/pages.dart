@@ -8,3 +8,5 @@ export './splash_screen_page.dart';
 export './task_detail_page.dart';
 export './notification_page.dart';
 export './console_page.dart';
+export './auto_console_page.dart';
+export './console_seting_page.dart';

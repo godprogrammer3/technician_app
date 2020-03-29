@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lap_app/bloc/bloc.dart';
-import 'package:lap_app/bloc/bloc.dart';
 import 'package:lap_app/data/entities/entities.dart';
 import 'package:lap_app/ui/pages/pages.dart';
 import 'package:lap_app/ui/widget/widgets.dart';
@@ -58,6 +57,7 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
 
   @override
   void initState() {
+    super.initState();
     txtController.text = this.searchString;
   }
 
@@ -85,17 +85,17 @@ class _SearchResultPageChildState extends State<SearchResultPageChild> {
                 } else if (state is SearchResultBackPageState) {
                   Navigator.pop(context);
                 } else if (state is GotoDetailJobState) {
-                  // Navigator.of(context)
-                  //     .push(MaterialPageRoute(builder: (BuildContext context) {
-                  //   return TaskDetailPage(
-                  //     tokenCredential: tokenCredential,
-                  //   );
-                  // }));
-                   Navigator.of(context)
+                  Navigator.of(context)
                       .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return ConsolePage(
+                    return TaskDetailPage(
+                      tokenCredential: tokenCredential,
                     );
                   }));
+                  //  Navigator.of(context)
+                  //     .push(MaterialPageRoute(builder: (BuildContext context) {
+                  //   return ConsolePage(
+                  //   );
+                  // }));
                 }
               },
               child: buildBody(context),
